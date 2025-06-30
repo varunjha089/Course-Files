@@ -1,0 +1,17 @@
+# Ignore folders
+venv/
+__pycache__/
+.git/
+.idea/
+$RECYCLE.BIN/
+System Volume Information/
+Installed Software/
+
+# Ignore specific files
+# desktop.ini
+Thumbs.db
+
+# Ignore file types
+*.pyc
+*.log
+*.tmp
