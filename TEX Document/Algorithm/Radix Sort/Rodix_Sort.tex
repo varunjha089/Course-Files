@@ -1,0 +1,473 @@
+\documentclass[14pt]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{makecell}
+
+\definecolor{codegray}{gray}{0.95}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    frame=single,
+    breaklines=true,
+    breakatwhitespace=false,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+    numbers=left,
+    captionpos=b,
+    showstringspaces=false,
+    tabsize=4,
+    language=C++,
+    escapeinside={(*@}{@*)},
+    breakautoindent=true
+}
+
+\title{\textbf{Radix Sort}}
+\author{Varun Kumar}
+\date{July 5, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section*{01. Logic}
+
+Radix Sort is a non-comparative sorting algorithm that sorts integers by processing individual digits. It processes digits from least significant digit (LSD) to most significant digit (MSD), or vice versa.
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  title=Key Idea
+]
+Sort the numbers digit by digit using a stable sorting algorithm (like Counting Sort), starting from the least significant digit.
+\end{tcolorbox}
+
+\section*{02. Number of Passes and Behavior}
+
+Let $n$ be the number of elements, and $d$ be the number of digits in the maximum number.
+
+\begin{itemize}
+    \item The number of passes = $d$
+    \item Each pass uses a stable sort (usually Counting Sort)
+\end{itemize}
+
+\section*{03. Optimal Behavior}
+
+Radix Sort is efficient when the range of digits ($d$) is small and the number of elements ($n$) is large. It avoids comparisons and is ideal for sorting integers and fixed-length strings.
+
+\section*{04. Pseudocode}
+
+\begin{lstlisting}[language=Python]
+function radixSort(arr):
+    max_digit = number of digits in the largest number
+    for digit_pos in range(0, max_digit):
+        stable_sort(arr, digit_pos)
+\end{lstlisting}
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  title=Stability Note
+]
+Radix Sort is stable if the sorting algorithm used in each digit pass is stable (e.g., Counting Sort).
+\end{tcolorbox}
+
+\section*{05. Example Walkthrough}
+
+Given: \texttt{[170, 45, 75, 90, 802, 24, 2, 66]}
+
+\subsection*{Pass 1 (LSD - unit digit)}
+\texttt{[170, 90, 802, 2, 24, 45, 75, 66]}
+
+\subsection*{Pass 2 (tens digit)}
+\texttt{[802, 2, 24, 45, 66, 170, 75, 90]}
+
+\subsection*{Pass 3 (hundreds digit)}
+\texttt{[2, 24, 45, 66, 75, 90, 170, 802]}
+
+\newpage
+\section*{06. Python Code with Explanation}
+
+\begin{lstlisting}[language=Python]
+def counting_sort(arr, exp):
+    n = len(arr)
+    output = [0] * n
+    count = [0] * 10
+
+    # Count digits
+    for i in range(n):
+        index = (arr[i] // exp) % 10
+        count[index] += 1
+
+    # Accumulate counts
+    for i in range(1, 10):
+        count[i] += count[i - 1]
+
+    # Build output
+    for i in range(n - 1, -1, -1):
+        index = (arr[i] // exp) % 10
+        output[count[index] - 1] = arr[i]
+        count[index] -= 1
+
+    # Copy to arr
+    for i in range(n):
+        arr[i] = output[i]
+
+def radix_sort(arr):
+    max_val = max(arr)
+    exp = 1
+    while max_val // exp > 0:
+        counting_sort(arr, exp)
+        exp *= 10
+\end{lstlisting}
+
+\section*{07. Why is Radix Sort Stable?}
+Radix Sort processes digits one place at a time starting from the least significant digit (LSD), and it uses a \textbf{stable sorting algorithm} (like Counting Sort) in each pass. Stability in these intermediate passes ensures that:
+
+\begin{itemize}[leftmargin=1.5em]
+    \item Elements with the same digit maintain their original relative order.
+    \item When a more significant digit is sorted later, it doesn't disturb the previous ordering.
+\end{itemize}
+
+Hence, by using a stable sort at each digit level, the overall Radix Sort becomes stable.
+
+\section*{08. Is Radix Sort In-Place?}
+Radix Sort is \textbf{not in-place} because it requires additional memory for:
+
+\begin{itemize}[leftmargin=1.5em]
+    \item Temporary output array (same size as input) to store the sorted elements after each digit pass.
+    \item Counting array (usually of size 10 for base-10 digits) used in Counting Sort.
+\end{itemize}
+
+Thus, its space complexity is $O(n + k)$, where:
+\begin{itemize}
+    \item $n$ = number of elements
+    \item $k$ = range of digits (usually 10 for decimal numbers)
+\end{itemize}
+
+\section*{09. Can Radix Sort Be Made In-Place?}
+In general, \textbf{Radix Sort is not in-place} due to its reliance on an auxiliary output array to maintain stability across digit-wise passes.
+
+\textbf{Why not in-place?}
+\begin{itemize}[leftmargin=1.5em]
+    \item Requires $O(n)$ extra space for output in each pass.
+    \item Avoiding extra space would break the \textbf{stability} or \textbf{increase complexity}.
+\end{itemize}
+
+Some theoretical attempts exist to make Radix Sort in-place, but they are not practical due to complexity, instability, or loss of linear-time performance.
+
+\section*{10. Why can't Radix Sort be made in-place without breaking stability or increasing complexity?}
+
+\textbf{Answer:} Radix Sort works by sorting digits one at a time (typically starting from the least significant digit), and in each digit pass, it uses a \textbf{stable sort} like Counting Sort to preserve the relative order of elements with equal digits.
+
+To maintain \textbf{stability}, we must:
+\begin{itemize}[leftmargin=1.5em]
+    \item Use an auxiliary output array to store the sorted result.
+    \item Copy back this output into the original array after each pass.
+\end{itemize}
+
+Removing the auxiliary array (to make it in-place) would:
+\begin{enumerate}[leftmargin=1.5em]
+    \item \textbf{Break Stability:} Direct in-place swapping can rearrange equal elements, violating stability.
+    \item \textbf{Increase Complexity:} Advanced in-place stable sorting techniques exist, but they require extra logic (like complex cycle-leader transformations or linked-index simulation), which leads to:
+    \begin{itemize}
+        \item More comparisons and swaps
+        \item Harder implementation
+        \item Loss of linear-time advantage
+    \end{itemize}
+\end{enumerate}
+
+\textbf{Conclusion:} While in theory, it is possible to design an in-place version of Radix Sort, it is \textit{not practical} because:
+\begin{itemize}
+    \item It would no longer run in linear time.
+    \item It may no longer remain stable.
+    \item It would require complex and error-prone logic.
+\end{itemize}
+
+Hence, \textbf{standard Radix Sort is not in-place}, and efforts to make it in-place come at the cost of either \textbf{breaking stability} or \textbf{losing linear time efficiency}.
+
+
+
+
+
+
+\section*{11. Best Case and Worst Case Using a Single Example}
+
+Let us consider the array:
+
+\[
+\texttt{[170, 45, 75, 90, 802, 24, 2, 66]}
+\]
+
+We will use this same example to illustrate both the best-case and worst-case scenarios for Radix Sort.
+
+\subsection*{Best Case Scenario}
+
+\begin{itemize}[leftmargin=1.5em]
+    \item All elements are uniformly distributed over digit positions.
+    \item Digit range is small (e.g., base 10), and all numbers have nearly the same number of digits.
+    \item \textbf{No significant digit collisions} at each place value, so Counting Sort per digit is efficient.
+    \item Array size $n = 8$, maximum digits $d = 3$ (e.g., 802 has 3 digits).
+\end{itemize}
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  title=Best Case Time Complexity
+]
+\[
+T(n) = O(d \cdot (n + k)) = O(3 \cdot (8 + 10)) = O(1) \cdot O(n) = O(n)
+\]
+Where:
+\begin{itemize}
+  \item $d =$ number of digits (3)
+  \item $k =$ base/range of digits (10)
+\end{itemize}
+\end{tcolorbox}
+
+\subsection*{Worst Case Scenario}
+
+\begin{itemize}[leftmargin=1.5em]
+    \item Numbers have large variation in digit lengths (e.g., mixing 3-digit and 10-digit numbers).
+    \item Very large base $k$ or inefficient implementation of Counting Sort.
+    \item Overhead in each digit pass increases due to long digit ranges.
+    \item Still better than $O(n^2)$ algorithms, but constants can degrade performance.
+\end{itemize}
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  title=Worst Case Time Complexity
+]
+\[
+T(n) = O(d \cdot (n + k)) \quad \text{where $d$ is large, e.g., 10 or more digits.}
+\]
+Even with same 8 elements, if max number = $9876543210$, then $d = 10$:
+
+\[
+T(n) = O(10 \cdot (8 + 10)) = O(180)
+\]
+\end{tcolorbox}
+
+\subsection*{Summary}
+
+\begin{center}
+\begin{tabular}{|c|l|l|}
+\hline
+\textbf{Scenario} & \textbf{Condition} & \textbf{Time Complexity} \\
+\hline
+Best Case   & Uniform digit length, small $d$ & $O(n)$ \\
+Worst Case  & Large $d$, large base $k$       & $O(d \cdot (n + k))$ \\
+\hline
+\end{tabular}
+\end{center}
+
+
+
+\section*{12. Time \& Space Complexity and Its Properties}
+
+\begin{center}
+\begin{tabular}{|l|l||l|l|}
+\hline
+\textbf{Case}        & \textbf{Complexity}       & \textbf{Property}   & \textbf{Value} \\
+\hline
+Best Case            & $O(n \cdot k)$            & Stable              & Yes            \\
+Average Case         & $O(n \cdot k)$            & In-place            & No             \\
+Worst Case           & $O(n \cdot k)$            & Adaptive            & No             \\
+\hline
+\noalign{\vskip 2pt}
+Space Complexity     & $O(n + k)$                & Recursive           & No             \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Note:}
+\begin{itemize}[leftmargin=1.5em]
+    \item Actually $O(k \cdot (n + b)) \approx O(n \cdot k)$
+	\begin{itemize}[leftmargin=1.5em]
+		\item Where $n$ = number of elements, $k$ = number of digits and $b$ = base 
+	\end{itemize}
+    \item Radix Sort is faster than comparison-based $O(n \log n)$ sorts when $k$ is small and digits are bounded.
+    \item Not adaptive: it does the same number of passes regardless of initial order.
+    \item Not in-place: requires auxiliary arrays (e.g., output array in Counting Sort).
+\end{itemize}
+
+\newpage
+\section*{14. C++ Implementation of Radix Sort (LSD)}
+
+\subsection*{Code with Explanation}
+
+\begin{lstlisting}[language=C++, caption=Radix Sort in C++, numbers=left]
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+// Get the maximum element in the array
+int getMax(const vector<int>& arr) {
+    return *max_element(arr.begin(), arr.end());
+}
+
+// Counting Sort used for a specific digit (exp = 1, 10, 100, ...)
+void countingSort(vector<int>& arr, int exp) {
+    int n = arr.size();
+    vector<int> output(n);       // Output array to store sorted values
+    int count[10] = {0};         // Count array for digits 0-9
+
+    // Count occurrences of digits at 'exp' place
+    for (int i = 0; i < n; i++)
+        count[(arr[i] / exp) % 10]++;
+
+    // Convert count[] to actual positions
+    for (int i = 1; i < 10; i++)
+        count[i] += count[i - 1];
+
+    // Build output[] using reverse traversal for stability
+    for (int i = n - 1; i >= 0; i--) {
+        int digit = (arr[i] / exp) % 10;
+        output[count[digit] - 1] = arr[i];
+        count[digit]--;
+    }
+
+    // Copy back to original array
+    for (int i = 0; i < n; i++)
+        arr[i] = output[i];
+}
+
+// Main Radix Sort function
+void radixSort(vector<int>& arr) {
+    int maxVal = getMax(arr);
+
+    // Sort each digit (unit, tens, hundreds, etc.)
+    for (int exp = 1; maxVal / exp > 0; exp *= 10)
+        countingSort(arr, exp);
+}
+
+// Utility function to print array
+void printArray(const vector<int>& arr) {
+    for (int num : arr)
+        cout << num << " ";
+    cout << endl;
+}
+
+// Driver code
+int main() {
+    vector<int> arr = {170, 45, 75, 90, 802, 24, 2, 66};
+
+    cout << "Original array:\n";
+    printArray(arr);
+
+    radixSort(arr);
+
+    cout << "Sorted array:\n";
+    printArray(arr);
+
+    return 0;
+}
+\end{lstlisting}
+
+\subsection*{Explanation of the Code}
+
+\begin{itemize}[leftmargin=1.5em]
+    \item \texttt{getMax()} finds the largest number to determine the number of digit passes.
+    \item \texttt{countingSort()} is called for each digit position (units, tens, hundreds, etc.) using \texttt{exp} as the digit place.
+    \item Counting Sort is stable because we fill the \texttt{output[]} array from the end of the original array.
+    \item \texttt{radixSort()} loops over digit places until all digits of the largest number are processed.
+    \item \texttt{printArray()} is a helper to display the array before and after sorting.
+\end{itemize}
+
+\subsection*{Properties of This Implementation}
+
+\begin{itemize}[leftmargin=1.5em]
+    \item \textbf{Stable:} Yes, due to reverse traversal in Counting Sort.
+    \item \textbf{Not In-Place:} Uses extra memory for the output array.
+    \item \textbf{Time Complexity:} $O(n \cdot d)$ where $d$ is the number of digits in the max element.
+    \item \textbf{Space Complexity:} $O(n + k)$ where $k = 10$ (digits from 0 to 9).
+    \item \textbf{Limitation:} Only supports non-negative integers in this version.
+\end{itemize}
+
+
+\section*{15. Handling Negative Numbers in Radix Sort}
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  title=Problem
+]
+Standard Radix Sort (especially LSD variant) works only on non-negative integers because it processes digits. Negative numbers contain a sign, and digit-wise processing is undefined for negative values.
+\end{tcolorbox}
+
+\subsection*{Solution Strategy}
+
+To extend Radix Sort to handle both positive and negative integers:
+
+\begin{enumerate}[leftmargin=1.5em]
+    \item \textbf{Separate the array into:}
+    \begin{itemize}
+        \item Negative numbers
+        \item Non-negative numbers
+    \end{itemize}
+    
+    \item \textbf{Take absolute values} of negative numbers before sorting.
+
+    \item \textbf{Apply Radix Sort:}
+    \begin{itemize}
+        \item On positive numbers as-is
+        \item On absolute values of negative numbers
+    \end{itemize}
+    
+    \item \textbf{Reverse the sorted negative list} (because more negative values come first).
+
+    \item \textbf{Convert back to negative} by multiplying with \(-1\).
+
+    \item \textbf{Concatenate:}
+    \begin{itemize}
+        \item Final array = Sorted negatives (in reverse) + sorted positives
+    \end{itemize}
+\end{enumerate}
+
+\subsection*{Example}
+
+\[
+\text{Input: } [-170, 45, -75, 90, -802, 24, 2, -66]
+\]
+
+\begin{itemize}
+    \item Negatives: \texttt{[-170, -75, -802, -66]}
+    \item Positives: \texttt{[45, 90, 24, 2]}
+    \item Absolute Negatives: \texttt{[170, 75, 802, 66]}
+\end{itemize}
+
+Apply Radix Sort:
+
+\begin{itemize}
+    \item Sorted Positives: \texttt{[2, 24, 45, 90]}
+    \item Sorted Absolute Negatives: \texttt{[66, 75, 170, 802]}
+\end{itemize}
+
+Reverse and restore negatives:
+
+\[
+\text{Sorted Negatives: } [-802, -170, -75, -66]
+\]
+
+\[
+\textbf{Final Output: } [-802, -170, -75, -66, 2, 24, 45, 90]
+\]
+
+\subsection*{Conclusion}
+
+This method:
+\begin{itemize}
+    \item Preserves Radix Sort’s efficiency: $O(n \cdot d)$
+    \item Requires temporary arrays for splitting and merging
+    \item Ensures correct sorting of negative values without modifying the core algorithm
+\end{itemize}
+
+
+\end{document}

@@ -1,0 +1,121 @@
+\documentclass[12pt]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{tcolorbox}
+
+% Header and footer setup
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Date: \today}
+\lhead{Subject: Algorithms}
+\cfoot{\thepage}
+
+% Section formatting
+\titleformat{\section}{\large\bfseries\color{blue}}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalsize\bfseries\color{cyan}}{\thesubsection}{1em}{}
+
+% Python code style
+\lstdefinestyle{mypython}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue}\bfseries,
+  stringstyle=\color{red},
+  commentstyle=\color{gray}\itshape,
+  showstringspaces=false,
+  frame=single,
+  breaklines=true,
+  tabsize=2,
+  captionpos=b
+}
+
+% Minimal Cornell box (compatible version)
+\newtcolorbox{cornellbox}[1][]{%
+  colback=white,
+  colframe=black,
+  fonttitle=\bfseries,
+  title=#1,
+  boxrule=0.5pt,
+  sharp corners
+}
+
+\title{\textbf{Cornell Notes: Heap Sort Algorithm with Python}}
+\date{}
+\author{}
+
+\begin{document}
+\maketitle
+
+\begin{cornellbox}[Cues / Questions]
+\begin{itemize}
+  \item What is Heap Sort?
+  \item How does heapify work?
+  \item What is time complexity?
+  \item Is it in-place?
+  \item Python code?
+\end{itemize}
+\end{cornellbox}
+
+\begin{cornellbox}[Notes]
+\textbf{Heap Sort} is a comparison-based, in-place sorting algorithm that uses a \textbf{binary heap} (usually a max heap).
+
+\textbf{Steps:}
+\begin{enumerate}
+  \item Convert array into a max heap.
+  \item Repeatedly remove the root (largest) and move to the end.
+  \item Heapify the reduced heap.
+\end{enumerate}
+
+\textbf{Time Complexity:}
+\begin{itemize}
+  \item Build Heap: \( O(n) \)
+  \item Reheapify: \( O(\log n) \) for each of \( n \) elements
+  \item Total: \( O(n \log n) \)
+\end{itemize}
+
+\textbf{Space Complexity:} \( O(1) \) (in-place)
+
+\textbf{Stability:} Not stable
+\end{cornellbox}
+
+\begin{cornellbox}[Python Code]
+\begin{lstlisting}[style=mypython, caption={Heap Sort in Python}]
+def heapify(arr, n, i):
+    largest = i
+    left = 2*i + 1
+    right = 2*i + 2
+
+    if left < n and arr[left] > arr[largest]:
+        largest = left
+    if right < n and arr[right] > arr[largest]:
+        largest = right
+
+    if largest != i:
+        arr[i], arr[largest] = arr[largest], arr[i]
+        heapify(arr, n, largest)
+
+def heap_sort(arr):
+    n = len(arr)
+
+    # Build max heap
+    for i in range(n//2 - 1, -1, -1):
+        heapify(arr, n, i)
+
+    # Extract elements from heap
+    for i in range(n-1, 0, -1):
+        arr[i], arr[0] = arr[0], arr[i]
+        heapify(arr, i, 0)
+
+arr = [4, 10, 3, 5, 1]
+heap_sort(arr)
+print("Sorted:", arr)
+\end{lstlisting}
+\end{cornellbox}
+
+\begin{cornellbox}[Summary]
+Heap Sort is an efficient, in-place sorting algorithm with a guaranteed time complexity of \( O(n \log n) \). It is useful when memory is constrained and stable sorting is not required.
+\end{cornellbox}
+
+\end{document}

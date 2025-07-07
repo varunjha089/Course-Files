@@ -1,0 +1,147 @@
+\documentclass[14pt]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{makecell}
+
+\definecolor{codegray}{gray}{0.95}
+\lstset{
+    basicstyle=\ttfamily\small,
+    frame=single,
+    breaklines=true,
+    columns=fullflexible,
+}
+
+\title{\textbf{Linear Search and Binary Search}}
+\author{Varun Kumar}
+\date{July 5, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Linear Search - Logic}
+Linear search scans each element one by one until it finds the target element or reaches the end.
+
+\begin{tcolorbox}[colback=white, colframe=black, title=Key Idea]
+For an array of size $n$, linear search checks each index from $0$ to $n-1$ for the key.
+\end{tcolorbox}
+
+\section*{2. Linear Search - Pseudocode}
+
+\begin{lstlisting}[language=Python]
+function linearSearch(arr, key):
+    for i from 0 to length(arr) - 1:
+        if arr[i] == key:
+            return i
+    return -1
+\end{lstlisting}
+
+\section*{3. Binary Search - Logic}
+Binary search divides the search space in half repeatedly, working only on sorted arrays.
+
+\begin{tcolorbox}[colback=white, colframe=black, title=Key Idea]
+Start with low and high pointers. At each step, check the middle. If the middle is the key, return it. Else reduce the search space by half.
+\end{tcolorbox}
+
+\section*{4. Binary Search - Pseudocode}
+
+\begin{lstlisting}[language=Python]
+function binarySearch(arr, key):
+    low = 0
+    high = length(arr) - 1
+    while low <= high:
+        mid = (low + high) // 2
+        if arr[mid] == key:
+            return mid
+        else if arr[mid] < key:
+            low = mid + 1
+        else:
+            high = mid - 1
+    return -1
+\end{lstlisting}
+
+\section*{5. Binary Search - Python Code}
+
+\begin{lstlisting}[language=Python]
+def binary_search(arr, key):
+    low = 0
+    high = len(arr) - 1
+
+    while low <= high:
+        mid = (low + high) // 2
+
+        if arr[mid] == key:
+            return mid
+        elif arr[mid] < key:
+            low = mid + 1
+        else:
+            high = mid - 1
+
+    return -1
+\end{lstlisting}
+
+\newpage
+\section*{6. Binary Search - Example Walkthrough}
+
+Given: \texttt{arr = [2, 4, 6, 8, 10, 12, 14]} \\
+Target: \texttt{10}
+
+\begin{tcolorbox}[colback=white, colframe=black, title=Initial Setup]
+\begin{itemize}
+    \item low = 0
+    \item high = 6
+\end{itemize}
+\end{tcolorbox}
+
+\subsection*{Step 1}
+\begin{itemize}
+    \item mid = (0 + 6) // 2 = 3
+    \item arr[3] = 8
+    \item 8 < 10 → Search right half
+    \item New low = 4, high = 6
+\end{itemize}
+
+\subsection*{Step 2}
+\begin{itemize}
+    \item mid = (4 + 6) // 2 = 5
+    \item arr[5] = 12
+    \item 12 > 10 → Search left half
+    \item New low = 4, high = 4
+\end{itemize}
+
+\subsection*{Step 3}
+\begin{itemize}
+    \item mid = (4 + 4) // 2 = 4
+    \item arr[4] = 10
+    \item Match found at index 4
+\end{itemize}
+
+\begin{tcolorbox}[colback=white, colframe=black, title=Final Result]
+The element \texttt{10} is found at index \textbf{4}.
+\end{tcolorbox}
+
+\section*{7. Time and Space Complexity Comparison}
+
+\begin{center}
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Aspect} & \textbf{Linear Search} & \textbf{Binary Search} \\
+\hline
+Best Case       & $O(1)$                & $O(1)$ \\
+Average Case    & $O(n)$                & $O(\log n)$ \\
+Worst Case      & $O(n)$                & $O(\log n)$ \\
+\hline
+Space           & $O(1)$                & $O(1)$ \\
+Requires Sorted?& No                    & Yes \\
+\hline
+\end{tabular}
+\end{center}
+
+\end{document}

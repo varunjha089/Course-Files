@@ -1,0 +1,36 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[margin=1in]{geometry} % 2.54cm margins
+\usepackage{tikz}
+\usepackage{lmodern}
+\usepackage{parskip}
+\pagestyle{empty}
+
+\begin{document}
+
+% === Header Box: Topic and Date ===
+\noindent
+\fbox{%
+  \begin{minipage}[t]{\textwidth}
+    \textbf{Topic:} \dotfill \hfill \textbf{Date:} \dotfill
+  \end{minipage}
+}
+
+\vspace{0.5em}
+
+% === Main Note Area with Two Columns ===
+\noindent
+\begin{tikzpicture}
+  \draw (0, 0) rectangle (\textwidth, -16); % main box height = 16 cm
+  \draw (0.33\textwidth, 0) -- (0.33\textwidth, -16);
+\end{tikzpicture}
+
+\vspace{0.5em}
+
+% === Summary Box ===
+\noindent
+\begin{tikzpicture}
+  \draw (0, 0) rectangle (\textwidth, -5); % summary box = 5 cm
+\end{tikzpicture}
+
+
+\end{document}

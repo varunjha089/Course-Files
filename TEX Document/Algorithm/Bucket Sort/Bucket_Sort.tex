@@ -1,0 +1,293 @@
+\documentclass[14pt]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{makecell}
+
+\definecolor{codegray}{gray}{0.95}
+\lstset{
+    basicstyle=\ttfamily\small,
+    frame=single,
+    breaklines=true,
+    columns=fullflexible,
+}
+
+\title{\textbf{Bucket Sort}}
+\author{Varun Kumar}
+\date{July 5, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Logic}
+
+Bucket Sort distributes the elements into a number of buckets. Each bucket is then sorted individually (often using Insertion Sort or another algorithm), and finally, all the buckets are concatenated to form the sorted array.
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  title=Key Idea
+]
+Distribute elements into several buckets, sort each bucket, and concatenate them to get the final sorted array.
+\end{tcolorbox}
+
+\section*{2. Number of Comparisons and Shifts}
+
+Let $n$ be the number of elements.
+
+\subsection*{Worst Case (All in One Bucket)}
+
+\begin{itemize}
+    \item Comparisons: $O(n^2)$ (if sorted using Insertion Sort inside each bucket)
+    \item Shifts: Depends on internal sort
+\end{itemize}
+
+\subsection*{Best Case (Uniform Distribution)}
+
+\begin{itemize}
+    \item Comparisons: $O(n)$
+    \item Shifts: $O(n)$
+\end{itemize}
+
+\section*{3. Optimal Behavior}
+
+Bucket sort works best when:
+\begin{itemize}
+    \item Input is uniformly distributed over a known range.
+    \item Number of buckets is well chosen.
+\end{itemize}
+
+\section*{4. Pseudocode}
+
+\begin{lstlisting}[language=Python]
+function bucketSort(arr):
+    n = length(arr)
+    create n empty buckets
+
+    for each element in arr:
+        insert it into the appropriate bucket
+
+    for each bucket:
+        sort the bucket
+
+    concatenate all buckets into arr
+\end{lstlisting}
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  title=Stability Note
+]
+Bucket Sort is not inherently stable. Stability depends on the sorting algorithm used inside each bucket.
+\end{tcolorbox}
+
+\section*{5. Example Walkthrough}
+
+Given: \texttt{[0.42, 0.32, 0.23, 0.52, 0.25, 0.47]}
+
+\subsection*{Step 1: Bucket Distribution}
+
+\begin{itemize}
+    \item Bucket 0: [0.23, 0.25]
+    \item Bucket 1: [0.32]
+    \item Bucket 2: []
+    \item Bucket 3: [0.42, 0.47]
+    \item Bucket 4: [0.52]
+\end{itemize}
+
+\subsection*{Step 2: Sort Each Bucket}
+
+\begin{itemize}
+    \item Bucket 0: [0.23, 0.25]
+    \item Bucket 3: [0.42, 0.47]
+\end{itemize}
+
+\subsection*{Step 3: Concatenate}
+
+\texttt{[0.23, 0.25, 0.32, 0.42, 0.47, 0.52]}
+
+\section*{6. Python Code with Explanation}
+
+\begin{lstlisting}[language=Python]
+def bucket_sort(arr):
+    n = len(arr)
+    if n == 0:
+        return arr
+
+    # Create n empty buckets
+    buckets = [[] for _ in range(n)]
+
+    # Insert elements into buckets
+    for num in arr:
+        index = int(n * num)
+        buckets[index].append(num)
+
+    # Sort each bucket
+    for bucket in buckets:
+        bucket.sort()
+
+    # Concatenate all buckets
+    sorted_arr = []
+    for bucket in buckets:
+        sorted_arr.extend(bucket)
+
+    return sorted_arr
+\end{lstlisting}
+
+\section*{7. Is Bucket Sort Stable?}
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  title=Stability of Bucket Sort
+]
+Bucket Sort is \textbf{not inherently stable}. Its stability depends on the sorting algorithm used inside each bucket.
+
+\medskip
+
+\textbf{Explanation:} If a \textit{stable} sorting algorithm (like Insertion Sort) is used within the buckets, then Bucket Sort will be stable. However, if an \textit{unstable} sort is used, then the overall algorithm will also be unstable.
+\end{tcolorbox}
+
+\section*{8. How Insertion Sort Ensures Stability}
+
+Insertion Sort compares elements using the \texttt{>} operator. When two elements are equal, it does \textbf{not swap} or move them unnecessarily. This means their original relative order is preserved.
+
+\medskip
+
+For example, consider the list:
+\[
+[ (4, \text{A}), (4, \text{B}), (3, \text{C}) ]
+\]
+
+After sorting:
+\[
+[ (3, \text{C}), (4, \text{A}), (4, \text{B}) ]
+\]
+
+Elements with the same key \texttt{4} (\texttt{A} and \texttt{B}) remain in the same order as they appeared in the input.
+
+\medskip
+
+\textbf{Therefore, if Insertion Sort is used inside each bucket, the overall Bucket Sort becomes stable.}
+
+\newpage
+\section*{9. Is Bucket Sort In-place?}
+
+\textbf{Answer:} \textbf{No, Bucket Sort is not in-place.}
+
+\medskip
+
+\textbf{Explanation:} Bucket Sort creates multiple auxiliary lists (buckets) to store elements during the sorting process. These additional data structures require extra memory proportional to the number of input elements and buckets.
+
+\begin{itemize}
+    \item It uses $O(n + k)$ extra space, where $k$ is the number of buckets.
+    \item Since it does not sort within the original array without extra space, it is not considered in-place.
+\end{itemize}
+
+
+\section*{10. Can Bucket Sort Be Made In-place?}
+
+\textbf{Answer:} \textbf{Theoretically possible, but not practical.}
+
+\medskip
+
+\textbf{Explanation:} Bucket Sort requires auxiliary space to create multiple buckets. To make it in-place, we would need to:
+\begin{itemize}
+    \item Divide the input array into segments (buckets) without extra space.
+    \item Sort each segment in-place.
+    \item Carefully rearrange elements to simulate bucket behavior.
+\end{itemize}
+
+However, this approach:
+\begin{itemize}
+    \item Complicates implementation.
+    \item Risks losing the linear time benefit.
+    \item Often requires pointer juggling or index remapping.
+\end{itemize}
+
+\textbf{Conclusion:} Although an in-place variant is possible with complex logic and trade-offs, the standard Bucket Sort is not in-place and is preferred with auxiliary space for simplicity and speed.
+
+
+
+\newpage
+\section*{11. Python Code: Bucket Sort using Insertion Sort}
+
+\begin{lstlisting}[language=Python]
+# Insertion Sort function for individual buckets
+def insertion_sort(bucket):
+    for i in range(1, len(bucket)):
+        key = bucket[i]
+        j = i - 1
+        while j >= 0 and bucket[j] > key:
+            bucket[j + 1] = bucket[j]
+            j -= 1
+        bucket[j + 1] = key
+
+# Bucket Sort using Insertion Sort in each bucket
+def bucket_sort(arr):
+    n = len(arr)
+    if n == 0:
+        return arr
+
+    # Create n empty buckets
+    buckets = [[] for _ in range(n)]
+
+    # Distribute elements into appropriate buckets
+    for num in arr:
+        index = int(n * num)  # Assumes input in range [0, 1)
+        buckets[index].append(num)
+
+    # Sort each bucket using insertion sort
+    for bucket in buckets:
+        insertion_sort(bucket)
+
+    # Concatenate all sorted buckets
+    sorted_arr = []
+    for bucket in buckets:
+        sorted_arr.extend(bucket)
+
+    return sorted_arr
+\end{lstlisting}
+
+\newpage
+\section*{12. Time \& Space Complexity and Its Properties}
+
+\begin{center}
+\begin{tabular}{|l|l||l|l|}
+\hline
+\textbf{Case}     & \textbf{Complexity}       & \textbf{Property}     & \textbf{Value} \\
+\hline
+Best Case         & $O(n + k)$                & Stable                & Yes (if insertion sort) \\
+Average Case      & $O(n + k)$                & In-place              & No                     \\
+Worst Case        & $O(n^2)$                  & Adaptive              & No                     \\
+\hline
+\noalign{\vskip 2pt}
+Space Complexity  & $O(n + k)$ (extra space)  & Recursive             & No                     \\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{13. Final Summary (10 Key Points)}
+
+\begin{enumerate}
+    \item Bucket Sort is a \textbf{distribution-based} sorting algorithm.
+    \item It divides the input into multiple \textbf{buckets} and sorts each bucket individually.
+    \item Ideal for inputs that are \textbf{uniformly distributed} over a known range.
+    \item Each bucket can be sorted using any sorting algorithm (e.g., Insertion Sort).
+    \item The overall time complexity is $O(n + k)$ in the average and best cases.
+    \item Worst-case time is $O(n^2)$ when all elements fall into the same bucket.
+    \item \textbf{Stability} depends on the sorting method used inside each bucket.
+    \item It is \textbf{not in-place} due to additional memory for buckets.
+    \item It is \textbf{not adaptive} — does not take advantage of existing order.
+    \item Bucket Sort is efficient for large inputs with uniform distribution, but not general-purpose.
+\end{enumerate}
+
+
+\end{document}

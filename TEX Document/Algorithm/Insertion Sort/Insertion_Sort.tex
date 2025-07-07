@@ -1,0 +1,339 @@
+\documentclass[14pt]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{multicol}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{makecell}
+
+\definecolor{codegray}{gray}{0.95}
+\lstset{
+    basicstyle=\ttfamily\small,
+    frame=single,
+    breaklines=true,
+    columns=fullflexible,
+}
+
+\title{\textbf{Insertion Sort }}
+\author{Varun Kumar}
+\date{July 4, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section*{1. Logic}
+
+Insertion Sort builds the sorted array one element at a time by repeatedly picking the next element and inserting it into the correct position among the already sorted elements.
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  title=Key Idea
+]
+At the $i^{th}$ iteration, the first $i$ elements are sorted, and the $(i+1)^{th}$ element is inserted into its correct position.
+\end{tcolorbox}
+
+\section*{2. Number of Comparisons and Shifts}
+
+Let $n$ be the number of elements.
+
+\subsection*{Worst Case (Reverse Sorted)}
+
+\begin{itemize}
+    \item Comparisons: $\frac{n(n-1)}{2}$
+    \item Shifts: $\frac{n(n-1)}{2}$
+\end{itemize}
+
+\subsection*{Best Case (Already Sorted)}
+
+\begin{itemize}
+    \item Comparisons: $n - 1$
+    \item Shifts: $0$
+\end{itemize}
+
+\section*{3. Optimal Behavior}
+
+Insertion sort is adaptive by default. It reduces unnecessary comparisons and shifts when the array is already or partially sorted.
+
+\section*{4. Pseudocode}
+
+\begin{lstlisting}[language=Python]
+function insertionSort(arr):
+    n = length(arr)
+    for i = 1 to n-1:
+        key = arr[i]
+        j = i - 1
+        while j >= 0 and arr[j] > key:
+            arr[j+1] = arr[j]
+            j = j - 1
+        arr[j+1] = key
+\end{lstlisting}
+
+\begin{tcolorbox}[
+  colback=white,
+  colframe=black,
+  title=Stability Note
+]
+Insertion Sort is stable because it inserts elements in a way that preserves the relative order of equal elements.
+\end{tcolorbox}
+
+\section*{5. Example Walkthrough}
+
+Given: \texttt{[5, 1, 4, 2, 8]}
+
+\subsection*{Pass 1}
+\texttt{[5, 1, 4, 2, 8]} $\Rightarrow$ \texttt{[1, 5, 4, 2, 8]}
+
+\subsection*{Pass 2}
+\texttt{[1, 5, 4, 2, 8]} $\Rightarrow$ \texttt{[1, 4, 5, 2, 8]}
+
+\subsection*{Pass 3}
+\texttt{[1, 4, 5, 2, 8]} $\Rightarrow$ \texttt{[1, 2, 4, 5, 8]}
+
+\subsection*{Pass 4}
+\texttt{[1, 2, 4, 5, 8]} → Already in position → Done
+
+\section*{6. Time \& Space Complexity and Its Properties}
+
+\begin{center}
+\begin{tabular}{|l|l||l|l|}
+\hline
+\textbf{Case}     & \textbf{Complexity}   & \textbf{Property}     & \textbf{Value} \\
+\hline
+Best Case         & $O(n)$                & Stable                & Yes            \\
+Average Case      & $O(n^2)$              & In-place              & Yes            \\
+Worst Case        & $O(n^2)$              & Adaptive              & Yes            \\
+\hline
+\noalign{\vskip 2pt}
+Space Complexity  & $O(1)$ (in-place)     & Recursive             & No             \\
+\hline
+\end{tabular}
+\end{center}
+
+\section*{7. Python Code with Explanation}
+
+\begin{lstlisting}[language=Python]
+def insertion_sort(arr):
+    # Traverse from 1 to len(arr)
+    for i in range(1, len(arr)):
+        key = arr[i]
+        j = i - 1
+
+        # Move elements greater than key to one position ahead
+        while j >= 0 and arr[j] > key:
+            arr[j + 1] = arr[j]
+            j -= 1
+
+        # Insert the key at the correct position
+        arr[j + 1] = key
+
+    return arr
+\end{lstlisting}
+
+
+\newpage
+\section*{8. Important Notes on Conditions}
+
+\subsection*{A. Difference Between \texttt{j >= 0} and \texttt{j > 0}}
+
+\begin{itemize}
+    \item \texttt{j >= 0} ensures that even the element at index \texttt{0} is compared and shifted if needed. It is the correct condition.
+    \item \texttt{j > 0} skips the element at index \texttt{0}, which may result in incorrect sorting.
+\end{itemize}
+
+\begin{tcolorbox}[colback=white, colframe=black, title=Example]
+Given \texttt{[3, 2]}:
+
+\begin{itemize}
+    \item With \texttt{j >= 0}: Result → \texttt{[2, 3]} (Correct)
+    \item With \texttt{j > 0}: Result → \texttt{[3, 2]} (Incorrect)
+\end{itemize}
+\end{tcolorbox}
+
+\vspace{1em}
+
+\subsection*{B. How to Make Insertion Sort Unstable}
+
+\begin{itemize}
+    \item Insertion Sort is stable because it does not move equal elements.
+    \item If you change the condition in the while loop from \texttt{arr[j] > key} to \texttt{arr[j] >= key}, equal elements can be shifted, reversing their original order.
+\end{itemize}
+
+\begin{lstlisting}[language=Python, caption=Unstable Version]
+while j >= 0 and arr[j] >= key:  # Unstable: may move equal elements
+    arr[j + 1] = arr[j]
+    j -= 1
+\end{lstlisting}
+
+\begin{tcolorbox}[colback=white, colframe=black, title=Stability Impact]
+\texttt{arr[j] > key} → Stable  
+\newline
+\texttt{arr[j] >= key} → Unstable
+\end{tcolorbox}
+
+\vspace{1em}
+
+\subsection*{C. Summary of Conditions}
+
+\begin{center}
+\begin{tabular}{|c|p{8cm}|}
+\hline
+\textbf{Condition} & \textbf{Effect} \\
+\hline
+\texttt{j >= 0} & Correct — includes index 0 in \newline comparisons \\
+\texttt{j > 0} & Incorrect — skips index 0, may miss minimum value \\
+\texttt{arr[j] > key} & Stable — preserves order of equal \newline elements \\
+\texttt{arr[j] >= key} & Unstable — may shift equal elements, reversing order \\
+\hline
+\end{tabular}
+\end{center}
+
+
+\section*{9. Making \texttt{arr[j] >= key} Stable}
+
+\subsection*{Why it Becomes Unstable}
+
+The condition \texttt{arr[j] >= key} causes instability because:
+\begin{itemize}
+    \item It shifts equal elements to the right.
+    \item This breaks their original relative order.
+\end{itemize}
+
+\begin{tcolorbox}[colback=white, colframe=black, title=Stability Violation]
+Using \texttt{arr[j] >= key} moves earlier equal elements after the current one, reversing their order.
+\end{tcolorbox}
+
+\vspace{1em}
+
+\newpage
+\subsection*{How to Make it Stable Even with \texttt{>=}}
+
+We can track the original positions of the elements by pairing each value with its index.  
+This allows us to break ties using original position, preserving stability.
+
+\begin{lstlisting}[language=Python, caption=Stable Insertion Sort Using Index Tracking]
+def stable_insertion_sort(arr):
+    # Attach original indices
+    arr_with_index = [(val, idx) for idx, val in enumerate(arr)]
+
+    for i in range(1, len(arr_with_index)):
+        key = arr_with_index[i]
+        j = i - 1
+
+        while j >= 0 and (
+            arr_with_index[j][0] > key[0] or
+            (arr_with_index[j][0] == key[0] and arr_with_index[j][1] > key[1])
+        ):
+            arr_with_index[j + 1] = arr_with_index[j]
+            j -= 1
+
+        arr_with_index[j + 1] = key
+
+    # Extract values without indices
+    return [val for val, idx in arr_with_index]
+\end{lstlisting}
+
+\vspace{0.5em}
+
+\subsection*{Explanation}
+
+\begin{itemize}
+    \item Elements are stored as tuples: \texttt{(value, original\_index)}.
+    \item If values are equal, we preserve their original order using the index.
+    \item This approach works even when using \texttt{>=}.
+\end{itemize}
+
+\begin{tcolorbox}[colback=white, colframe=black, title=Result]
+The sort remains stable even when \texttt{arr[j] >= key} is used.
+\end{tcolorbox}
+
+\section*{10. Step-by-Step Example with Index Tracking}
+
+We apply \texttt{stable\_insertion\_sort} on the input:
+
+\begin{tcolorbox}[colback=white, colframe=black, title=Input]
+\texttt{[5a, 3, 5b, 2]}  
+\textit{Here, 5a and 5b are equal values but come from different positions.}
+\end{tcolorbox}
+
+\subsection*{Initial Array with Index}
+\[
+[(5,0), (3,1), (5,2), (2,3)]
+\]
+
+---
+
+\subsection*{Pass 1: i = 1 (key = (3,1))}
+
+Compare with (5,0):
+
+\[
+(5 > 3) \Rightarrow \text{Shift (5,0) to right}
+\]
+
+\[
+[(5,0), (5,0), (5,2), (2,3)] \Rightarrow \text{Insert (3,1) at index 0}
+\]
+
+\[
+[(3,1), (5,0), (5,2), (2,3)]
+\]
+
+---
+
+\subsection*{Pass 2: i = 2 (key = (5,2))}
+
+Compare with (5,0):  
+\[
+(5 == 5 \text{ and } 0 < 2) \Rightarrow \text{Don't shift (5,0)}  
+\Rightarrow \text{Insert (5,2) after (5,0)}
+\]
+
+\[
+[(3,1), (5,0), (5,2), (2,3)]
+\]
+
+---
+
+\subsection*{Pass 3: i = 3 (key = (2,3))}
+
+Compare with (5,2):  
+\[
+(5 > 2) \Rightarrow \text{Shift}
+\]
+
+Compare with (5,0):  
+\[
+(5 > 2) \Rightarrow \text{Shift}
+\]
+
+Compare with (3,1):  
+\[
+(3 > 2) \Rightarrow \text{Shift}
+\]
+
+Insert (2,3) at index 0:
+
+\[
+[(2,3), (3,1), (5,0), (5,2)]
+\]
+
+---
+
+\subsection*{Final Sorted Output (Without Index)}
+
+\[
+[2, 3, 5a, 5b]
+\]
+
+\begin{tcolorbox}[colback=white, colframe=black, title=Stability Verified]
+Even with \texttt{arr[j] >= key}, the relative order of equal elements (5a before 5b) is preserved.
+\end{tcolorbox}
+
+
+\end{document}
