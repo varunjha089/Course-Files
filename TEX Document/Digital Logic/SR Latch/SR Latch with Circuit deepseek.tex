@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{circuitikz}
+\usetikzlibrary{circuits.logic.IEC} % Correct library for logic gates
+
+\title{SR Latch - Complete Summary with Circuits}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+An \textbf{SR Latch (Set-Reset Latch)} is a basic \textbf{bistable} sequential circuit that stores \textbf{1 bit} of data.
+
+\section{NOR-based SR Latch}
+\subsection{Circuit Diagram}
+\begin{center}
+\begin{circuitikz}[circuit logic IEC]
+    \node[nor gate] (nor1) at (0,0) {};
+    \node[nor gate] (nor2) at (0,-2) {};
+    
+    \draw (nor1.input 1) -- ++(-0.5,0) node[left]{$S$};
+    \draw (nor2.input 2) -- ++(-0.5,0) node[left]{$R$};
+    
+    \draw (nor1.output) -- ++(0.5,0) node[right]{$Q$};
+    \draw (nor2.output) -- ++(0.5,0) node[right]{$\overline{Q}$};
+    
+    \draw (nor1.output) -- ++(0.3,0) |- (nor2.input 1);
+    \draw (nor2.output) -- ++(0.3,0) |- (nor1.input 2);
+\end{circuitikz}
+\end{center}
+
+\subsection{Truth Table}
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{S} & \textbf{R} & \textbf{Q} & \textbf{Q'} & \textbf{State} \\
+\midrule
+0 & 0 & Q & Q' & Hold \\
+1 & 0 & 1 & 0 & Set \\
+0 & 1 & 0 & 1 & Reset \\
+1 & 1 & 0 & 0 & Invalid \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{NAND-based SR Latch}
+\subsection{Circuit Diagram}
+\begin{center}
+\begin{circuitikz}[circuit logic IEC]
+    \node[nand gate] (nand1) at (0,0) {};
+    \node[nand gate] (nand2) at (0,-2) {};
+    
+    \draw (nand1.input 1) -- ++(-0.5,0) node[left]{$\overline{S}$};
+    \draw (nand2.input 2) -- ++(-0.5,0) node[left]{$\overline{R}$};
+    
+    \draw (nand1.output) -- ++(0.5,0) node[right]{$Q$};
+    \draw (nand2.output) -- ++(0.5,0) node[right]{$\overline{Q}$};
+    
+    \draw (nand1.output) -- ++(0.3,0) |- (nand2.input 1);
+    \draw (nand2.output) -- ++(0.3,0) |- (nand1.input 2);
+\end{circuitikz}
+\end{center}
+
+\subsection{Truth Table}
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+$\overline{S}$ & $\overline{R}$ & Q & Q' & \textbf{State} \\
+\midrule
+1 & 1 & Q & Q' & Hold \\
+0 & 1 & 1 & 0 & Set \\
+1 & 0 & 0 & 1 & Reset \\
+0 & 0 & 1 & 1 & Invalid \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\end{document}

@@ -1,0 +1,143 @@
+\documentclass[14pt]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+
+\titleformat{\section}{\Large\bfseries\color{blue}}{}{0em}{}
+\titleformat{\subsection}[runin]{\bfseries}{}{0em}{}[.]
+
+\newcommand{\checkbox}{\tikz\draw[thick] (0,0) rectangle (0.25,0.25);}
+\newcommand{\completed}{\tikz\filldraw[thick,fill=blue!30] (0,0) rectangle (0.25,0.25);}
+\newcommand{\topicitem}[1]{\item[\checkbox] #1}
+
+\begin{document}
+
+\begin{center}
+    {\LARGE \textbf{GATE CS Progress Tracker}} \\
+    \vspace{0.5em}
+    {\large Computer Science and Information Technology}
+\end{center}
+
+\section*{Section 1: Engineering Mathematics}
+\begin{itemize}[leftmargin=1.5cm]
+  \topicitem{Propositional and First Order Logic}
+  \topicitem{Sets, Relations, Functions}
+  \topicitem{Partial Orders and Lattices}
+  \topicitem{Monoids and Groups}
+  \topicitem{Graphs: Connectivity, Matching, Colouring}
+  \topicitem{Combinatorics: Counting, Recurrence, Generating Functions}
+  \topicitem{Matrices, Determinants}
+  \topicitem{System of Linear Equations}
+  \topicitem{Eigenvalues and Eigenvectors}
+  \topicitem{LU Decomposition}
+  \topicitem{Limits, Continuity, Differentiability}
+  \topicitem{Maxima and Minima, MVT}
+  \topicitem{Integration}
+  \topicitem{Probability and Random Variables}
+  \topicitem{Distributions: Uniform, Normal, etc.}
+  \topicitem{Mean, Median, Mode, SD}
+  \topicitem{Conditional Probability and Bayes Theorem}
+\end{itemize}
+
+\section*{Section 2: Digital Logic}
+\begin{itemize}[leftmargin=1.5cm]
+  \topicitem{Boolean Algebra}
+  \topicitem{Combinational Circuits}
+  \topicitem{Sequential Circuits}
+  \topicitem{Minimization Techniques}
+  \topicitem{Number Representations}
+  \topicitem{Fixed and Floating Point Arithmetic}
+\end{itemize}
+
+\section*{Section 3: Computer Organization and Architecture}
+\begin{itemize}[leftmargin=1.5cm]
+  \topicitem{Machine Instructions and Addressing Modes}
+  \topicitem{ALU, Datapath and Control Unit}
+  \topicitem{Instruction Pipelining and Hazards}
+  \topicitem{Memory Hierarchy: Cache, RAM, Storage}
+  \topicitem{I/O Interface, Interrupt, DMA}
+\end{itemize}
+
+\section*{Section 4: Programming and Data Structures}
+\begin{itemize}[leftmargin=1.5cm]
+  \topicitem{Programming in C}
+  \topicitem{Recursion}
+  \topicitem{Arrays, Stacks, Queues}
+  \topicitem{Linked Lists}
+  \topicitem{Trees and Binary Trees}
+  \topicitem{Binary Search Trees}
+  \topicitem{Binary Heaps}
+  \topicitem{Graphs}
+\end{itemize}
+
+\section*{Section 5: Algorithms}
+\begin{itemize}[leftmargin=1.5cm]
+  \topicitem{Searching, Sorting, Hashing}
+  \topicitem{Time and Space Complexity}
+  \topicitem{Greedy Algorithms}
+  \topicitem{Dynamic Programming}
+  \topicitem{Divide and Conquer}
+  \topicitem{Graph Traversals (BFS/DFS)}
+  \topicitem{MST: Prim’s and Kruskal’s}
+  \topicitem{Shortest Paths: Dijkstra, Floyd, Bellman-Ford}
+\end{itemize}
+
+\section*{Section 6: Theory of Computation}
+\begin{itemize}[leftmargin=1.5cm]
+  \topicitem{Regular Expressions, Finite Automata}
+  \topicitem{CFGs and PDA}
+  \topicitem{Regular vs Context-Free Languages}
+  \topicitem{Pumping Lemmas}
+  \topicitem{Turing Machines}
+  \topicitem{Undecidability}
+\end{itemize}
+
+\section*{Section 7: Compiler Design}
+\begin{itemize}[leftmargin=1.5cm]
+  \topicitem{Lexical Analysis}
+  \topicitem{Parsing (LL/LR)}
+  \topicitem{Syntax-Directed Translation}
+  \topicitem{Runtime Environments}
+  \topicitem{Intermediate Code Generation}
+  \topicitem{Local Optimizations}
+  \topicitem{Data Flow Analysis: Liveness, Constant Propagation, CSE}
+\end{itemize}
+
+\section*{Section 8: Operating Systems}
+\begin{itemize}[leftmargin=1.5cm]
+  \topicitem{System Calls}
+  \topicitem{Processes and Threads}
+  \topicitem{IPC, Concurrency and Synchronization}
+  \topicitem{Deadlocks}
+  \topicitem{CPU and I/O Scheduling}
+  \topicitem{Memory Management and Virtual Memory}
+  \topicitem{File Systems}
+\end{itemize}
+
+\section*{Section 9: Databases}
+\begin{itemize}[leftmargin=1.5cm]
+  \topicitem{ER Model}
+  \topicitem{Relational Model and Algebra}
+  \topicitem{Tuple Calculus, SQL}
+  \topicitem{Constraints and Normalization}
+  \topicitem{File Organization and Indexing (B/B+ trees)}
+  \topicitem{Transactions and Concurrency Control}
+\end{itemize}
+
+\section*{Section 10: Computer Networks}
+\begin{itemize}[leftmargin=1.5cm]
+  \topicitem{OSI and TCP/IP Models}
+  \topicitem{Switching: Packet, Circuit, Virtual Circuit}
+  \topicitem{Data Link Layer: Framing, MAC, Ethernet}
+  \topicitem{Routing: SPF, Flooding, DV, LS}
+  \topicitem{IP Addressing, IPv4, CIDR, NAT}
+  \topicitem{IP Support: ARP, DHCP, ICMP}
+  \topicitem{Transport: UDP, TCP, Congestion, Sockets}
+  \topicitem{Application Layer: DNS, HTTP, FTP, SMTP}
+\end{itemize}
+
+
+\end{document}

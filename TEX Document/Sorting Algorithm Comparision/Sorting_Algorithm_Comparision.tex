@@ -1,0 +1,245 @@
+\documentclass[14pt]{extarticle}
+\usepackage{amsmath}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{geometry}
+\geometry{margin=1in}
+
+\lstset{
+    backgroundcolor=\color{white},  % or just remove this line
+    basicstyle=\ttfamily\footnotesize,
+    keywordstyle=\color{blue},
+    commentstyle=\color{gray},
+    stringstyle=\color{red},
+    breaklines=true,
+    frame=single,
+    showstringspaces=false
+}
+
+
+\title{Explanation of Sorting Algorithm Visualizer in Streamlit}
+\author{Varun Kumar}
+\date{July 5, 2025}
+
+\begin{document}
+\maketitle
+
+\section*{1. Importing Libraries}
+\begin{lstlisting}[language=Python]
+import streamlit as st
+import time
+import plotly.express as px
+import heapq
+\end{lstlisting}
+
+\textbf{Explanation:}
+\begin{itemize}
+  \item \texttt{streamlit} is used to create the web interface.
+  \item \texttt{time} module helps measure performance.
+  \item \texttt{plotly.express} is used for bar chart plotting.
+  \item \texttt{heapq} is used for implementing heap sort.
+\end{itemize}
+
+\newpage
+\section*{2. Sorting Algorithm Implementations}
+Each sorting function returns a sorted copy of the input array.
+
+\subsection*{Bubble Sort}
+\begin{lstlisting}[language=Python]
+def bubble_sort(arr):
+    a = arr.copy()
+    n = len(a)
+    for i in range(n):
+        for j in range(0, n - i - 1):
+            if a[j] > a[j + 1]:
+                a[j], a[j + 1] = a[j + 1], a[j]
+    return a
+\end{lstlisting}
+
+\textbf{Explanation:} Compares adjacent elements and swaps if needed; slow $O(n^2)$.
+
+\subsection*{Insertion Sort}
+\begin{lstlisting}[language=Python]
+def insertion_sort(arr):
+    a = arr.copy()
+    for i in range(1, len(a)):
+        key = a[i]
+        j = i - 1
+        while j >= 0 and key < a[j]:
+            a[j + 1] = a[j]
+            j -= 1
+        a[j + 1] = key
+    return a
+\end{lstlisting}
+
+\textbf{Explanation:} Builds sorted array by inserting elements one at a time.
+
+\subsection*{Selection Sort}
+\begin{lstlisting}[language=Python]
+def selection_sort(arr):
+    a = arr.copy()
+    for i in range(len(a)):
+        min_idx = i
+        for j in range(i + 1, len(a)):
+            if a[j] < a[min_idx]:
+                min_idx = j
+        a[i], a[min_idx] = a[min_idx], a[i]
+    return a
+\end{lstlisting}
+
+\textbf{Explanation:} Finds the minimum and places it at correct position iteratively.
+
+\newpage
+\subsection*{Merge Sort}
+\begin{lstlisting}[language=Python]
+def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    L = merge_sort(arr[:mid])
+    R = merge_sort(arr[mid:])
+    return merge(L, R)
+
+def merge(left, right):
+    result = []
+    i = j = 0
+    while i < len(left) and j < len(right):
+        if left[i] < right[j]:
+            result.append(left[i])
+            i += 1
+        else:
+            result.append(right[j])
+            j += 1
+    result.extend(left[i:])
+    result.extend(right[j:])
+    return result
+\end{lstlisting}
+
+\textbf{Explanation:} A divide-and-conquer algorithm that splits and merges sorted halves. Time complexity: $O(n \log n)$.
+
+\subsection*{Quick Sort}
+\begin{lstlisting}[language=Python]
+def quick_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    pivot = arr[0]
+    left = [x for x in arr[1:] if x < pivot]
+    mid = [x for x in arr if x == pivot]
+    right = [x for x in arr[1:] if x >= pivot]
+    return quick_sort(left) + mid + quick_sort(right)
+\end{lstlisting}
+
+\textbf{Explanation:} Uses pivot element and partitions data recursively.
+
+\subsection*{Heap Sort}
+\begin{lstlisting}[language=Python]
+def heap_sort(arr):
+    h = []
+    for value in arr:
+        heapq.heappush(h, value)
+    return [heapq.heappop(h) for _ in range(len(h))]
+\end{lstlisting}
+
+\textbf{Explanation:} Uses a min-heap to extract elements in sorted order.
+
+\section*{3. Mapping Sorting Names to Functions}
+\begin{lstlisting}[language=Python]
+SORT_FUNCTIONS = {
+    "Bubble Sort": bubble_sort,
+    "Insertion Sort": insertion_sort,
+    "Selection Sort": selection_sort,
+    "Merge Sort": merge_sort,
+    "Quick Sort": quick_sort,
+    "Heap Sort": heap_sort,
+}
+\end{lstlisting}
+
+\textbf{Explanation:} Dictionary to link names (dropdown) to actual sorting functions.
+
+\section*{4. Streamlit UI}
+\begin{lstlisting}[language=Python]
+st.title("Sorting Algorithm Visualizer")
+input_str = st.text_input("Enter array (comma-separated)", "5, 3, 8, 4, 2")
+algo = st.selectbox("Choose sorting algorithm", list(SORT_FUNCTIONS.keys()) + ["All (Test Performance)"])
+\end{lstlisting}
+
+\textbf{Explanation:} 
+\begin{itemize}
+  \item Sets page title.
+  \item Text input for the user to enter a list.
+  \item Dropdown (selectbox) to choose an algorithm or benchmark all.
+\end{itemize}
+
+\section*{5. When \texttt{Sort} Button is Clicked}
+\begin{lstlisting}[language=Python]
+if st.button("Sort"):
+    try:
+        input_array = list(map(int, input_str.split(',')))
+\end{lstlisting}
+
+\textbf{Explanation:} On button click, input string is split and converted to a list of integers.
+
+\newpage
+\section*{6. If "All (Test Performance)" is Selected}
+\begin{lstlisting}[language=Python]
+if algo == "All (Test Performance)":
+    st.subheader("Performance Comparison")
+    results = []
+    for name, func in SORT_FUNCTIONS.items():
+        start = time.perf_counter()
+        _ = func(input_array)
+        duration = time.perf_counter() - start
+        results.append({"Algorithm": name, "Time (s)": duration})
+\end{lstlisting}
+
+\textbf{Explanation:} 
+\begin{itemize}
+  \item Loops over all sorting algorithms.
+  \item Records execution time using \texttt{time.perf\_counter()}.
+\end{itemize}
+
+\subsection*{Plotting Performance}
+\begin{lstlisting}[language=Python]
+    fig = px.bar(
+        results,
+        x="Algorithm",
+        y="Time (s)",
+        hover_data={"Time (s)": ":.6f"},
+        text="Time (s)",
+        title="Sorting Algorithm Time Comparison",
+    )
+    fig.update_traces(texttemplate="%{text:.6f}", textposition="outside")
+    st.plotly_chart(fig, use_container_width=True)
+\end{lstlisting}
+
+\textbf{Explanation:} Uses Plotly to render a bar chart showing performance of each algorithm.
+
+\newpage
+\section*{7. If Specific Algorithm is Selected}
+\begin{lstlisting}[language=Python]
+else:
+    sort_func = SORT_FUNCTIONS[algo]
+    start = time.perf_counter()
+    sorted_array = sort_func(input_array)
+    duration = time.perf_counter() - start
+
+    st.success(f"Sorted Array: {sorted_array}")
+    st.info(f"Time Taken: {duration:.6f} seconds")
+\end{lstlisting}
+
+\textbf{Explanation:}
+\begin{itemize}
+  \item Applies the selected sorting function.
+  \item Displays sorted array and time taken.
+\end{itemize}
+
+\section*{8. Error Handling}
+\begin{lstlisting}[language=Python]
+except Exception as e:
+    st.error(f"Error: {e}")
+\end{lstlisting}
+
+\textbf{Explanation:} Catches errors like invalid input and shows an error message to the user.
+
+\end{document}

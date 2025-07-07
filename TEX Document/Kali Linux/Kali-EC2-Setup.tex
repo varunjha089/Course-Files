@@ -1,0 +1,170 @@
+\documentclass[12pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{tcolorbox}
+\usepackage{titlesec}
+\usepackage{listings}
+\usepackage{color}
+\usepackage{fancyvrb}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{graphicx}
+
+\definecolor{lightgray}{gray}{0.95}
+\definecolor{darkblue}{rgb}{0,0.1,0.6}
+
+\titleformat{\section}{\large\bfseries}{Q\thesection}{1em}{}
+\titleformat{\subsection}[runin]{\bfseries}{A:}{0.5em}{}[.]
+
+\lstset{
+    backgroundcolor=\color{lightgray},
+    basicstyle=\ttfamily\small,
+    frame=single,
+    breaklines=true,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space}
+}
+
+\begin{document}
+
+\title{Kali Linux GPU and Hashcat Setup: Questions and Answers}
+\author{}
+\date{}
+\maketitle
+
+\section{How to verify if my Tesla T4 GPU is properly installed and usable with NVIDIA drivers?}
+
+\subsection
+Run the command:
+\begin{lstlisting}
+nvidia-smi
+\end{lstlisting}
+
+You should see the Tesla T4 listed along with the driver and CUDA version:
+
+\begin{tcolorbox}[colback=lightgray]
+GPU: Tesla T4\\
+Driver Version: 550.163.01\\
+CUDA Version: 12.4\\
+Memory Usage: 1 MiB / 15360 MiB\\
+Processes: No running processes
+\end{tcolorbox}
+
+This confirms your GPU is active and ready for workloads like CUDA, Hashcat, or PyTorch.
+
+\section{How do I install Hashcat on Kali and check if it sees the GPU?}
+
+\subsection
+Run the following:
+\begin{lstlisting}
+sudo apt update
+sudo apt install -y hashcat
+hashcat -I
+\end{lstlisting}
+
+The output of `hashcat -I` should list your Tesla T4 as an available CUDA device.
+
+\section{How do I crack a known password like \texttt{Varun@2025} using Hashcat?}
+
+\subsection
+Hashcat works on hashes, not plaintext. So first generate the MD5 hash:
+\begin{lstlisting}
+echo -n "Varun@2025" | md5sum
+# Output: f271ea3b226cddf3d83e5f256763cbd5
+\end{lstlisting}
+
+Then create:
+\begin{itemize}[noitemsep]
+  \item \texttt{hash.txt} — contains the hash
+  \item \texttt{mywordlist.txt} — contains the guessed password
+\end{itemize}
+
+\begin{lstlisting}
+echo "f271ea3b226cddf3d83e5f256763cbd5" > hash.txt
+echo "Varun@2025" > mywordlist.txt
+\end{lstlisting}
+
+Now run Hashcat:
+\begin{lstlisting}
+hashcat -m 0 -a 0 hash.txt mywordlist.txt
+hashcat -m 0 -a 0 hash.txt mywordlist.txt --show
+\end{lstlisting}
+
+Output will be:
+\begin{tcolorbox}[colback=lightgray]
+f271ea3b226cddf3d83e5f256763cbd5:Varun@2025
+\end{tcolorbox}
+
+\section{Image Question: What does the following output mean? (screenshot of NVIDIA-SMI)}
+
+\subsection
+\textbf{Question:} How do I interpret the output of \texttt{nvidia-smi} after successful GPU driver installation?
+
+\begin{tcolorbox}[colback=lightgray]
+This confirms that the NVIDIA driver is properly installed and detects the Tesla T4 GPU. The card is idle with 1 MiB of memory in use and zero active processes. The CUDA version (12.4) is compatible with most modern AI/ML tools.
+\end{tcolorbox}
+
+\section{What happens if the \texttt{kali} user password is locked, and how to fix it?}
+
+\subsection
+Running:
+\begin{lstlisting}
+sudo passwd -S kali
+\end{lstlisting}
+If output is:
+\begin{tcolorbox}[colback=lightgray]
+kali L ...
+\end{tcolorbox}
+It means the account is locked (`L`).
+
+To fix:
+\begin{lstlisting}
+echo "kali:Varun@2025" | sudo chpasswd
+sudo passwd -u kali
+\end{lstlisting}
+
+Check again:
+\begin{lstlisting}
+sudo passwd -S kali
+# Expected: kali P ...
+\end{lstlisting}
+
+\section{What are these prompts during installation? (from screenshots)}
+
+\subsection
+\textbf{Q: Should I allow Wireshark to let non-root users capture packets?}
+
+\begin{tcolorbox}[colback=lightgray]
+No — on EC2 or server environments, select \texttt{<No>} for security. Packet capture is unnecessary unless explicitly needed.
+\end{tcolorbox}
+
+\subsection
+\textbf{Q: What is the `macchanger` prompt asking during installation?}
+
+\begin{tcolorbox}[colback=lightgray]
+It asks whether to randomize MAC addresses on every connection. On cloud instances like EC2, select \texttt{<No>} to prevent networking issues.
+\end{tcolorbox}
+
+\subsection
+\textbf{Q: What does the `kismet` prompt mean?}
+
+\begin{tcolorbox}[colback=lightgray]
+Kismet requests elevated privileges via setuid. Since EC2 has no Wi-Fi interface, select \texttt{<No>}.
+\end{tcolorbox}
+
+\subsection
+\textbf{Q: What is the `sslh` mode selection?}
+
+\begin{tcolorbox}[colback=lightgray]
+Choose \texttt{standalone} mode for better performance. It runs persistently and is recommended for most Kali setups.
+\end{tcolorbox}
+
+\section{How do I benchmark GPU cracking speed?}
+
+\subsection
+Run:
+\begin{lstlisting}
+hashcat -b
+\end{lstlisting}
+
+This benchmarks your GPU against all supported hashing algorithms, showing speeds like hashes/sec for MD5, SHA256, bcrypt, etc.
+
+\end{document}

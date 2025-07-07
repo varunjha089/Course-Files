@@ -1,0 +1,102 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{booktabs}
+
+\title{SR Latch - Complete Summary}
+\author{Your Name}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+An \textbf{SR Latch (Set-Reset Latch)} is a basic \textbf{bistable} (two stable states) sequential circuit that stores \textbf{1 bit} of data. It is constructed using \textbf{cross-coupled NOR gates} or \textbf{NAND gates}, forming a feedback loop to maintain its state.
+
+\section{Types of SR Latches}
+\begin{itemize}
+    \item \textbf{NOR-based SR Latch}
+    \item \textbf{NAND-based SR Latch} (also called \textbf{SR Latch with active-low inputs})
+\end{itemize}
+
+\section{NOR-based SR Latch}
+\subsection{Structure}
+Two NOR gates with feedback.
+
+\subsection{Inputs}
+\begin{itemize}
+    \item \textbf{S (Set)} – Sets output \( Q = 1 \)
+    \item \textbf{R (Reset)} – Resets output \( Q = 0 \)
+\end{itemize}
+
+\subsection{Truth Table}
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+\textbf{S} & \textbf{R} & \textbf{Q} & \textbf{Q'} & \textbf{State} \\
+\midrule
+0 & 0 & Q & Q' & \textbf{Hold (Memory)} \\
+1 & 0 & 1 & 0 & \textbf{Set (Q = 1)} \\
+0 & 1 & 0 & 1 & \textbf{Reset (Q = 0)} \\
+1 & 1 & 0 & 0 & \textbf{Invalid (Race)} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Invalid State}
+When \( S = R = 1 \), both outputs \( Q \) and \( Q' \) become 0 (violates \( Q' = \overline{Q} \)).
+
+\section{NAND-based SR Latch (Active-Low Inputs)}
+\subsection{Structure}
+Two NAND gates with feedback.
+
+\subsection{Inputs}
+\begin{itemize}
+    \item \(\overline{S}\) (Set) – Active-low (0 sets \( Q = 1 \))
+    \item \(\overline{R}\) (Reset) – Active-low (0 resets \( Q = 0 \))
+\end{itemize}
+
+\subsection{Truth Table}
+\begin{center}
+\begin{tabular}{ccccc}
+\toprule
+\(\overline{S}\) & \(\overline{R}\) & Q & Q' & \textbf{State} \\
+\midrule
+1 & 1 & Q & Q' & \textbf{Hold (Memory)} \\
+0 & 1 & 1 & 0 & \textbf{Set (Q = 1)} \\
+1 & 0 & 0 & 1 & \textbf{Reset (Q = 0)} \\
+0 & 0 & 1 & 1 & \textbf{Invalid (Race)} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{Invalid State}
+When \( \overline{S} = \overline{R} = 0 \), both outputs \( Q \) and \( Q' \) become 1 (violates \( Q' = \overline{Q} \)).
+
+\section{Characteristics}
+\begin{itemize}
+    \item \textbf{Level-Triggered}: Changes state based on input levels (not edges).
+    \item \textbf{Asynchronous}: No clock signal required.
+    \item \textbf{Race Condition}: Occurs when both inputs are active simultaneously.
+\end{itemize}
+
+\section{Applications}
+\begin{itemize}
+    \item Basic memory storage in registers.
+    \item Debouncing switches.
+    \item Temporary state storage in control circuits.
+\end{itemize}
+
+\section{Limitations}
+\begin{itemize}
+    \item \textbf{No Clock Control}: Cannot synchronize with a clock (unlike flip-flops).
+    \item \textbf{Glitches}: Sensitive to input changes.
+    \item \textbf{Invalid State}: Must avoid \( S = R = 1 \) (NOR) or \( \overline{S} = \overline{R} = 0 \) (NAND).
+\end{itemize}
+
+\section{Conclusion}
+The \textbf{SR Latch} is the simplest sequential circuit used for \textbf{1-bit storage}. It has two stable states (\textbf{Set \& Reset}) but suffers from an \textbf{invalid state} when both inputs are active. It serves as the foundation for more complex storage elements like \textbf{Flip-Flops}.
+
+\end{document}
