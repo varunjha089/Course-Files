@@ -1,0 +1,306 @@
+\documentclass[14pt]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{caption}
+
+% Code styling
+\lstdefinestyle{python}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  frame=single,
+  tabsize=4,
+  captionpos=b
+}
+
+\lstdefinestyle{cpp}{
+  language=C++,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  frame=single,
+  tabsize=4,
+  captionpos=b
+}
+
+\title{Optimal Merge Pattern: Greedy Algorithm}
+\author{Varun Kumar}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\tableofcontents
+
+\lstlistoflistings
+\listofalgorithms
+\newpage
+
+\section{Introduction}
+The \textbf{Optimal Merge Pattern} is a problem where we are given multiple sorted files and our task is to merge them all into a single file in such a way that the total cost of merging is minimized.
+
+\textbf{Key Concept:} Each merge of two files costs the sum of their sizes. Merge the two smallest files first — a greedy strategy.
+
+\section{Problem Statement}
+Given $n$ files with sizes $f_1, f_2, \ldots, f_n$, merge them into one single file with the minimum total cost. Merging two files of sizes $a$ and $b$ costs $a + b$.
+
+\section{Approach: Greedy Algorithm using Min-Heap}
+\begin{itemize}
+    \item Insert all file sizes into a min-heap.
+    \item While more than one file remains:
+    \begin{itemize}
+        \item Extract two smallest files.
+        \item Merge them: cost = sum of sizes.
+        \item Add merged file back to heap.
+        \item Accumulate the cost.
+    \end{itemize}
+    \item When one file remains, return total cost.
+\end{itemize}
+
+\subsection{Example}
+Given file sizes: [20, 30, 10, 5]
+
+\subsection*{Step-by-Step Merging}
+\begin{enumerate}
+    \item Merge 5 + 10 = 15 → Cost = 15
+    \item Merge 15 + 20 = 35 → Cost = 35
+    \item Merge 30 + 35 = 65 → Cost = 65
+\end{enumerate}
+
+\textbf{Total Cost} = 15 + 35 + 65 = \textbf{115}
+
+\subsection{2-Way Merging in Optimal Merge Pattern}
+
+\subsection*{Concept}
+In the Optimal Merge Pattern, each merge operation is a standard \textbf{2-way merge} between two sorted files. The cost of merging is the sum of their sizes. The goal is to minimize total merge cost by merging smallest files first.
+
+\subsection*{Example:}
+Given file sizes: $[10, 20, 30, 40]$
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Step} & \textbf{Files} & \textbf{Merged} & \textbf{Cost} & \textbf{Total} \\
+\hline
+1 & [10, 20, 30, 40] & 10 + 20 = 30 & 30 & 30 \\
+2 & [30, 30, 40] & 30 + 30 = 60 & 60 & 90 \\
+3 & [40, 60] & 40 + 60 = 100 & 100 & 190 \\
+\hline
+\end{tabular}
+
+\subsection*{Optimal Merge Order}
+\begin{itemize}
+    \item Merge (10, 20) → 30
+    \item Merge (30, 30) → 60
+    \item Merge (40, 60) → 100
+\end{itemize}
+
+\subsection*{Number of Comparisons}
+For 2 sorted files of size $m$ and $n$:
+\begin{itemize}
+    \item \textbf{Best case:} $\min(m, n)$ comparisons
+    \item \textbf{Worst case:} $m + n - 1$ comparisons
+\end{itemize}
+
+\textbf{Example:} Merging [1, 2, 3] and [4, 5, 6] → Best case = 3 comparisons\\
+Merging [1, 3, 5] and [2, 4, 6] → Worst case = 5 comparisons
+
+\subsection*{Conclusion}
+2-way merging is the core operation in Optimal Merge Pattern. Using a greedy strategy (merge smallest files first) ensures minimal total merge cost. The number of comparisons depends on data distribution, but the merge cost depends only on file sizes.
+
+
+%%%%%%%%%%% Theoretical Logic Behind Optimal Merge Pattern Code Implementation
+
+\section{Theoretical Logic Behind Optimal Merge Pattern Code Implementation}
+
+The Optimal Merge Pattern problem is a classic example of the \textbf{Greedy Algorithm} paradigm. It involves merging multiple sorted files (or datasets) into a single file while minimizing the total cost of all merge operations.
+
+\subsection*{Problem Insight}
+Each merge operation incurs a cost equal to the sum of the sizes of the two files being merged. Thus, merging larger files early would result in higher cumulative costs. To minimize the total cost, it is optimal to:
+
+\begin{itemize}
+    \item Always merge the \textbf{two smallest files first}.
+    \item Repeat the process until only one file remains.
+\end{itemize}
+
+\subsection*{Why Greedy Works}
+The greedy strategy guarantees an optimal solution because:
+
+\begin{itemize}
+    \item \textbf{Greedy choice property:} Choosing the two smallest files at each step minimizes the immediate cost, and repeating this ensures the overall cost is minimized.
+    \item \textbf{Optimal substructure:} The structure of the problem allows the optimal solution to be built from optimal solutions to its subproblems.
+\end{itemize}
+
+\newpage
+\subsection*{Algorithm Components}
+
+\begin{itemize}
+    \item A \textbf{min-heap} is used to efficiently access the two smallest files at each step.
+    \item After merging, the resulting file (with updated size) is reinserted into the heap.
+    \item The process continues until one final file remains.
+\end{itemize}
+
+\subsection*{Step-by-Step Working}
+
+For example, given file sizes: $[20, 30, 10, 5]$
+
+\begin{enumerate}
+    \item Insert all sizes into a min-heap: $[5, 10, 20, 30]$
+    \item Merge 5 + 10 = 15 → Total cost = 15
+    \item Heap: $[15, 20, 30]$
+    \item Merge 15 + 20 = 35 → Total cost += 35 = 50
+    \item Heap: $[30, 35]$
+    \item Merge 30 + 35 = 65 → Total cost += 65 = \textbf{115}
+\end{enumerate}
+
+\subsection*{Time and Space Complexity}
+
+\begin{itemize}
+    \item \textbf{Time Complexity:} $O(n \log n)$ due to $n-1$ heap insertions and extractions.
+    \item \textbf{Space Complexity:} $O(n)$ for storing the heap.
+\end{itemize}
+
+\newpage
+\subsection*{Practical Justification}
+
+This pattern arises in various real-world domains:
+
+\begin{itemize}
+    \item \textbf{File merging:} Compiler and OS design where merging of sorted segments/files is frequent.
+    \item \textbf{Data compression:} Forms the basis for Huffman encoding tree construction.
+    \item \textbf{Rope cutting problems:} Similar logic applies in minimizing the cost of combining ropes.
+\end{itemize}
+
+\subsection*{Conclusion}
+
+The Optimal Merge Pattern utilizes the greedy approach to minimize the cost of merging operations. By always merging the two smallest files, the algorithm ensures that expensive merges are delayed as much as possible, resulting in a minimal total cost.
+
+\subsection{Pseudocode}
+\begin{algorithm}[H]
+\caption{Optimal Merge Pattern}
+\begin{algorithmic}[1]
+\Procedure{OptimalMerge}{$files$}
+    \State Insert all file sizes into min-heap $H$
+    \State $totalCost \gets 0$
+    \While{$H.size > 1$}
+        \State $a \gets H.extractMin()$
+        \State $b \gets H.extractMin()$
+        \State $mergeCost \gets a + b$
+        \State $totalCost \gets totalCost + mergeCost$
+        \State $H.insert(mergeCost)$
+    \EndWhile
+    \State \Return $totalCost$
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\newpage
+\subsection{Python Implementation}
+\begin{lstlisting}[style=python, caption={Optimal Merge Pattern in Python}]
+import heapq
+
+def optimal_merge(files):
+    heapq.heapify(files)
+    total_cost = 0
+    merge_pattern = []
+
+    while len(files) > 1:
+        a = heapq.heappop(files)
+        b = heapq.heappop(files)
+        cost = a + b
+        total_cost += cost
+        heapq.heappush(files, cost)
+
+        # Track the pattern
+        merge_pattern.append((a, b, cost))
+
+    return total_cost, merge_pattern
+
+# Example usage
+files = [20, 30, 10, 5]
+cost, pattern = optimal_merge(files)
+
+print("Total Merge Cost:", cost)
+print("Merge Pattern:")
+for step, (a, b, c) in enumerate(pattern, 1):
+    print(f" Step {step}: Merge {a} + {b} = {c}")
+\end{lstlisting}
+
+\begin{verbatim}
+Total Merge Cost: 115
+Merge Pattern:
+    Step 1: Merge 5 + 10 = 15
+    Step 2: Merge 15 + 20 = 35
+    Step 3: Merge 30 + 35 = 65
+\end{verbatim}
+
+\newpage
+\subsection{C++ Implementation}
+\begin{lstlisting}[style=cpp, caption={Optimal Merge Pattern in C++}]
+#include <iostream>
+#include <queue>
+#include <vector>
+using namespace std;
+
+int optimalMerge(vector<int>& files) {
+    priority_queue<int, vector<int>, greater<int>> pq(files.begin(), files.end());
+    int total_cost = 0;
+
+    while (pq.size() > 1) {
+        int a = pq.top(); pq.pop();
+        int b = pq.top(); pq.pop();
+        int cost = a + b;
+        total_cost += cost;
+        pq.push(cost);
+    }
+
+    return total_cost;
+}
+
+int main() {
+    vector<int> files = {20, 30, 10, 5};
+    cout << optimalMerge(files) << endl; // Output: 115
+    return 0;
+}
+\end{lstlisting}
+
+\newpage
+\section{Time and Space Complexity}
+\begin{itemize}
+    \item \textbf{Time:} $O(n \log n)$ due to heap operations
+    \item \textbf{Space:} $O(n)$ for the heap
+\end{itemize}
+
+\section{Applications}
+\begin{itemize}
+    \item File merging in compilers
+    \item Data compression algorithms (e.g., Huffman Coding)
+    \item Efficient merging of sorted lists
+    \item Rope cutting and combining problems
+\end{itemize}
+
+\section{Conclusion}
+The Optimal Merge Pattern is an elegant greedy solution where always merging the smallest available files first leads to the minimum total cost. This approach underlies several efficient systems in data compression and file organization.
+
+\end{document}
