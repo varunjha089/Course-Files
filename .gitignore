@@ -4,3 +4,10 @@
 *.toc
 *.synctex*
 *.out
+*.lol
+*.bbl
+*.blg
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.loa

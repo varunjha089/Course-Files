@@ -1,0 +1,810 @@
+\documentclass[14pt]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{hyperref} % optional, for clickable TOC/list
+\usepackage{caption}
+\usepackage{float}
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection}{1em}{}
+
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Place this in your preamble
+\lstdefinestyle{python}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  breaklines=true,
+  frame=single,
+  tabsize=4,
+  captionpos=b
+}
+
+\lstdefinestyle{cpp}{
+  language=C++,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  stepnumber=1,
+  breaklines=true,
+  frame=single,
+  tabsize=4,
+  captionpos=b
+}
+
+
+\title{The Knapsack Problem: Theory Overview}
+\author{Varun Kumar}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\newpage
+\tableofcontents
+\newpage
+\lstlistoflistings
+\listofalgorithms
+\newpage
+
+%%%%%%%%  Knapsack Problem Overview %%%%%%%%%%
+\section{Introduction}
+
+The Knapsack Problem is a fundamental problem in combinatorial optimization. It models a situation where a set of items, each with a given weight and value, must be selected to include in a knapsack of limited capacity such that the total value is maximized without exceeding the weight constraint. 
+
+This problem arises in many real-world scenarios such as resource allocation, budgeting, cargo loading, and decision-making under constraints. There are two common variants:
+
+\begin{itemize}[label=\textbullet]
+    \item \textbf{Fractional Knapsack:} Items can be divided into smaller parts.
+    \item \textbf{0/1 Knapsack:} Each item is either fully taken or not taken at all.
+\end{itemize}
+
+While the fractional version can be solved efficiently using a greedy strategy, the 0/1 version requires dynamic programming to guarantee an optimal solution.
+ 
+
+\section{Problem Statement}
+
+Given $n$ items, each with a value $v_i$ and weight $w_i$, and a knapsack with capacity $W$, the 
+goal is to choose a subset of the items to maximize the total value without exceeding the weight capacity.
+
+\begin{itemize}[label=\textbullet]
+    \item Maximize: $\sum v_i x_i$
+    \item Subject to: $\sum w_i x_i \leq W$
+    \item Where $x_i \in \{0, 1\}$ for the 0/1 Knapsack
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Fractional Knapsack (Greedy Approach)}
+
+\begin{itemize}[label=\textbullet]
+    \item Items can be broken into fractions.
+    \item Sort items based on the value-to-weight ratio $\frac{v_i}{w_i}$ in descending order.
+    \item Pick the item with the highest ratio until the knapsack is full.
+    \item Time Complexity: $\mathcal{O}(n \log n)$
+\end{itemize}
+
+\textbf{Note:} This method gives the optimal solution for the fractional variant only.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Problem Statement}
+
+You are given $n$ items. Each item has:
+
+\begin{itemize}[label=\textbullet]
+    \item Value $v_i$
+    \item Weight $w_i$
+\end{itemize}
+
+You are also given a knapsack with capacity $W$. You can take \textbf{fractions} of items.
+
+\textbf{Goal:} Maximize total value such that the total weight does not exceed $W$.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Greedy Strategy}
+
+To solve the Fractional Knapsack problem, use the following greedy approach:
+
+\begin{enumerate}
+    \item Compute the value-to-weight ratio $\frac{v_i}{w_i}$ for each item.
+    \item Sort items by this ratio in \textbf{descending} order.
+    \item Initialize \texttt{currentWeight = 0} and \texttt{totalValue = 0}.
+    \item For each item:
+    \begin{itemize}
+        \item If the item fits fully (\texttt{$w_i \leq$ remaining capacity}), take the whole item.
+        \item Else, take the fraction of the item that fits.
+    \end{itemize}
+    \item Stop when the knapsack is full.
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Worked Example}
+
+\subsubsection*{Given:}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Item} & \textbf{Value ($v_i$)} & \textbf{Weight ($w_i$)} \\
+\hline
+1 & 60 & 10 \\
+2 & 100 & 20 \\
+3 & 120 & 30 \\
+\hline
+\end{tabular}
+\end{center}
+
+Knapsack capacity: $W = 50$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Step 1: Compute Value/Weight Ratios}
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Item} & $\frac{v_i}{w_i}$ \\
+\hline
+1 & 60 / 10 = 6 \\
+2 & 100 / 20 = 5 \\
+3 & 120 / 30 = 4 \\
+\hline
+\end{tabular}
+\end{center}
+
+Order of selection based on ratio: \textbf{Item 1 $\rightarrow$ Item 2 $\rightarrow$ Item 3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsubsection*{Step 2: Pick Items Greedily}
+
+\begin{itemize}
+    \item Take all of Item 1 (10kg): Value += 60, remaining capacity = 40
+    \item Take all of Item 2 (20kg): Value += 100, remaining capacity = 20
+    \item Take $\frac{2}{3}$ of Item 3 (20kg of 30kg): \\
+          Value += $120 \times \frac{20}{30} = 80$
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Final Answer}
+
+\begin{itemize}
+    \item Total value obtained = $60 + 100 + 80 = 240$
+    \item Total weight used = $10 + 20 + 20 = 50$ (Knapsack is full)
+\end{itemize}
+
+%%%%%%%%%% Fractional Knapsack Algorithm Pseudo Code%%%%%%%%%%
+\begin{algorithm}
+\caption{Fractional Knapsack}
+\begin{algorithmic}[1]
+\Require A list of $n$ items with value $v_i$ and weight $w_i$, capacity $W$
+\Ensure Maximum total value without exceeding capacity
+\State Compute $\frac{v_i}{w_i}$ for each item
+\State Sort items by decreasing $\frac{v_i}{w_i}$
+\State $totalValue \gets 0$
+\State $currentWeight \gets 0$
+\For{each item $i$ in sorted order}
+    \If{$currentWeight + w_i \leq W$}
+        \State Take the whole item
+        \State $currentWeight \gets currentWeight + w_i$
+        \State $totalValue \gets totalValue + v_i$
+    \Else
+        \State Take fraction $(W - currentWeight)/w_i$ of item $i$
+        \State $totalValue \gets totalValue + v_i \times \frac{W - currentWeight}{w_i}$
+        \State \textbf{break}
+    \EndIf
+\EndFor
+\State \Return $totalValue$
+\end{algorithmic}
+\end{algorithm}
+
+%%%%%%%%%% Python Code for Fractional Knapsack %%%%%%%%%%
+\newpage
+\section{Fractional Knapsack Code Implementation}
+\subsection{Python Implementation}
+\begin{lstlisting}[style=python, caption={Fractional Knapsack in Python}]
+def fractional_knapsack(values, weights, capacity):
+    items = [(v, w, v/w) for v, w in zip(values, weights)]
+    items.sort(key=lambda x: x[2], reverse=True)
+
+    total_value = 0.0
+    for value, weight, ratio in items:
+        if capacity >= weight:
+            total_value += value
+            capacity -= weight
+        else:
+            total_value += ratio * capacity
+            break
+    return total_value
+\end{lstlisting}
+
+
+\subsection{Line-by-Line Breakdown}
+
+\paragraph{Line 1}
+\begin{verbatim}
+def fractional_knapsack(values, weights, capacity):
+\end{verbatim}
+\begin{itemize}
+    \item Defines a function with:
+    \begin{itemize}
+        \item \texttt{values} – list of item values
+        \item \texttt{weights} – list of item weights
+        \item \texttt{capacity} – total capacity of the knapsack
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Line 2}
+\begin{verbatim}
+items = [(v, w, v/w) for v, w in zip(values, weights)]
+\end{verbatim}
+\begin{itemize}
+    \item Creates a list of tuples \texttt{(value, weight, ratio)}.
+    \item \texttt{zip(values, weights)} combines both lists.
+    \item \texttt{v/w} computes the value-to-weight ratio.
+\end{itemize}
+
+\textbf{Example:}
+\begin{verbatim}
+values  = [60, 100, 120]
+weights = [10, 20, 30]
+# → items = [(60, 10, 6.0), (100, 20, 5.0), (120, 30, 4.0)]
+\end{verbatim}
+
+\paragraph{Line 3}
+\begin{verbatim}
+items.sort(key=lambda x: x[2], reverse=True)
+\end{verbatim}
+\begin{itemize}
+    \item Sorts items in descending order by value-to-weight ratio.
+    \item Highest "value per kg" items come first.
+\end{itemize}
+
+\paragraph{Line 4}
+\begin{verbatim}
+total_value = 0.0
+\end{verbatim}
+\begin{itemize}
+    \item Initializes the total value of items added to the knapsack.
+\end{itemize}
+
+\paragraph{Line 5–11 (Main loop)}
+\begin{verbatim}
+for value, weight, ratio in items:
+\end{verbatim}
+\begin{itemize}
+    \item Iterates over each sorted item.
+\end{itemize}
+
+\begin{verbatim}
+    if capacity >= weight:
+        total_value += value
+        capacity -= weight
+\end{verbatim}
+\begin{itemize}
+    \item If the full item fits, take it completely.
+    \item Add its value, and subtract its weight from capacity.
+\end{itemize}
+
+\begin{verbatim}
+    else:
+        total_value += ratio * capacity
+        break
+\end{verbatim}
+\begin{itemize}
+    \item If the item doesn't fully fit:
+    \begin{itemize}
+        \item Take a fraction that fits.
+        \item Add proportional value.
+        \item Break the loop as knapsack is full.
+    \end{itemize}
+\end{itemize}
+
+\paragraph{Line 12}
+\begin{verbatim}
+return total_value
+\end{verbatim}
+\begin{itemize}
+    \item Return the maximum value that can be carried in the knapsack.
+\end{itemize}
+
+\subsection*{Example Call}
+\begin{verbatim}
+fractional_knapsack([60, 100, 120], [10, 20, 30], 50)
+\end{verbatim}
+
+\textbf{Output:}
+\begin{verbatim}
+240.0
+\end{verbatim}
+
+\subsection*{Why?}
+\begin{itemize}
+    \item Take all of item 1: 60 (10kg)
+    \item Take all of item 2: 100 (20kg)
+    \item Take 2/3 of item 3: $120 \times \frac{2}{3} = 80$
+\end{itemize}
+
+\textbf{Total} = $60 + 100 + 80 = 240$
+
+\subsection*{Example Input and Output}
+
+\begin{verbatim}
+# Input
+values  = [60, 100, 120]
+weights = [10, 20, 30]
+capacity = 50
+
+# Function call
+result = fractional_knapsack(values, weights, capacity)
+
+# Output
+print(result)  # Output: 240.0
+\end{verbatim}
+
+\newpage
+\subsection{C++ Implementation}
+%%%%%%%%%%% C++ Code for Fractional Knapsack %%%%%%%%%%
+\begin{lstlisting}[style=cpp, caption={Fractional Knapsack in C++}]
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+struct Item {
+    int value, weight;
+};
+
+bool compare(Item a, Item b) {
+    double r1 = (double)a.value / a.weight;
+    double r2 = (double)b.value / b.weight;
+    return r1 > r2;
+}
+
+double fractionalKnapsack(int W, vector<Item> &items) {
+    sort(items.begin(), items.end(), compare);
+    double totalValue = 0.0;
+
+    for (Item &item : items) {
+        if (W >= item.weight) {
+            W -= item.weight;
+            totalValue += item.value;
+        } else {
+            totalValue += item.value * ((double)W / item.weight);
+            break;
+        }
+    }
+
+    return totalValue;
+}
+\end{lstlisting}
+
+
+\newpage
+%%%%%%%%% 0/1 Knapsack Problem %%%%%%%%%%
+% The 0/1 Knapsack Problem is a more constrained version where items cannot be divided. 
+% Each item is either included in the knapsack or excluded, leading to a combinatorial explosion of possibilities.
+\section{0/1 Knapsack (Dynamic Programming)}
+
+\begin{itemize}[label=\textbullet]
+    \item Items cannot be broken; each item is either taken or not.
+    \item Define a DP table: $dp[i][w]$ = maximum value for first $i$ items with weight limit $w$.
+    \item Recurrence relation:
+    \[
+        dp[i][w] =
+        \begin{cases}
+            dp[i-1][w], & \text{if } w_i > w \\
+            \max(dp[i-1][w], dp[i-1][w - w_i] + v_i), & \text{otherwise}
+        \end{cases}
+    \]
+    \item Time Complexity: $\mathcal{O}(nW)$
+\end{itemize}
+
+\textbf{Note:} This method guarantees the optimal solution for the 0/1 Knapsack.
+
+
+%%%%%%%%%%%%%%%%%% Worked Example %%%%%%%%%%%%%%%%%%
+\subsection{0/1 Knapsack Problem (Dynamic Programming)}
+
+\subsection*{Problem Statement}
+
+Given $n$ items with:
+\begin{itemize}
+    \item Values: $v_i$
+    \item Weights: $w_i$
+    \item A knapsack of capacity $W$
+\end{itemize}
+
+Determine the maximum total value that can be obtained by selecting a subset of items such that:
+\begin{itemize}
+    \item Each item is either fully included or excluded (no fractions)
+    \item Total weight $\leq W$
+\end{itemize}
+
+\subsection*{Example}
+
+\textbf{Given:}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Item} & \textbf{Value ($v_i$)} & \textbf{Weight ($w_i$)} \\
+\hline
+1 & 60 & 1 \\
+2 & 100 & 2 \\
+3 & 120 & 3 \\
+\hline
+\end{tabular}
+\end{center}
+
+Knapsack Capacity: $W = 5$
+
+\subsection*{Approach: Dynamic Programming}
+
+Let $dp[i][w]$ be the maximum value that can be obtained by considering the first $i$ items with capacity $w$.
+
+We use the recurrence:
+
+\[
+dp[i][w] =
+\begin{cases}
+    dp[i-1][w] & \text{if } w_i > w \\
+    \max(dp[i-1][w], dp[i-1][w - w_i] + v_i) & \text{otherwise}
+\end{cases}
+\]
+
+---
+
+\subsection*{DP Table Construction}
+
+Let’s build a table for $dp[0\,..\,3][0\,..\,5]$
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$i \backslash w$ & 0 & 1 & 2 & 3 & 4 & 5 \\
+\hline
+0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 60 & 60 & 60 & 60 & 60 \\
+2 & 0 & 60 & 100 & 160 & 160 & 160 \\
+3 & 0 & 60 & 100 & 160 & 180 & 220 \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Explanation:}
+\begin{itemize}
+    \item Row $i$ considers first $i$ items
+    \item Column $w$ represents capacity
+    \item Final answer is at $dp[3][5] = \boxed{220}$
+\end{itemize}
+
+\subsection*{Result}
+
+The maximum value we can carry in the knapsack is:
+
+\[
+\boxed{220}
+\]
+
+\subsection*{Items Selected}
+
+Using backtracking from the table:
+\begin{itemize}
+    \item Item 3 is included (weight 3, value 120)
+    \item Remaining capacity = 2
+    \item Item 2 is included (weight 2, value 100)
+\end{itemize}
+
+\textbf{Final Selection:} Item 2 and Item 3
+
+\textbf{Total Weight:} $2 + 3 = 5$, \textbf{Total Value:} $100 + 120 = \boxed{220}$
+
+%%%%%%%%%%%%%%%%%% Construction of DP Table %%%%%%%%%%%%%%%%%%
+\subsection{Step-by-Step Construction of DP Table}
+
+We define a DP table \texttt{dp[i][w]} where:
+\begin{itemize}
+    \item $i$ = number of items considered
+    \item $w$ = current knapsack capacity (from $0$ to $W$)
+    \item \texttt{dp[i][w]} stores the \textbf{maximum value} using first $i$ items and capacity $w$
+\end{itemize}
+
+\textbf{Initialization:}
+
+\begin{itemize}
+    \item For all $w$: \quad \texttt{dp[0][w] = 0} \quad (No items → 0 value)
+    \item For all $i$: \quad \texttt{dp[i][0] = 0} \quad (0 capacity → 0 value)
+\end{itemize}
+
+\textbf{Input:}
+
+\begin{tabular}{|c|c|c|}
+\hline
+Item $i$ & Value $v_i$ & Weight $w_i$ \\
+\hline
+1 & 60 & 1 \\
+2 & 100 & 2 \\
+3 & 120 & 3 \\
+\hline
+\end{tabular}
+\quad \quad
+Capacity $W = 5$
+
+\bigskip
+
+\textbf{Filling the table:}
+
+We use this recurrence:
+\[
+dp[i][w] =
+\begin{cases}
+    dp[i-1][w] & \text{if } w_i > w \quad \text{(Item can't fit)} \\
+    \max(dp[i-1][w], dp[i-1][w - w_i] + v_i) & \text{otherwise}
+\end{cases}
+\]
+
+---
+
+\paragraph{Row 1 (Item 1: value=60, weight=1):}
+
+\begin{itemize}
+    \item $w = 0$: can't include → $dp[1][0] = 0$
+    \item $w = 1$: can include → $dp[1][1] = \max(0, 0 + 60) = 60$
+    \item $w = 2$: $dp[1][2] = \max(0, 0 + 60) = 60$
+    \item $w = 3$: $dp[1][3] = \max(0, 0 + 60) = 60$
+    \item $w = 4$: $dp[1][4] = \max(0, 0 + 60) = 60$
+    \item $w = 5$: $dp[1][5] = \max(0, 0 + 60) = 60$
+\end{itemize}
+
+\paragraph{Row 2 (Item 2: value=100, weight=2):}
+
+\begin{itemize}
+    \item $w = 0,1$: can't include → same as above
+    \item $w = 2$: $dp[2][2] = \max(60, 0 + 100) = 100$
+    \item $w = 3$: $dp[2][3] = \max(60, 60 + 100) = 160$
+    \item $w = 4$: $dp[2][4] = \max(60, 60 + 100) = 160$
+    \item $w = 5$: $dp[2][5] = \max(60, 60 + 100) = 160$
+\end{itemize}
+
+\paragraph{Row 3 (Item 3: value=120, weight=3):}
+
+\begin{itemize}
+    \item $w = 0,1,2$: can't include → same as above
+    \item $w = 3$: $dp[3][3] = \max(160, 0 + 120) = 160$
+    \item $w = 4$: $dp[3][4] = \max(160, 60 + 120) = 180$
+    \item $w = 5$: $dp[3][5] = \max(160, 100 + 120) = \boxed{220}$
+\end{itemize}
+
+---
+
+\subsection*{Final DP Table}
+
+\begin{center}
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+$i \backslash w$ & 0 & 1 & 2 & 3 & 4 & 5 \\
+\hline
+0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+1 & 0 & 60 & 60 & 60 & 60 & 60 \\
+2 & 0 & 60 & 100 & 160 & 160 & 160 \\
+3 & 0 & 60 & 100 & 160 & 180 & \textbf{220} \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Final Answer: } \quad Maximum value = $\boxed{220}$
+
+
+%%%%%%%%%%%% Code Implementation of 0/1 Knapsack %%%%%%%%%%%%%
+\section{Theoretical Logic Behind 0/1 Knapsack Implementation}
+
+The 0/1 Knapsack problem is a classic example of \textbf{Dynamic Programming}, where the optimal solution of a problem depends on the optimal solutions of its subproblems. The idea is to build a table that stores the maximum value for each subproblem defined by:
+
+\begin{itemize}
+    \item The number of items considered so far $(i)$
+    \item The remaining capacity of the knapsack $(w)$
+\end{itemize}
+
+Let $dp[i][w]$ represent the maximum value achievable by considering the first $i$ items with a knapsack capacity $w$.
+
+\subsection*{Recurrence Relation}
+
+\[
+dp[i][w] =
+\begin{cases}
+    dp[i-1][w] & \text{if } w_i > w \quad \text{(Item doesn't fit)} \\
+    \max(dp[i-1][w], dp[i-1][w - w_i] + v_i) & \text{otherwise}
+\end{cases}
+\]
+
+Where:
+\begin{itemize}
+    \item $v_i$ is the value of the $i^\text{th}$ item
+    \item $w_i$ is the weight of the $i^\text{th}$ item
+\end{itemize}
+
+\subsection*{Base Case Initialization}
+
+\begin{itemize}
+    \item $dp[0][w] = 0$ for all $w$ (no items means no value)
+    \item $dp[i][0] = 0$ for all $i$ (zero capacity means no value)
+\end{itemize}
+
+\subsection*{Bottom-Up Construction}
+
+We iterate over all items and capacities to fill the DP table. For each item and capacity:
+
+\begin{itemize}
+    \item If the item weight is more than the current capacity, we can't include it, so we inherit the value from above.
+    \item Otherwise, we decide whether to include the item or not by taking the maximum of:
+    \begin{itemize}
+        \item Excluding the item: $dp[i-1][w]$
+        \item Including the item: $dp[i-1][w - w_i] + v_i$
+    \end{itemize}
+\end{itemize}
+
+\subsection*{Final Answer}
+
+The final result is stored in $dp[n][W]$, where:
+\begin{itemize}
+    \item $n$ is the total number of items
+    \item $W$ is the maximum capacity of the knapsack
+\end{itemize}
+
+This value represents the \textbf{maximum total value} that can be achieved without exceeding the 
+knapsack's capacity using the given items.
+
+\newpage
+\subsection{Python Implementation}
+\begin{lstlisting}[style=python, caption={0/1 Knapsack in Python}]
+def knapsack(values, weights, capacity):
+    n = len(values)
+    # Initialize DP table with 0
+    dp = [[0 for _ in range(capacity + 1)] for _ in range(n + 1)]
+
+    # Fill the table
+    for i in range(1, n + 1):
+        for w in range(0, capacity + 1):
+            if weights[i - 1] > w:
+                dp[i][w] = dp[i - 1][w]  # Can't include item
+            else:
+                # Max of including or excluding the item
+                dp[i][w] = max(dp[i - 1][w],
+                               dp[i - 1][w - weights[i - 1]] + values[i - 1])
+
+    return dp[n][capacity]
+\end{lstlisting}
+
+\begin{verbatim}
+    values = [60, 100, 120]
+    weights = [1, 2, 3]
+    capacity = 5
+
+    result = knapsack(values, weights, capacity)
+    print(result)  # Output: 220
+\end{verbatim}
+
+\newpage
+\subsection{C++ Implementation}
+\begin{lstlisting}[style=cpp, caption={0/1 Knapsack in C++}]
+#include <iostream>
+#include <vector>
+using namespace std;
+
+int knapsack(vector<int>& values, vector<int>& weights, int capacity) {
+    int n = values.size();
+    vector<vector<int>> dp(n + 1,vector<int>(capacity + 1, 0));
+    for (int i = 1; i <= n; ++i) {
+        for (int w = 0; w <= capacity; ++w) {
+            if (weights[i - 1] > w) {
+                dp[i][w] = dp[i - 1][w]; // Cannot include item
+            } else {
+                dp[i][w] = max(
+                    dp[i - 1][w],
+                    dp[i-1][w - weights[i-1]] + values[i-1]
+                );
+            }
+        }
+    }
+    return dp[n][capacity];
+}
+
+int main() {
+    int n, capacity;
+    cout << "Enter number of items: ";
+    cin >> n;
+
+    vector<int> values(n), weights(n);
+
+    cout << "Enter values:\n";
+    for (int i = 0; i < n; ++i) cin >> values[i];
+    cout << "Enter weights:\n";
+    for (int i = 0; i < n; ++i) cin >> weights[i];
+    cout << "Enter knapsack capacity: ";
+    cin >> capacity;
+    int result = knapsack(values, weights, capacity);
+    cout << "Maximum value: " << result << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\newpage
+%%%%%%%%%% Key Points %%%%%%%%%%
+\section{Key Points to Remember}
+
+\begin{enumerate}
+    \item Knapsack problems involve selecting items to maximize total value under a weight constraint.
+    \item 0/1 Knapsack: each item is either taken fully or not at all.
+    \item Fractional Knapsack: items can be broken and partially taken.
+    \item 0/1 Knapsack is solved using Dynamic Programming.
+    \item Fractional Knapsack is solved using Greedy strategy.
+    \item 0/1 Knapsack does not follow greedy choice property.
+    \item Fractional Knapsack follows both greedy choice and optimal substructure properties.
+    \item Time complexity of 0/1 Knapsack: $\mathcal{O}(nW)$, where $n$ = items, $W$ = capacity.
+    \item Time complexity of Fractional Knapsack: $\mathcal{O}(n \log n)$ (due to sorting).
+    \item In 0/1 Knapsack, a DP table is built based on item count and capacity.
+    \item Backtracking the DP table can give the list of selected items.
+    \item Fractional Knapsack always yields the optimal solution.
+    \item 0/1 Knapsack may require approximation if constraints are large.
+    \item Space optimization is possible using 1D arrays in 0/1 Knapsack.
+    \item Knapsack is a classic NP-complete problem (for 0/1 case).
+\end{enumerate}
+
+\newpage
+%%%%%%%%%%% Real World Applications %%%%%%%%%%
+\section{Real-World Applications}
+
+\begin{itemize}
+    \item \textbf{Cargo Loading:} Selecting goods to load onto a truck/ship with weight limits.
+    \item \textbf{Budget Allocation:} Choosing the best set of projects under a limited budget.
+    \item \textbf{Resource Scheduling:} Assigning limited compute or memory to jobs for maximum value.
+    \item \textbf{Investment Planning:} Selecting the best combination of assets under risk/capital constraints.
+    \item \textbf{Time Management:} Choosing the most rewarding activities within limited time.
+    \item \textbf{Memory Management in OS:} Efficiently selecting data blocks to keep in memory.
+    \item \textbf{Marketing Campaigns:} Allocating limited resources (ad budget, team) to most impactful actions.
+    \item \textbf{Cloud Computing:} VM placement and workload optimization under physical constraints.
+    \item \textbf{Logistics Optimization:} Selecting orders or shipments based on value-to-weight ratio.
+    \item \textbf{Resource-constrained AI Agents:} Selecting actions under energy/time restrictions.
+\end{itemize}
+
+
+\newpage
+%%%%%%%%%%%%%% Final %%%%%%%%%%%%%%%%
+\section{Comparison}
+
+\begin{tabular}{|l|p{4.2cm}|p{4.2cm}|}
+\hline
+\textbf{Feature} & \textbf{Fractional\newline Knapsack} & \textbf{0/1 Knapsack} \\
+\hline
+Problem Type & Optimization with fractions & Combinatorial subset selection \\
+Item Division & Allowed (can take part of item) & Not Allowed (take whole or none) \\
+Approach & Greedy & Dynamic Programming \\
+Guarantees Optimality & Only for fractional case & Yes, for 0/1 selection \\
+Time Complexity & $\mathcal{O}(n \log n)$ & $\mathcal{O}(nW)$ \\
+\hline
+\end{tabular}
+
+%%%%%%%%%%%%%%%% conclusion %%%%%%%%%%
+\section{Conclusion}
+
+The Knapsack problem illustrates a fundamental trade-off between resource usage and value optimization. 
+It exists in two major forms:
+
+\begin{itemize}
+    \item The \textbf{0/1 Knapsack}, which is discrete and requires Dynamic Programming due to its combinatorial nature.
+    \item The \textbf{Fractional Knapsack}, which is continuous and optimally solvable using a Greedy approach.
+\end{itemize}
+
+These problems are widely applicable in fields like operations research, finance, computer science, and logistics. 
+A deep understanding of Knapsack variants not only helps in mastering algorithmic techniques but also equips one to 
+model and solve many real-world optimization problems effectively.
+
+
+\end{document}
