@@ -27,6 +27,10 @@
 \usepackage{listings}
 \usepackage[most]{tcolorbox}
 
+% % ----------------- 
+% \bibliography{mcst_references}
+% \bibliographystyle{plain}
+
 
 \definecolor{codegray}{gray}{0.9}
 \definecolor{codeblue}{rgb}{0.1,0.1,0.6}
@@ -84,10 +88,11 @@
 \lstlistoflistings
 % \listofalgorithms
 \newpage
-
 \section{Minimum Cost Spanning Tree (MST)}
 
-A \textbf{Spanning Tree} of a connected, undirected graph is a subgraph that includes all the vertices with the minimum number of edges (i.e., $V-1$ edges). A \textbf{Minimum Cost Spanning Tree} is a spanning tree with the minimum total edge weight.
+A \textbf{Spanning Tree} of a connected, undirected graph is a subgraph that includes 
+all the vertices with the minimum number of edges (i.e., $V-1$ edges). 
+A \textbf{Minimum Cost Spanning Tree} is a spanning tree with the minimum total edge weight.
 
 \subsection*{Applications}
 \begin{itemize}
@@ -246,8 +251,10 @@ In general, greedy algorithms like \textbf{Prim’s} and \textbf{Kruskal’s} ar
 \newpage
 \section{Prim's Algorithm}
 
-Prim's algorithm grows the MST one edge at a time, starting from an arbitrary node. 
+Prim's\cite{prim1957} algorithm grows the MST one edge at a time, starting from an arbitrary node. 
 It always adds the minimum weight edge that connects a visited node to an unvisited node.
+
+
 
 \subsection{Algorithm Steps}
 \begin{itemize}
@@ -417,9 +424,9 @@ int prim(vector<vector<pair<int,int>>> &graph, int V) {
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Kruskal's Algorithm %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\section{Kruskal's Algorithm}
+\section{Kruskal's Algorithm} 
 
-Kruskal's algorithm sorts all edges in increasing order and adds them one by one to the MST if 
+Kruskal's\cite{kruskal1956} algorithm sorts all edges in increasing order and adds them one by one to the MST if 
 they do not form a cycle. It uses the Disjoint Set Union (DSU) data structure.
 
 \subsection{Algorithm Steps}
@@ -1186,5 +1193,130 @@ Dijkstra’s & Single Source\newline Shortest Path & $O(E \log V)$ & Min Heap \\
 Prim’s and Kruskal’s algorithms are optimal solutions to find a minimum spanning tree. 
 Prim’s is suitable for dense graphs, while Kruskal’s performs better on sparse graphs. 
 Dijkstra’s algorithm, on the other hand, is used to compute the shortest paths and not MSTs.
+
+\newpage
+\section{MCST-Based Competitive Programming Problems}
+
+\tcbset{colback=white, colframe=black, fonttitle=\bfseries, coltitle=white, arc=4pt, boxrule=0.5mm}
+
+\begin{tcolorbox}[title=1. \textbf{Connecting Cities With Minimum Cost}]
+\textbf{Platform:} LeetCode \\
+\textbf{Link:} \href{https://leetcode.com/problems/connecting-cities-with-minimum-cost/}{leetcode.com/problems/connecting-cities-with-minimum-cost} \\
+\textbf{Concept:} Apply Kruskal’s algorithm to find MST over a set of city connections. \\
+\textbf{Tags:} Graph, Union-Find, Kruskal, Greedy
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=2. \textbf{Planet Connections}]
+\textbf{Platform:} Codeforces (Round 101 Div. 2) \\
+\textbf{Link:} \href{https://codeforces.com/problemset/problem/1245/D}{codeforces.com/problemset/problem/1245/D} \\
+\textbf{Concept:} You are given coordinates and wire costs; build MST to minimize total cost. \\
+\textbf{Tags:} Prim’s Algorithm, Coordinate Geometry, Greedy
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=3. \textbf{Fiber Network}]
+\textbf{Platform:} CSES Problem Set \\
+\textbf{Link:} \href{https://cses.fi/problemset/task/1675}{cses.fi/problemset/task/1675} \\
+\textbf{Concept:} Standard MST problem with a very clean interface, ideal for beginners. \\
+\textbf{Tags:} Graph, MST, Kruskal, Sorting
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=4. \textbf{New Roads Queries}]
+\textbf{Platform:} SPOJ \\
+\textbf{Link:} \href{https://www.spoj.com/problems/NEWROAD/}{spoj.com/problems/NEWROAD} \\
+\textbf{Concept:} Dynamic MST — handle queries involving MST edges and reweighting. \\
+\textbf{Tags:} Offline Queries, Kruskal, DSU with rollback
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=5. \textbf{City and Flood}]
+\textbf{Platform:} HackerEarth \\
+\textbf{Link:} \href{https://www.hackerearth.com/problem/algorithm/city-and-flood-1/}{hackerearth.com/problem/algorithm/city-and-flood-1} \\
+\textbf{Concept:} Simple DSU/MST-based component counting. \\
+\textbf{Tags:} Disjoint Set, Flood Fill, MST
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=6. \textbf{Dark Roads}]
+\textbf{Platform:} CSES Problem Set \\
+\textbf{Link:} \href{https://cses.fi/problemset/task/1163}{cses.fi/problemset/task/1163} \\
+\textbf{Concept:} Given the total cost of all roads, compute the savings from the MST. \\
+\textbf{Tags:} MST, Graph Optimization, Greedy
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=7. \textbf{Minimum Spanning Tree}]
+\textbf{Platform:} HackerRank \\
+\textbf{Link:} \href{https://www.hackerrank.com/challenges/kruskalmstrsub/problem}{hackerrank.com/challenges/kruskalmstrsub/problem} \\
+\textbf{Concept:} Classical MST implementation using Kruskal’s algorithm. \\
+\textbf{Tags:} Graph, Kruskal, Sorting, Union-Find
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=8. \textbf{Road Construction}]
+\textbf{Platform:} CSES Problem Set \\
+\textbf{Link:} \href{https://cses.fi/problemset/task/1676}{cses.fi/problemset/task/1676} \\
+\textbf{Concept:} Maintain number of connected components and minimum cost. \\
+\textbf{Tags:} Kruskal, DSU, MST, Connected Components
+\end{tcolorbox}
+
+\newpage
+\section{Key Research Papers}
+\tcbset{colback=gray!5!white, colframe=gray!50!black, boxrule=0.5pt, arc=4pt}
+
+\begin{tcolorbox}[title=1. Borůvka’s Algorithm (1926)]
+\textbf{Author:} Otakar Borůvka \\
+\textbf{Paper:} \textit{O jistém problému minimálním (On a certain minimal problem)} \\
+\textbf{Published in:} Práce Moravské Přírodovědecké Společnosti \\
+\textbf{Link:} \href{https://dml.cz/handle/10338.dmlcz/401613}{Digital Library of Czech Academy (DML-CZ)} \\
+\textbf{Why Important:} First known algorithm for MST; useful in parallel/distributed computing.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=2. Kruskal’s Algorithm (1956)]
+\textbf{Author:} J. B. Kruskal \\
+\textbf{Paper:} \textit{On the shortest spanning subtree of a graph and the traveling salesman problem} \\
+\textbf{Published in:} Proceedings of the American Mathematical Society \\
+\textbf{Link:} \href{https://www.jstor.org/stable/2033241}{JSTOR} \\
+\textbf{Why Important:} Introduced the greedy edge-based MST algorithm using Disjoint Sets (DSU).
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=3. Prim’s Algorithm (1957)]
+\textbf{Author:} R. C. Prim \\
+\textbf{Paper:} \textit{Shortest connection networks and some generalizations} \\
+\textbf{Published in:} Bell System Technical Journal \\
+\textbf{Link:} \href{https://ieeexplore.ieee.org/document/6773135}{IEEE Xplore} \\
+\textbf{Why Important:} Presents a vertex-based greedy algorithm; efficient for dense graphs.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=4. Tarjan’s Union-Find Optimization (1975)]
+\textbf{Author:} R. E. Tarjan \\
+\textbf{Paper:} \textit{Efficiency of a good but not linear set union algorithm} \\
+\textbf{Published in:} Journal of the ACM (JACM) \\
+\textbf{Link:} \href{https://dl.acm.org/doi/10.1145/321879.321884}{ACM Digital Library} \\
+\textbf{Why Important:} Introduced union-by-rank and path compression used in Kruskal’s algorithm.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=5. Karger’s Randomized MST (1995)]
+\textbf{Authors:} D. Karger, P. Klein, R. Tarjan \\
+\textbf{Paper:} \textit{A randomized linear-time algorithm to find minimum spanning trees} \\
+\textbf{Published in:} Journal of the ACM \\
+\textbf{Link:} \href{https://dl.acm.org/doi/10.1145/210332.210337}{ACM Digital Library} \\
+\textbf{Why Important:} Randomized linear-time MST; milestone in theoretical CS.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=6. Distributed MST (1983)]
+\textbf{Authors:} R. Gallager, P. Humblet, P. Spira \\
+\textbf{Paper:} \textit{A distributed algorithm for minimum-weight spanning trees} \\
+\textbf{Published in:} ACM Transactions on Programming Languages and Systems (TOPLAS) \\
+\textbf{Link:} \href{https://dl.acm.org/doi/10.1145/357172.357176}{ACM Digital Library} \\
+\textbf{Why Important:} Pioneered MST in distributed systems, used in network protocols.
+\end{tcolorbox}
+
+\begin{tcolorbox}[title=7. Matroid Theory and Greedy MST (1971)]
+\textbf{Author:} Jack Edmonds \\
+\textbf{Paper:} \textit{Matroids and the greedy algorithm} \\
+\textbf{Published in:} Mathematical Programming \\
+\textbf{Link:} \href{https://doi.org/10.1007/BF01585995}{SpringerLink} \\
+\textbf{Why Important:} Shows MST as a matroid problem; theoretical foundation for greedy correctness.
+\end{tcolorbox}
+
+
+\bibliographystyle{plain}
+\bibliography{mcst_references}  % assumes the .bib file is named mcst_references.bib
 
 \end{document}
