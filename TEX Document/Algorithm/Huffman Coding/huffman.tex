@@ -1,0 +1,434 @@
+\documentclass[14pt]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{caption}
+
+% Code styling
+\lstdefinestyle{python}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  frame=single,
+  tabsize=4,
+  captionpos=b
+}
+
+\lstdefinestyle{cpp}{
+  language=C++,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  frame=single,
+  tabsize=4,
+  captionpos=b
+}
+
+\title{Huffman Encoding: Greedy Algorithm}
+\author{Varun Kumar}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+% \newpage
+\tableofcontents
+% \lstlistoflistings
+% \listofalgorithms
+% \newpage
+
+\section{Introduction}
+\textbf{Huffman Encoding} is a lossless data compression algorithm that assigns variable-length codes to input characters, with shorter codes assigned to more frequent characters. It minimizes the total number of bits used for encoding, based on character frequency.
+
+\textbf{Key Concept:} Use a greedy approach by always combining the two least frequent characters to build the optimal prefix code tree.
+
+\section{Problem Statement}
+Given a set of characters along with their frequencies, build a binary tree such that:
+\begin{itemize}
+    \item Each leaf node represents a character.
+    \item The path from root to leaf represents its binary code.
+    \item The total cost (weighted path length) is minimized.
+\end{itemize}
+
+\section{Approach: Greedy Algorithm using Min-Heap}
+\begin{itemize}
+    \item Insert all characters and frequencies into a min-heap.
+    \item While more than one node remains:
+    \begin{itemize}
+        \item Extract two nodes with the lowest frequencies.
+        \item Create a new internal node with these two as children.
+        \item Frequency of new node = sum of both.
+        \item Insert the new node back into the heap.
+    \end{itemize}
+    \item The remaining node is the root of the Huffman Tree.
+\end{itemize}
+
+\subsection{Example}
+Characters and Frequencies: A:5, B:9, C:12, D:13, E:16, F:45
+
+\begin{verbatim}
+Step 1: Merge A(5) + B(9) = 14
+Step 2: Merge C(12) + D(13) = 25
+Step 3: Merge 14 + E(16) = 30
+Step 4: Merge 25 + 30 = 55
+Step 5: Merge 45 + 55 = 100
+\end{verbatim}
+
+\textbf{Total Cost (Weighted Path Length)} = 224
+
+\subsection{Prefix Property}
+Huffman codes satisfy the prefix property — no code is a prefix of another. This ensures unambiguous decoding.
+
+\subsection{Why Greedy Works}
+\begin{itemize}
+    \item \textbf{Greedy choice property:} Combining lowest frequency nodes locally reduces the global cost.
+    \item \textbf{Optimal substructure:} Huffman's solution is built from smaller optimal solutions.
+\end{itemize}
+
+% GATE 2006 Huffman Coding Problem
+\subsection{GATE 2006 Huffman Coding Problem}
+
+\subsection*{Question}
+The characters $a$ to $h$ have frequencies based on the first 8 Fibonacci numbers as follows:
+
+\begin{center}
+\texttt{a: 1, b: 1, c: 2, d: 3, e: 5, f: 8, g: 13, h: 21}
+\end{center}
+
+A Huffman code is used to represent the characters. What is the sequence of characters corresponding to the following code?
+
+\begin{center}
+\texttt{110111100111010}
+\end{center}
+
+\textbf{Options:}
+\begin{enumerate}[label=\Alph*.]
+    \item \texttt{fdheg}
+    \item \texttt{ecgdf}
+    \item \texttt{dchfg}
+    \item \texttt{fehdg}
+\end{enumerate}
+
+\subsection*{Solution}
+
+First, we construct the Huffman Tree using the frequencies:
+\begin{center}
+\texttt{a:1, b:1, c:2, d:3, e:5, f:8, g:13, h:21}
+\end{center}
+
+\textbf{Steps:}
+\begin{enumerate}
+    \item Combine a(1) + b(1) → [ab]:2
+    \item Combine   + c(2) → [abc]:4
+    \item Combine d(3) +   → [abcd]:7
+    \item Combine e(5) +   → [abcde]:12
+    \item Combine f(8) +   → [abcdef]:20
+    \item Combine g(13) +   → [abcdefg]:33
+    \item Combine h(21) +   → root = 54
+\end{enumerate}
+
+\newpage
+Now, assign codes:
+\begin{itemize}
+    \item h = 0
+    \item [abcdefg] = 1
+        \begin{itemize}
+            \item g = 10
+            \item [abcdef] = 11
+                \begin{itemize}
+                    \item f = 110
+                    \item [abcde] = 111
+                        \begin{itemize}
+                            \item e = 1110
+                            \item [abcd] = 1111
+                                \begin{itemize}
+                                    \item d = 11110
+                                    \item [abc] = 11111
+                                        \begin{itemize}
+                                            \item c = 111110
+                                            \item [ab] = 111111
+                                                \begin{itemize}
+                                                    \item a = 1111110
+                                                    \item b = 1111111
+                                                \end{itemize}
+                                        \end{itemize}
+                                \end{itemize}
+                        \end{itemize}
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\textbf{Decoding} the string \texttt{110111100111010}:
+
+\begin{enumerate}
+    \item 110 → f  
+    \item 11110 → d  
+    \item 0 → h  
+    \item 1110 → e  
+    \item 10 → g  
+\end{enumerate}
+
+\textbf{Decoded String:} \texttt{fdheg}
+
+\subsection*{Correct Answer:} \boxed{\textbf{A. fdheg}}
+
+% GATE 2017 Huffman Coding Problem
+\subsection{GATE 2017 Huffman Coding Problem}
+\subsection*{Question}
+A message is made up entirely of characters from the set $X = \{P, Q, R, S, T\}$. The table of probabilities for each of the characters is shown below:
+
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Character} & \textbf{Probability} \\
+\hline
+$P$ & 0.22 \\
+$Q$ & 0.34 \\
+$R$ & 0.17 \\
+$S$ & 0.19 \\
+$T$ & 0.08 \\
+\hline
+\textbf{Total} & \textbf{1.00} \\
+\hline
+\end{tabular}
+\end{center}
+
+If a message of 100 characters over $X$ is encoded using Huffman coding, then the expected length of the encoded message in bits is \rule{2cm}{0.15mm}.
+
+\subsection*{Solution}
+
+We follow the standard Huffman coding algorithm:
+
+\begin{enumerate}
+    \item List the characters with their probabilities.
+    \item Construct a min-heap and combine the two lowest probabilities repeatedly until one tree remains.
+    \item Assign codes based on tree depth and compute expected length.
+\end{enumerate}
+
+\subsubsection*{Step 1: Sort and Build the Huffman Tree}
+
+\begin{itemize}
+    \item Initial Frequencies:
+    \begin{itemize}
+        \item $T = 0.08$
+        \item $R = 0.17$
+        \item $S = 0.19$
+        \item $P = 0.22$
+        \item $Q = 0.34$
+    \end{itemize}
+
+    \item Combine $T(0.08) + R(0.17) = 0.25$
+
+    \item Combine $S(0.19) + P(0.22) = 0.41$
+
+    \item Combine $0.25 + Q(0.34) = 0.59$
+
+    \item Combine $0.41 + 0.59 = 1.00$
+\end{itemize}
+
+\subsubsection*{Step 2: Assign Huffman Codes}
+
+\begin{itemize}
+    \item Let’s assume the following encoding from the tree:
+    \begin{itemize}
+        \item $Q = 11$ (length = 2)
+        \item $T = 000$ (length = 3)
+        \item $R = 001$ (length = 3)
+        \item $S = 10$ (length = 2)
+        \item $P = 01$ (length = 2)
+    \end{itemize}
+\end{itemize}
+
+\subsubsection*{Step 3: Expected Length}
+
+\[
+E(L) = \sum (\text{probability} \times \text{code length})
+\]
+\[
+= (0.22 \times 2) + (0.34 \times 2) + (0.17 \times 3) + (0.19 \times 2) + (0.08 \times 3)
+\]
+\[
+= 0.44 + 0.68 + 0.51 + 0.38 + 0.24 = 2.25 \text{ bits per character}
+\]
+
+\subsubsection*{Step 4: Total Bits for 100 Characters}
+
+\[
+\text{Expected Total Length} = 100 \times 2.25 = \boxed{225} \text{ bits}
+\]
+
+\subsection*{Final Answer:} \fbox{\textbf{225 bits}}
+
+
+
+%%%%%%%%%%% Code Implementation and Analysis %%%%%%%%%%%%%%%%%
+\newpage
+\section{Theoretical Logic Behind Huffman Encoding Code Implementation}
+
+\subsection*{Problem Insight}
+By assigning shorter codes to frequent characters and longer codes to infrequent ones, we minimize the total number of bits required for encoding.
+
+\subsection*{Key Ideas}
+\begin{itemize}
+    \item Treat characters and frequencies as leaf nodes.
+    \item Build tree bottom-up using a priority queue (min-heap).
+    \item Traverse the tree to get prefix codes.
+\end{itemize}
+
+\subsection*{Time and Space Complexity}
+\begin{itemize}
+    \item \textbf{Time:} $O(n \log n)$
+    \item \textbf{Space:} $O(n)$ for storing the heap and tree
+\end{itemize}
+
+\newpage
+\subsection{Algorithm and Pseudocode}
+\begin{algorithm}[H]
+\caption{Huffman Encoding}
+\begin{algorithmic}[1]
+\Procedure{HuffmanEncode}{$charFreq$}
+    \State Create a min-heap $H$ from all characters with their frequencies
+    \While{$H.size > 1$}
+        \State $a \gets H.extractMin()$
+        \State $b \gets H.extractMin()$
+        \State Create new node with frequency $a.freq + b.freq$
+        \State Set $a$ and $b$ as children of new node
+        \State Insert new node into $H$
+    \EndWhile
+    \State \Return Root of the Huffman Tree
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\newpage
+\subsection{Python Implementation}
+\begin{lstlisting}[style=python, caption={Huffman Encoding in Python}]
+import heapq
+from collections import defaultdict
+
+class Node:
+    def __init__(self, char, freq):
+        self.char = char
+        self.freq = freq
+        self.left = None
+        self.right = None
+
+    def __lt__(self, other):
+        return self.freq < other.freq
+
+def huffman_encoding(char_freq):
+    heap = [Node(c, f) for c, f in char_freq.items()]
+    heapq.heapify(heap)
+
+    while len(heap) > 1:
+        left = heapq.heappop(heap)
+        right = heapq.heappop(heap)
+        merged = Node(None, left.freq + right.freq)
+        merged.left = left
+        merged.right = right
+        heapq.heappush(heap, merged)
+
+    return heap[0]
+
+def generate_codes(node, prefix="", code_map={}):
+    if node:
+        if node.char:
+            code_map[node.char] = prefix
+        generate_codes(node.left, prefix + "0", code_map)
+        generate_codes(node.right, prefix + "1", code_map)
+    return code_map
+
+# Example usage
+freq = {'A':5, 'B':9, 'C':12, 'D':13, 'E':16, 'F':45}
+root = huffman_encoding(freq)
+codes = generate_codes(root)
+for char, code in codes.items():
+    print(f"{char}: {code}")
+\end{lstlisting}
+
+\newpage
+\subsection{C++ Implementation}
+\begin{lstlisting}[style=cpp, caption={Huffman Encoding in C++}]
+#include <iostream>
+#include <queue>
+#include <unordered_map>
+using namespace std;
+
+struct Node {
+    char ch;
+    int freq;
+    Node *left, *right;
+    Node(char c, int f) : ch(c), freq(f), left(nullptr), right(nullptr) {}
+};
+
+struct Compare {
+    bool operator()(Node* a, Node* b) {
+        return a->freq > b->freq;
+    }
+};
+
+void generateCodes(Node* root, string code, unordered_map<char, string>& codes) {
+    if (!root) return;
+    if (root->ch) codes[root->ch] = code;
+    generateCodes(root->left, code + "0", codes);
+    generateCodes(root->right, code + "1", codes);
+}
+
+int main() {
+    unordered_map<char, int> freq = {{'A',5}, {'B',9}, {'C',12}, {'D',13}, {'E',16}, {'F',45}};
+    priority_queue<Node*, vector<Node*>, Compare> pq;
+
+    for (auto& pair : freq)
+        pq.push(new Node(pair.first, pair.second));
+
+    while (pq.size() > 1) {
+        Node* left = pq.top(); pq.pop();
+        Node* right = pq.top(); pq.pop();
+        Node* merged = new Node('\0', left->freq + right->freq);
+        merged->left = left;
+        merged->right = right;
+        pq.push(merged);
+    }
+
+    unordered_map<char, string> codes;
+    generateCodes(pq.top(), "", codes);
+
+    for (auto& pair : codes)
+        cout << pair.first << ": " << pair.second << endl;
+
+    return 0;
+}
+\end{lstlisting}
+
+\section{Applications}
+\begin{itemize}
+    \item \textbf{File Compression:} ZIP, GZIP, and other archival formats.
+    \item \textbf{Multimedia Compression:} JPEG, MP3, MPEG.
+    \item \textbf{Data Transmission:} Efficient coding over networks.
+\end{itemize}
+
+\section{Conclusion}
+Huffman Encoding is an efficient and optimal solution for data compression where symbols with higher frequencies are assigned shorter binary codes. It leverages a greedy strategy and prefix properties to achieve lossless and minimal-bit encoding.
+
+\end{document}
