@@ -1,0 +1,36 @@
+\tcbset{colback=white, colframe=black, boxrule=0.5pt, arc=4pt}
+
+\begin{tcolorbox}[title=Directed Weighted Graph]
+
+\begin{tikzpicture}[
+    ->, >=stealth, auto, node distance=2cm,
+    vertex/.style={circle, draw, minimum size=7mm, font=\small},
+    edge label/.style={font=\footnotesize, inner sep=1pt},
+    line width=1.2pt, draw=black
+]
+% Nodes
+\node[vertex] (P) at (0,0) {p};
+\node[vertex] (Q) at (2,2) {Q};
+\node[vertex] (T) at (2, -2) {T};
+\node[vertex] (S) at (5, 0) {S};
+\node[vertex] (R) at (8, 2) {R};
+\node[vertex] (U) at (8,-2) {U};
+
+\draw (P) -- (Q) node[midway, above left] {1};
+\draw (P) -- (T) node[midway, below left] {7};
+\draw (P) -- (S) node[midway, above] {6};
+
+\draw (Q) -- (R) node[midway, above left] {1};
+\draw (Q) -- (S) node[midway, above] {4};
+
+\draw (R) -- (S) node[midway, above left] {2};
+\draw (R) -- (U) node[midway, left] {1};
+
+\draw (S) -- (T) node[midway, above left] {3};
+\draw (S) -- (U) node[midway, right] {2};
+
+\draw (T) -- (U) node[midway, above left] {2};
+
+\end{tikzpicture}
+
+\end{tcolorbox}

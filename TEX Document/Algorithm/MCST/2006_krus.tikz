@@ -1,0 +1,38 @@
+\tcbset{colback=white, colframe=black, boxrule=0.5pt, arc=4pt}
+
+\begin{tcolorbox}[title=Weighted Graph]
+
+
+\begin{tikzpicture}[
+    vertex/.style={circle, draw=black, minimum size=7mm, font=\small, inner sep=1pt},
+    edge label/.style={font=\small, fill=white, inner sep=1pt},
+    line width=1pt
+]
+
+% Nodes (adjusted positions to match your image)
+\node[vertex] (a) at (0,0) {a};
+\node[vertex] (b) at (2,2) {b};
+\node[vertex] (c) at (2,-2) {c};
+\node[vertex] (d) at (4,2) {d};
+\node[vertex] (e) at (4,-2) {e};
+\node[vertex] (f) at (6,0) {f};
+
+% Straight edges
+\draw (a) -- (b) node[midway, above left] {1};
+\draw (a) -- (c) node[midway, below left] {6};
+\draw (b) -- (c) node[midway, left] {3};
+\draw (b) -- (d) node[midway, above] {4};
+\draw (c) -- (d) node[midway, right] {2};
+\draw (c) -- (e) node[midway, below] {4};
+\draw (d) -- (e) node[midway, right] {3};
+\draw (d) -- (f) node[midway, above right] {1};
+\draw (e) -- (f) node[midway, below right] {5};
+
+% Curved edge c to f (bend right)
+\draw (c) to[bend right=80] node[midway, below] {7} (f);
+
+% Curved edge b to f (bend right)
+\draw (b) to[bend left=80] node[midway, above] {7} (f);
+
+\end{tikzpicture}
+\end{tcolorbox}

@@ -1,4 +1,4 @@
-\documentclass[14pt,a4paper]{extarticle}
+\documentclass[a4paper,14pt]{extarticle}
 
 % ---------- Core Packages ----------
 \usepackage[margin=1in]{geometry}
@@ -12,8 +12,11 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta, positioning}
 \usepackage{tabularx}  % Add this in preamble
-% \usepackage{tcolorbox}
 \usepackage{longtable}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} % Modern font family with full shape support
+\usepackage{booktabs} % Add this in preamble
 
 % ---------- Algorithm ----------
 \usepackage{algorithm}
@@ -27,10 +30,18 @@
 \usepackage{listings}
 \usepackage[most]{tcolorbox}
 
-% % ----------------- 
-% \bibliography{mcst_references}
-% \bibliographystyle{plain}
+\usepackage{amsmath} % for math fonts like O()
 
+\usepackage{booktabs}
+\usepackage{multirow}
+
+\usepackage{array}
+\usepackage{caption} % for table caption outside center
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+% Optional (nicer spacing between rows)
+\renewcommand{\arraystretch}{1.3}
 
 \definecolor{codegray}{gray}{0.9}
 \definecolor{codeblue}{rgb}{0.1,0.1,0.6}
@@ -77,16 +88,21 @@
     citecolor=blue
 }
 
+%%%%%%%% Renaming Listing(after \listofalgorithms) to Python Programs %%%%%%%%%%%%%%
+\renewcommand{\lstlistlistingname}{Python \& C++ Programs}
+
 % ---------- Document Info ----------
 \title{Minimum Cost Spanning Trees}
-\author{Varun Kumar}
+\author{Where they fails}
+% \author{Varun Kumar}
 \date{\today}
 
 \begin{document}
 \maketitle
 \tableofcontents
 \lstlistoflistings
-% \listofalgorithms
+\listofalgorithms
+\listoftables
 \newpage
 \section{Minimum Cost Spanning Tree (MST)}
 
@@ -94,9 +110,12 @@ A \textbf{Spanning Tree} of a connected, undirected graph is a subgraph that inc
 all the vertices with the minimum number of edges (i.e., $V-1$ edges). 
 A \textbf{Minimum Cost Spanning Tree} is a spanning tree with the minimum total edge weight.
 
+It was first proposed by Otakar Borůvka\cite{boruvka1926} in 1926 on a paper with title $"On a certain minimal problem"$
+
+
 \subsection*{Applications}
 \begin{itemize}
-    \item Network design (LAN, telecommunication)
+    \item Network design (LAN, telecommunication)\cite{gallager1983}
     \item Circuit design
     \item Clustering and approximation algorithms
 \end{itemize}
@@ -157,7 +176,7 @@ This approach is the foundation of well-known algorithms like \textbf{Prim’s} 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% Dynamic Programming Approach %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Dynamic Programming Approach to MCST (Theoretical)}
+\subsection{DP Approach to MCST (Theoretical)}
 % \section*{DP-Based Formulation (Bitmask)}
 
 The Minimum Cost Spanning Tree (MCST) problem seeks to connect all vertices of a connected, undirected, 
@@ -212,7 +231,7 @@ This algorithm uses a Dynamic Programming (DP) approach to find the Minimum Cost
     \item The graph is represented as \(G = (V, E)\), where \(V\) is the set of vertices and \(E\) is the set of edges.
     \item Define a DP table: \texttt{dp[S][u]} represents the minimum cost to connect all vertices in subset \(S \subseteq V\), ending at vertex \(u\).
     \item Initially, set all \texttt{dp[S][u]} to \(\infty\) (unknown or unreachable).
-    \item For each vertex \(u\), set \texttt{dp[\{u\}][u] = 0}, meaning starting at node \(u\) with only that node in the subset has zero cost.
+    \item For each vertex \(u\), set \texttt{dp[\textbraceleft u\textbraceright][u] = 0}, meaning starting at node \(u\) with only that node in the subset has zero cost.
     \item For all subsets \(S\) of vertices:
     \begin{itemize}
         \item For each vertex \(u\) in subset \(S\):
@@ -244,8 +263,33 @@ Dynamic Programming (DP) is generally not the most efficient method for solving 
 \end{itemize}
 
 \noindent
-In general, greedy algorithms like \textbf{Prim’s} and \textbf{Kruskal’s} are preferred due to their simplicity and efficiency, but DP is valuable when the problem cannot be solved optimally using greedy methods alone.
+In general, greedy algorithms\cite{edmonds1971} like \textbf{Prim’s} and \textbf{Kruskal’s} are preferred due to their simplicity and efficiency, but DP is valuable when the problem cannot be solved optimally using greedy methods alone.
 
+%%%%%%%%%%%%%%%%%% GATE CSE Question %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% 2003 Question %%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{GATE CSE 2003}
+
+What is the weight of a minimum spanning tree of the following graph?
+
+\input{2003_mst.tikz}
+
+\begin{tabular}{ll}
+(a) 29 \hspace{4cm} & (b) 31 \\
+(c) 38 \hspace{4cm} & (d) 41 \\
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%%% 2007 Question %%%%%%%%%%%%%%%%%%%%%%
+\subsection{GATE CSE 2007}
+Let $w$ be the minimum weight among all edge weight in an 
+undirected commected graph of weight $w$. Which of the following is false?
+
+\begin{enumerate}[label=(\alph*)]
+    \item There is a minimum spanning tree containing e.
+    \item If $e$ is not in a minimum spanning tree T, then in the cycle formed by adding e to T, all edges ahve the same weight $w$
+    \item Every minimum spanning tree has an edge of weight $w$
+    \item $e$ is present in every minimum spanning tree
+\end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Prim's Algorithm %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
@@ -420,6 +464,36 @@ int prim(vector<vector<pair<int,int>>> &graph, int V) {
 }
 \end{lstlisting}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%% GATE Question on Prim's %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% 2004 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{GATE CSE 2004}
+Consider the following graph
+
+\input{2004_prims.tikz}
+
+Using Prim's Algorithm to construct a minimmum spanning tree starting with node A, Which
+one of the following sequences of edges represents a possibel order in which
+the edges would be added to construct the minimum spanning tree?
+
+\begin{enumerate}[label=(\alph*)]
+    \item (e, g), (c, f), (f, g), (a, d), (a, b), (a, c)
+    \item (a, d), (a, b), (a, c), (c, f), (g, e), (f, g)
+    \item (a, b), (a, d), (d, f), (f, g), (g, e), (f, c)
+    \item (a, d), (a, b), (d, f), (f, c), (f, g), (g, e)
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% 2004 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{GATE CSE 2008}
+Apply Prim's Algorithm and provide the edge in order which they were added
+
+\input{2008_prims.tikz}
+
+\textbf{Ans:- (d,f), (f,c), (d,a), (a,b), (c,e), (f,h), (g,h), (g,i) when started from vertex $d$}
+
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Kruskal's Algorithm %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -427,7 +501,7 @@ int prim(vector<vector<pair<int,int>>> &graph, int V) {
 \section{Kruskal's Algorithm} 
 
 Kruskal's\cite{kruskal1956} algorithm sorts all edges in increasing order and adds them one by one to the MST if 
-they do not form a cycle. It uses the Disjoint Set Union (DSU) data structure.
+they do not form a cycle. It uses the Disjoint Set Union (DSU\cite{tarjan1975}) data structure.
 
 \subsection{Algorithm Steps}
 \begin{itemize}
@@ -605,37 +679,6 @@ D & A \\
 \end{tabular}
 \end{center}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% def find(parent, x):
-%     if parent[x] != x:
-%         parent[x] = find(parent, parent[x])
-%     return parent[x]
-
-% def union(parent, rank, x, y):
-%     xroot = find(parent, x)
-%     yroot = find(parent, y)
-%     if xroot != yroot:
-%         if rank[xroot] < rank[yroot]:
-%             parent[xroot] = yroot
-%         else:
-%             parent[yroot] = xroot
-%             if rank[xroot] == rank[yroot]:
-%                 rank[xroot] += 1
-
-% def kruskal(V, edges):
-%     edges.sort(key=lambda x: x[2])
-%     parent = list(range(V))
-%     rank = [0]*V
-%     cost = 0
-
-%     for u, v, w in edges:
-%         if find(parent, u) != find(parent, v):
-%             union(parent, rank, u, v)
-%             cost += w
-
-%     return cost
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \newpage
 \subsection{Python Code}
 \begin{lstlisting}[style=python, caption={Kruskal's Algorithm in Python}]
@@ -768,6 +811,7 @@ Total cost of MST = \textbf{19}
 (1, 3, 15) & No & Same set (would form cycle) \\
 \hline
 \end{tabular}
+% \caption{Edge Inclusion Summary of Kruskal}
 \end{center}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% C++ Code %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -811,6 +855,26 @@ int kruskal(int V, vector<Edge>& edges) {
     return cost;
 }
 \end{lstlisting}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%% GATE CSE Kruskal Queston %%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\subsection{GATE CSE 2006}
+Consider the following graph:
+
+\input{2006_krus.tikz}
+
+Which one of the following cannot be the sequence fo edges added, in that
+order, to a minimum spanning tree using Kruskal's algorithm?
+
+\begin{enumerate}[label=(\alph*)]
+    \item ($a - b$), ($d - f$), ($b - f$), ($d - c$), ($d - e$)
+    \item ($a - b$), ($d - f$), ($d - c$), ($b - f$), ($d - e$)
+    \item ($d - f$), ($a - b$), ($d - c$), ($b - f$), ($d - e$)
+    \item ($d - f$), ($a - b$), ($b - f$), ($d - e$), ($d - c$)
+\end{enumerate}
+
 
 \newpage
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1040,42 +1104,7 @@ vector<int> dijkstra(int V, vector<pair<int,int>> adj[]) {
 Suppose we run Dijkstra’s single source shortest path algorithm on the 
 following edge-weighted directed graph with vertex $P$ as the source.
 
-\tcbset{colback=white, colframe=black, boxrule=0.5pt, arc=4pt}
-
-\begin{tcolorbox}[title=Directed Weighted Graph]
-
-\begin{tikzpicture}[
-    ->, >=stealth, auto, node distance=2cm,
-    vertex/.style={circle, draw, minimum size=7mm, font=\small},
-    edge label/.style={font=\footnotesize, inner sep=1pt},
-    line width=1.2pt, draw=black
-]
-% Nodes
-\node[vertex] (P) at (0,0) {p};
-\node[vertex] (Q) at (2,2) {Q};
-\node[vertex] (T) at (2, -2) {T};
-\node[vertex] (S) at (5, 0) {S};
-\node[vertex] (R) at (8, 2) {R};
-\node[vertex] (U) at (8,-2) {U};
-
-\draw (P) -- (Q) node[midway, above left] {1};
-\draw (P) -- (T) node[midway, below left] {7};
-\draw (P) -- (S) node[midway, above] {6};
-
-\draw (Q) -- (R) node[midway, above left] {1};
-\draw (Q) -- (S) node[midway, above] {4};
-
-\draw (R) -- (S) node[midway, above left] {2};
-\draw (R) -- (U) node[midway, left] {1};
-
-\draw (S) -- (T) node[midway, above left] {3};
-\draw (S) -- (U) node[midway, right] {2};
-
-\draw (T) -- (U) node[midway, above left] {2};
-
-\end{tikzpicture}
-
-\end{tcolorbox}
+\input{2004_dj_graph.tikz}
 
 \begin{tabular}{ll}
 (a) P, Q, R, S, T, U \hspace{4cm} & (b) P, Q, R, U, S, T \\
@@ -1100,9 +1129,18 @@ time complexity of?
 
 \url{https://gateoverflow.in/1374/gate-cse-2005-question-38}
 
-
 %%%%%%%%%%%%%%%%%%%% 2012 Question %%%%%%%%%%%%%%%%%%%%%%
 \newpage
+\subsection{GATE CSE 2006}
+To implement Dijkstra's shortest path algorithm on unweighted graph so that it runs in linear time,
+then data structure to be used is 
+
+\begin{tabular}{ll}
+    (a) Queue \hspace{5cm} (b) Stack\\
+    (c) Heap \hspace{5cm}  (d) B-Tree\\
+\end{tabular}
+
+%%%%%%%%%%%%%%%%%%%% 2012 Question %%%%%%%%%%%%%%%%%%%%%%
 \subsection{GATE CSE 2012}
 Consider the directed graph shown in the figure below. There are 
 multiple shortest path between vertices S and T. Which one 
@@ -1111,57 +1149,7 @@ Assume that, in any iteration, the shortest path to a vertex v is
 updated only when a strictly shorter path to v is 
 discovered.
 
-\tcbset{colback=white, colframe=black, boxrule=0.5pt, arc=4pt}
-
-\begin{tcolorbox}[title=Directed Weighted Graph]
-
-\begin{tikzpicture}[
-    ->, >=stealth, auto, node distance=2cm,
-    vertex/.style={circle, draw, minimum size=7mm, font=\small},
-    edge label/.style={font=\footnotesize, inner sep=1pt},
-    line width=1.2pt, draw=black
-]
-
-% Nodes
-\node[vertex] (S) at (0,0) {S};
-\node[vertex] (A) at (2,2) {A};
-\node[vertex] (B) at (3,-3) {B};
-\node[vertex] (C) at (4,3) {C};
-\node[vertex] (D) at (6,0) {D};
-\node[vertex] (E) at (7,3) {E};
-\node[vertex] (F) at (7,-3) {F};
-\node[vertex] (G) at (10,3) {G};
-\node[vertex] (T) at (12,-1) {T};
-
-% Edges
-\draw (S) -- (A) node[midway, above left, edge label] {4};
-\draw (S) -- (B) node[midway, above right, edge label] {3};
-\draw (S) -- (D) node[midway, above, edge label] {7};
-
-\draw (A) -- (C) node [midway, above left, edge label] {1};
-
-\draw (B) to[bend left] node[midway, below left, edge label] {3}(S);
-\draw (B) -- (D) node[midway, right] {4};
-
-\draw (C) -- (D) node[midway, right] {3};
-\draw (C) -- (E) node[midway, above] {1};
-
-\draw (D) -- (E) node[midway, left] {1};
-\draw (D) -- (F) node[midway, left] {5};
-\draw (D) -- (T) node[midway, above] {3};
-
-\draw (E) to[bend left] node[midway, above, edge label] {2} (G);
-\draw (E) -- (T) node[midway, above] {4};
-
-% \draw (G) to[bend left] node[midway, below, edge label] {4} (E);
-\draw (G) -- (E) node[midway, below, edge label] {4};
-\draw (G) -- (T) node[midway, above right] {3};
-
-\draw (T) -- (F) node[midway, above] {5};
-
-\end{tikzpicture}
-
-\end{tcolorbox}
+\input{2012_dj_graph.tikz}
 
 
 \vspace{1cm}
@@ -1176,25 +1164,62 @@ discovered.
 
 \newpage
 \section*{Comparison Table}
-\begin{center}
-\renewcommand{\arraystretch}{1.4} % optional: improves row spacing
-\begin{tabularx}{\textwidth}{|c|X|c|c|}
+
+\begin{table}[h!]
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{|c|Y|c|Y|}
 \hline
 \textbf{Algorithm} & \textbf{Purpose} & \textbf{Time Complexity} & \textbf{Data Structure} \\
 \hline
-Prim’s     & Minimum\newline Spanning Tree & $O(E \log V)$ & Min Heap \\
-Kruskal’s  & Minimum\newline Spanning Tree & $O(E \log E)$ & DSU + Sort \\
-Dijkstra’s & Single Source\newline Shortest Path & $O(E \log V)$ & Min Heap \\
+Prim's     & Minimum Spanning Tree         & \(O(E \log V)\) & Min Heap \\
+Kruskal's  & Minimum Spanning Tree         & \(O(E \log E)\) & DSU + Sort \\
+Dijkstra's & Single Source Shortest Path   & \(O(E \log V)\) & Min Heap \\
 \hline
 \end{tabularx}
-\end{center}
+\caption{Comparison of Graph Algorithms}
+\end{table}
 
-\section*{Conclusion}
-Prim’s and Kruskal’s algorithms are optimal solutions to find a minimum spanning tree. 
-Prim’s is suitable for dense graphs, while Kruskal’s performs better on sparse graphs. 
-Dijkstra’s algorithm, on the other hand, is used to compute the shortest paths and not MSTs.
-
+%%%%%%%%%%%%%%%%%%%%%%%%%%% MCST - Various Data Structure %%%%%%%%%%%%%%%%%%%
 \newpage
+\section{MCST T.C via Data Structures}
+\begin{table}[h!]
+\centering
+\begin{tabularx}{\textwidth}{@{} l X l X @{}}
+\toprule
+\textbf{Algorithm} & \textbf{Data Structure} & \textbf{Time Complexity} & \textbf{Remarks} \\
+\midrule
+
+\multirow{3}{*}{Prim's} 
+& Adjacency Matrix + Array & \( O(V^2) \) & For dense graphs \\
+& Min Heap +\newline Adjacency List & \( O((V + E) \log V) \) & Practical and\newline commonly used \\
+& Fibonacci Heap & \( O(E + V \log V) \) & Best theoretical\newline bound \\
+
+\midrule
+
+\multirow{2}{*}{Kruskal's} 
+& Sorting + DSU (Naive) & \( O(E \log E) \) & Sorting\newline dominates \\
+& DSU (Path\newline Compression + Rank) & \( O(E \log V) \) & Efficient in\newline practice \\
+
+\midrule
+
+\multirow{3}{*}{Dijkstra's} 
+& Array & \( O(V^2) \) & For dense graphs \\
+& Min Heap / \newline Binary Heap & \( O((V + E) \log V) \) & Widely used \\
+& Fibonacci Heap & \( O(E + V \log V) \) & Theoretical\newline interest only \\
+
+\bottomrule
+\end{tabularx}
+\caption{Time Complexity Comparison of Graph Algorithms Based on Data Structures}
+\label{tab:mcst-complexity}
+\end{table}
+
+
+\section{Conclusion}
+Prim's and Kruskal's algorithms\cite{karger1995} are optimal solutions to find a minimum spanning tree. 
+Prim's is suitable for dense graphs, while Kruskal's performs better on sparse graphs. 
+Dijkstra's algorithm, on the other hand, is used to compute the shortest paths and not MSTs.
+
+
 \section{MCST-Based Competitive Programming Problems}
 
 \tcbset{colback=white, colframe=black, fonttitle=\bfseries, coltitle=white, arc=4pt, boxrule=0.5mm}
@@ -1315,7 +1340,7 @@ Dijkstra’s algorithm, on the other hand, is used to compute the shortest paths
 \textbf{Why Important:} Shows MST as a matroid problem; theoretical foundation for greedy correctness.
 \end{tcolorbox}
 
-
+\newpage
 \bibliographystyle{plain}
 \bibliography{mcst_references}  % assumes the .bib file is named mcst_references.bib
 

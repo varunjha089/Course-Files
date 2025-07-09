@@ -1,0 +1,46 @@
+\tcbset{colback=white, colframe=black, boxrule=0.5pt, arc=4pt}
+
+\begin{tcolorbox}[title=Weighted Graph]
+
+%%%%%%%%%%%%%%%% For Undirected Edge %%%%%%%%%%%%%%%%%%%%
+\begin{tikzpicture}[
+    auto, node distance=2cm,
+    vertex/.style={circle, draw, minimum size=7mm, font=\small},
+    edge label/.style={font=\footnotesize, inner sep=1pt},
+    every path/.style={draw=black, line width=1.2pt}
+]
+% Nodes
+\node[vertex] (a) at (0,0) {a};
+\node[vertex] (b) at (2,3) {b};
+\node[vertex] (c) at (5, 0) {c};
+\node[vertex] (d) at (2, -3) {d};
+\node[vertex] (e) at (8, 3) {e};
+\node[vertex] (f) at (8,-3) {f};
+\node[vertex] (g) at (12, 0) {g};   
+
+%---------------- a to _ -------------
+\draw (a) -- (b) node[midway, above left] {10};
+\draw (a) -- (c) node[midway, below right] {22};
+\draw (a) -- (d) node[midway, below left] {7};
+
+%----------------- b t0 _ ------------------
+\draw (b) -- (c) node[midway, above right] {30};
+\draw (b) -- (e) node[midway, above] {49};
+
+%---------------- c to _ ------------------
+\draw (c) -- (d) node[midway, left] {26};
+\draw (c) -- (e) node[midway, left] {10};
+\draw (c) -- (f) node[midway, left] {4};
+
+%---------------- d to _ ------------------
+\draw (d) -- (f) node[midway, above] {22};
+
+%---------------- e to _ ------------------
+\draw (e) -- (g) node[midway, above right] {2};
+
+%---------------- f to _ ------------------
+\draw (f) -- (g) node[midway, below right] {5};
+
+\end{tikzpicture}
+
+\end{tcolorbox}

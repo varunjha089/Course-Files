@@ -1,0 +1,71 @@
+\begin{enumerate}[label=(\alph*)]
+
+    \item 
+    \begin{tikzpicture}[
+      level 1/.style={sibling distance=40mm},
+      level 2/.style={sibling distance=20mm},
+      every node/.style={circle, draw, minimum size=8mm, font=\small}
+    ]
+    \node{32}
+      child {node{30}
+        child {node{15}}
+        child {node{12}}
+      }
+      child {node{25}
+        child {node{20}}
+        child {node{16}}
+      };
+    \end{tikzpicture}
+
+    \item 
+    \begin{tikzpicture}[
+      level 1/.style={sibling distance=40mm},
+      level 2/.style={sibling distance=20mm},
+      every node/.style={circle, draw, minimum size=8mm, font=\small}
+    ]
+    \node{32}
+      child {node{25}
+        child {node{12}}
+        child {node{15}}
+      }
+      child {node{30}
+        child {node{20}}
+        child {node{16}}
+      };
+    \end{tikzpicture}
+
+    \item 
+    \begin{tikzpicture}[
+      level 1/.style={sibling distance=40mm},
+      level 2/.style={sibling distance=20mm},
+      every node/.style={circle, draw, minimum size=8mm, font=\small}
+    ]
+    \node{32}
+      child {node{230}
+        child {node{15}}
+        child {node{12}}
+      }
+      child {node{25}
+        child {node{16}}
+        child {node{20}}
+      };
+    \end{tikzpicture}
+
+    \item 
+    \begin{tikzpicture}[
+      level 1/.style={sibling distance=40mm},
+      level 2/.style={sibling distance=20mm},
+      every node/.style={circle, draw, minimum size=8mm, font=\small}
+    ]
+    \node{32}
+      child {node{25}
+        child {node{12}}
+        child {node{15}}
+      }
+      child {node{30}
+        child {node{16}}
+        child {node{20}}
+      };
+    \end{tikzpicture}
+
+\end{enumerate}

@@ -1,0 +1,41 @@
+\tcbset{colback=white, colframe=black, boxrule=0.5pt, arc=4pt}
+
+\begin{tcolorbox}[title=Directed Weighted Graph]
+\begin{tikzpicture}[
+    ->, >=stealth, auto, node distance=2cm,
+    vertex/.style={circle, draw, minimum size=7mm, font=\small},
+    edge label/.style={font=\footnotesize, inner sep=1pt},
+    line width=1.2pt, draw=black
+]
+
+% Nodes
+\node[vertex] (S) at (0,0) {S};
+\node[vertex] (A) at (2,2) {A};
+\node[vertex] (B) at (3,-3) {B};
+\node[vertex] (C) at (4,3) {C};
+\node[vertex] (D) at (6,0) {D};
+\node[vertex] (E) at (7,3) {E};
+\node[vertex] (F) at (7,-3) {F};
+\node[vertex] (G) at (10,3) {G};
+\node[vertex] (T) at (12,-1) {T};
+
+% Edges
+\draw (S) -- (A) node[midway, above left, edge label] {4};
+\draw (S) -- (B) node[midway, above right, edge label] {3};
+\draw (S) -- (D) node[midway, above, edge label] {7};
+\draw (A) -- (C) node [midway, above left, edge label] {1};
+\draw (B) to[bend left] node[midway, below left, edge label] {3}(S);
+\draw (B) -- (D) node[midway, right] {4};
+\draw (C) -- (D) node[midway, right] {3};
+\draw (C) -- (E) node[midway, above] {1};
+\draw (D) -- (E) node[midway, left] {1};
+\draw (D) -- (F) node[midway, left] {5};
+\draw (D) -- (T) node[midway, above] {3};
+\draw (E) to[bend left] node[midway, above, edge label] {2} (G);
+\draw (E) -- (T) node[midway, above] {4};
+\draw (G) -- (E) node[midway, below, edge label] {4};
+\draw (G) -- (T) node[midway, above right] {3};
+\draw (T) -- (F) node[midway, above] {5};
+
+\end{tikzpicture}
+\end{tcolorbox}
