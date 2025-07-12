@@ -93,7 +93,7 @@
 
 % ---------- Document Info ----------
 \title{Minimum Cost Spanning Trees}
-\author{Where they fails}
+\author{Varun Kumar}
 % \author{Varun Kumar}
 \date{\today}
 
@@ -464,6 +464,59 @@ int prim(vector<vector<pair<int,int>>> &graph, int V) {
 }
 \end{lstlisting}
 
+\subsection{Boundary Conditions and Limitations of Prim's Algorithm}
+
+\begin{itemize}
+    \item \textbf{Disconnected Graph:} Prim’s algorithm assumes the graph is connected. If the graph has disconnected components, it cannot produce a valid MST.
+    
+    \item \textbf{Negative Weight Edges:} Although Prim’s can technically work with negative weights, it may behave unexpectedly or be confused with shortest path problems.
+    
+    \item \textbf{Multiple Components:} If the graph has multiple disconnected subgraphs, Prim's will only cover one. To handle this, run Prim’s separately on each component to form a minimum spanning forest.
+    
+    \item \textbf{Directed Graphs:} Prim’s algorithm only works on undirected graphs. Using it on directed graphs results in invalid or incomplete solutions.
+    
+    \item \textbf{Dense Graph + Naïve Implementation:} If a dense graph is used without an efficient priority queue (e.g., min-heap), the time complexity becomes \(O(V^2)\), which is inefficient.
+    
+    \item \textbf{Tie-breaking in Equal Weights:} If multiple edges have the same minimum weight, the MST might not be unique. The final result depends on edge ordering or the heap behavior.
+    
+    \item \textbf{Integer Overflow:} Large edge weights may exceed variable limits like \texttt{int}, causing incorrect results or crashes in implementation.
+    
+    \item \textbf{Floating Point Precision:} When using decimal weights, rounding errors can lead to incorrect edge selection due to precision limits.
+\end{itemize}
+
+\vspace{1em}
+
+% \begin{tcolorbox}[title=Where Prim's Algorithm is Not Applicable, colback=white, colframe=red!75!black]
+\subsection{Where Prim's Algorithm is Not Applicable}
+\begin{itemize}
+    \item Finding shortest paths from a source to all vertices (use Dijkstra or Bellman-Ford instead).
+    \item Working on directed graphs or graphs with cycles.
+    \item Online/dynamic edge insertion/removal problems.
+\end{itemize}
+% \end{tcolorbox}
+
+
+\vspace{1em}
+
+% \begin{tcolorbox}[title=Correct Use Case for Prim's Algorithm, colback=white, colframe=green!60!black]
+\subsection{Correct Use Case for Prim's Algorithm}
+\textbf{Prim's Algorithm is ideal when working with:}
+\begin{itemize}
+    \item A \textbf{connected}, \textbf{undirected}, \textbf{weighted} graph
+    \item No isolated vertices
+    \item Static graph (no live updates)
+    \item Need to minimize total connection cost (not shortest paths)
+\end{itemize}
+% \end{tcolorbox}
+
+\vspace{1em}
+\textbf{Clarification on Point 4 (Total Connection Cost vs. Shortest Path):}
+\begin{itemize}
+    \item Suppose you want to connect all houses in a village with electrical wires at minimum cost — \textbf{Prim's} is the correct choice.
+    \item But if you want to go from your house to the hospital in the least time — use \textbf{Dijkstra's} or \textbf{BFS/DFS}, depending on the case.
+\end{itemize}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%% GATE Question on Prim's %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -486,7 +539,7 @@ the edges would be added to construct the minimum spanning tree?
 \end{enumerate}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%% 2004 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\newpage
+
 \subsection{GATE CSE 2008}
 Apply Prim's Algorithm and provide the edge in order which they were added
 
@@ -856,6 +909,74 @@ int kruskal(int V, vector<Edge>& edges) {
 }
 \end{lstlisting}
 
+\newpage
+\subsection{Boundary Conditions and Limitations}
+
+\begin{itemize}
+    \item \textbf{Graph Type:} Works only on \textbf{connected}, \textbf{undirected}, and \textbf{weighted} graphs.
+    \item \textbf{Disconnected Graph:} If the input graph is disconnected, Kruskal’s algorithm will compute a \textbf{Minimum Spanning Forest}, not a single tree.
+    \item \textbf{Sorting Bottleneck:} Requires sorting of edges by weight — incurs $O(E \log E)$ time complexity, which may be slow for very large edge sets.
+    \item \textbf{Cycle Detection:} Needs a Disjoint Set Union (DSU) or Union-Find data structure with path compression and union by rank for efficiency.
+    \item \textbf{Sparse Graphs:} More efficient than Prim’s on sparse graphs, but less efficient than Prim’s on dense graphs due to edge sorting.
+    \item \textbf{Does Not Handle Negative Cycles:} Kruskal’s algorithm does not detect or manage negative weight cycles (though for MCSTs, negative cycles are not typical).
+    \item \textbf{No Real-Time Updates:} Kruskal’s algorithm is not suitable for dynamic graphs where edges are frequently added/removed, since re-sorting or rebuilding DSU is needed.
+\end{itemize}
+
+\subsection{Where Kruskal's Algorithm is Not Applicable}
+
+\begin{itemize}
+    \item When the graph is \textbf{directed}: Kruskal's algorithm only works on undirected graphs.
+    \item For \textbf{disconnected graphs}, it returns a \textbf{Minimum Spanning Forest}, not a single spanning tree.
+    \item Not suitable for \textbf{dynamic graphs} where edges are added or removed frequently.
+    \item Not designed for computing \textbf{shortest paths} between two nodes.
+    \item Less efficient for \textbf{dense graphs} due to edge sorting overhead ($O(E \log E)$).
+\end{itemize}
+
+\subsection{Correct Use Case for Kruskal's Algorithm}
+
+\begin{itemize}
+    \item Graph is \textbf{connected}, \textbf{undirected}, and \textbf{weighted}.
+    \item Especially efficient when the graph is \textbf{sparse} (fewer edges).
+    \item You want to \textbf{minimize the total edge cost} without creating cycles.
+    \item Graph is \textbf{static}, i.e., edges don't change over time.
+    \item You need a \textbf{global view of all edges} (edge list is available).
+\end{itemize}
+
+
+\subsection{Why Kruskal's Algorithm is Not for Shortest Path Problems}
+
+\begin{itemize}
+    \item \textbf{Kruskal's Algorithm} is designed to find a \textbf{Minimum Cost Spanning Tree (MCST)}.
+    \item It connects \textbf{all nodes} in the graph while minimizing the \textbf{total edge weight} and \textbf{avoiding cycles}.
+    \item However, it does \textbf{not compute shortest paths} between any two specific vertices.
+\end{itemize}
+
+\textbf{Use the Right Algorithm for the Right Task:}
+\begin{itemize}
+    \item If you want to connect all cities (nodes) with minimum wiring cost, use \textbf{Prim's} or \textbf{Kruskal's}.
+    \item If you want to travel from your house to the hospital in the shortest time, use:
+    \begin{itemize}
+        \item \textbf{Dijkstra's Algorithm} – for graphs with non-negative weights.
+        \item \textbf{BFS} – for unweighted graphs (or equal weights).
+        \item \textbf{A* Search} – if you have heuristics (e.g., map coordinates).
+    \end{itemize}
+\end{itemize}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Goal} & \textbf{Best Algorithm} \\
+\hline
+Connect all cities with minimum cost & Kruskal / Prim \\
+Go from A to B in least time & Dijkstra / BFS / A* \\
+\hline
+\end{tabular}
+\caption{Choosing the Right Graph Algorithm}
+\end{table}
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%% GATE CSE Kruskal Queston %%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1095,11 +1216,56 @@ vector<int> dijkstra(int V, vector<pair<int,int>> adj[]) {
 \end{lstlisting}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%% Code Ends Here %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\subsection{Boundary Conditions and Limitations}
+
+\textbf{Where Dijkstra's Algorithm Fails or Is Not Applicable:}
+\begin{itemize}
+    \item \textbf{Negative Edge Weights:} Dijkstra's algorithm assumes that once a node is visited with the shortest path, it cannot be improved further — this fails with negative weights.
+    \item \textbf{Dynamic or Real-Time Updates:} Dijkstra is not optimal for rapidly changing edge weights (like in live GPS traffic).
+    \item \textbf{Directed Cycles with Negative Weights:} It may get stuck or give incorrect results.
+    \item \textbf{Memory Usage:} Requires \(O(V)\) space for distances and priority queue — inefficient for very large graphs unless optimized.
+\end{itemize}
+
+\subsection{Correct Use Cases for Dijkstra's Algorithm:}
+\begin{itemize}
+    \item Graphs with \textbf{non-negative edge weights}.
+    \item Finding the \textbf{shortest path from a single source} to all other vertices.
+    \item Works well with \textbf{dense graphs} using Min Heap (e.g., via Fibonacci or Binary Heap).
+    \item Suitable when you need \textbf{guaranteed shortest distance} (not just any path).
+\end{itemize}
+
+\subsection{Where Dijkstra Is Ideal:}
+\begin{itemize}
+    \item Navigation apps like Google Maps (when all weights are time or distance, and non-negative).
+    \item Packet routing in static, weighted networks.
+    \item Robotics path planning (without heuristic).
+\end{itemize}
+
+\textbf{Table: Applicability Summary}
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{|X|X|}
+\hline
+\textbf{Scenario} & \textbf{Use Dijkstra?} \\
+\hline
+Non-negative weights & Yes \\
+Negative weights (e.g., Bellman-Ford case) & No \\
+Single Source Shortest Path & Yes \\
+All Pairs Shortest Path & Use Dijkstra multiple times or Floyd-Warshall \\
+Real-time edge updates & No (prefer A* or dynamic algorithms) \\
+\hline
+\end{tabularx}
+\caption{When to Use Dijkstra's Algorithm}
+\end{table}
+
+
+
 %%%%%%%%%%%%%%%%%% GATE CSE Question %%%%%%%%%%%%%%%%%%%%%%
 
 %%%%%%%%%%%%%%%%%%%% 2004 Question %%%%%%%%%%%%%%%%%%%%%%
 % Direct application of Dijkstra's algorithm (shortest path calculation).
-\newpage
 \subsection{GATE CSE 2004}
 Suppose we run Dijkstra’s single source shortest path algorithm on the 
 following edge-weighted directed graph with vertex $P$ as the source.
@@ -1116,6 +1282,7 @@ following edge-weighted directed graph with vertex $P$ as the source.
 
 %%%%%%%%%%%%%%%%%%% 2005 Question %%%%%%%%%%%%%%%%%%%%%%
 % Time complexity of Dijkstra's Algorithm
+\newpage
 \subsection{GATE CSE 2005}
 Let $G(V, e)$ an undirected graph with positive edge weights. Dijkstra's Single Source
 Shortest Path algorithm can be implemented using the binary heap data structure with 
@@ -1129,8 +1296,7 @@ time complexity of?
 
 \url{https://gateoverflow.in/1374/gate-cse-2005-question-38}
 
-%%%%%%%%%%%%%%%%%%%% 2012 Question %%%%%%%%%%%%%%%%%%%%%%
-\newpage
+%%%%%%%%%%%%%%%%%%%% 2006 Question %%%%%%%%%%%%%%%%%%%%%%
 \subsection{GATE CSE 2006}
 To implement Dijkstra's shortest path algorithm on unweighted graph so that it runs in linear time,
 then data structure to be used is 
@@ -1141,6 +1307,7 @@ then data structure to be used is
 \end{tabular}
 
 %%%%%%%%%%%%%%%%%%%% 2012 Question %%%%%%%%%%%%%%%%%%%%%%
+\newpage
 \subsection{GATE CSE 2012}
 Consider the directed graph shown in the figure below. There are 
 multiple shortest path between vertices S and T. Which one 
@@ -1163,7 +1330,8 @@ discovered.
 %%%%%%%%%%%%%%%%%% GATE CSE Question %%%%%%%%%%%%%%%%%%%%%%
 
 \newpage
-\section*{Comparison Table}
+\section{Comparison Table}
+% \textbf{Comparision Table}
 
 \begin{table}[h!]
 \renewcommand{\arraystretch}{1.4}
@@ -1180,8 +1348,8 @@ Dijkstra's & Single Source Shortest Path   & \(O(E \log V)\) & Min Heap \\
 \end{table}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%% MCST - Various Data Structure %%%%%%%%%%%%%%%%%%%
-\newpage
-\section{MCST T.C via Data Structures}
+
+% \section{MCST T.C via Data Structures}
 \begin{table}[h!]
 \centering
 \begin{tabularx}{\textwidth}{@{} l X l X @{}}

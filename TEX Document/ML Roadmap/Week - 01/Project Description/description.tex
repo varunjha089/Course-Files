@@ -1,0 +1,116 @@
+\documentclass[14pt]{extarticle}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{graphicx}
+\usepackage{tcolorbox}
+\usepackage{enumitem}
+\usepackage{booktabs}
+\usepackage{fontspec}  
+\setmainfont{Latin Modern Roman}  % Safe and clean font for XeLaTeX
+
+\title{Week 1 Project: File Organizer CLI using \texttt{argparse} and \texttt{os}}
+\author{Varun Kumar}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Objective}
+Build a \textbf{command-line tool} in Python that automatically organizes files in a directory \textbf{based on file extensions}.
+
+\section*{Problem Statement}
+Your \texttt{Downloads/} or any working folder often becomes cluttered with mixed file types like \texttt{.pdf}, \texttt{.jpg}, \texttt{.py}, \texttt{.zip}, etc.
+
+This tool will \textbf{automatically move files into categorized folders} based on their file extensions—like a personal assistant for your messy folders.
+
+\section*{Requirements}
+\begin{enumerate}[label=\arabic*.]
+    \item \textbf{Command-line Tool} — Run it like this:
+    \begin{lstlisting}[language=bash]
+python file_organizer.py --path /home/ubuntu/Downloads
+    \end{lstlisting}
+
+    \item The script should:
+    \begin{itemize}
+        \item Accept a directory path using \texttt{argparse}
+        \item Go through every file (not folders) in that directory
+        \item Move each file into a new folder based on its type:
+        \begin{itemize}
+            \item \texttt{.jpg}, \texttt{.png} → \texttt{Images/}
+            \item \texttt{.pdf}, \texttt{.docx} → \texttt{Documents/}
+            \item \texttt{.py}, \texttt{.js}, \texttt{.c} → \texttt{Code/}
+            \item \texttt{.zip}, \texttt{.tar}, \texttt{.rar} → \texttt{Archives/}
+            \item \texttt{.mp3}, \texttt{.wav} → \texttt{Audio/}
+            \item Others → \texttt{Others/}
+        \end{itemize}
+        \item Create the folders if they don’t exist
+        \item Skip folders and hidden files
+    \end{itemize}
+\end{enumerate}
+
+\section*{Optional Features (Bonus)}
+\begin{itemize}
+    \item \texttt{--dry-run} flag: Show what would be moved, but don’t actually move files
+    \item \texttt{--recursive}: Traverse subdirectories too
+    \item \texttt{--preview}: Print a summary table of how many files per type
+    \item \texttt{--log}: Write moved file logs to a \texttt{.log} file
+\end{itemize}
+
+\section*{Key Python Modules}
+\begin{tabular}{ll}
+\toprule
+\textbf{Module} & \textbf{Purpose} \\
+\midrule
+\texttt{os} & Directory listing, file checking \\
+\texttt{shutil} & Move files \\
+\texttt{argparse} & CLI argument parsing \\
+\texttt{pathlib} & (Optional) Modern path handling \\
+\bottomrule
+\end{tabular}
+
+\section*{Example Before and After}
+
+\subsection*{Before Running}
+\begin{lstlisting}
+Downloads/
+|- image1.jpg
+|- resume.pdf
+|- song.mp3
+|- program.py
+\end{lstlisting}
+
+\subsection*{After Running}
+\begin{lstlisting}
+Downloads/
+|- Images/
+|   |- image1.jpg
+|- Documents/
+|   |- resume.pdf
+|- Audio/
+|   |- song.mp3
+|- Code/
+|   |- program.py
+\end{lstlisting}
+
+\section*{Test Cases to Verify}
+\begin{enumerate}
+    \item Run on folder with:
+    \begin{itemize}
+        \item No files → should do nothing
+        \item Mixed file types → should organize properly
+    \end{itemize}
+    \item Run with \texttt{--dry-run} → No files should move
+    \item Run twice → Second time should not crash or duplicate
+    \item Check if \texttt{.log} file correctly logs moved files (if implemented)
+\end{enumerate}
+
+\section*{Final Deliverables}
+You should have:
+\begin{itemize}
+    \item \texttt{file\_organizer.py} with clean CLI logic
+    \item A \texttt{README.md} file explaining usage
+    \item A screenshot or video showing it working on a messy folder
+\end{itemize}
+
+\end{document}

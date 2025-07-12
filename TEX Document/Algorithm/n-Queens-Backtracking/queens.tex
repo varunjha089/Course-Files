@@ -1,0 +1,210 @@
+\documentclass[14pt]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{hyperref}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{listings}
+\usepackage{xcolor}
+
+% Algorithm listings
+\lstdefinestyle{python}{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  frame=single,
+  tabsize=4,
+  captionpos=b
+}
+
+\lstdefinestyle{cpp}{
+  language=C++,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{blue},
+  commentstyle=\color{gray},
+  stringstyle=\color{orange},
+  showstringspaces=false,
+  numbers=left,
+  numberstyle=\tiny\color{gray},
+  breaklines=true,
+  frame=single,
+  tabsize=4,
+  captionpos=b
+}
+
+\title{N-Queens Problem: A Backtracking Approach}
+\author{Varun Kumar}
+\date{\today}
+
+\begin{document}
+\maketitle
+\newpage
+\tableofcontents
+\newpage
+\lstlistoflistings
+\listofalgorithms
+\newpage
+
+\section{Introduction}
+The N-Queens problem is a classic backtracking puzzle where the goal is to place $N$ queens on an $N \times N$ chessboard such that no two queens threaten each other.
+
+\textbf{Constraints:}
+\begin{itemize}
+    \item No two queens can be in the same row.
+    \item No two queens can be in the same column.
+    \item No two queens can be on the same diagonal.
+\end{itemize}
+
+\section{Problem Statement}
+Place $N$ queens on an $N \times N$ board so that:
+\begin{itemize}
+    \item No queen can attack another.
+    \item Return all distinct solutions (or any one).
+\end{itemize}
+
+\section{Approach: Backtracking}
+\begin{itemize}
+    \item Start with the first row.
+    \item Try placing a queen in each column.
+    \item If placing is safe, move to the next row.
+    \item If not, backtrack and try the next column.
+\end{itemize}
+
+\subsection*{Key Conditions}
+To check if placing a queen at $(row, col)$ is safe:
+\begin{itemize}
+    \item No other queen is in the same column.
+    \item No other queen on upper-left diagonal.
+    \item No other queen on upper-right diagonal.
+\end{itemize}
+
+\section{Pseudocode}
+\begin{algorithm}
+\caption{Solve N-Queens}
+\begin{algorithmic}[1]
+\Procedure{solveNQueens}{$n$}
+    \State $board \gets$ empty $n \times n$ grid
+    \State $result \gets$ empty list
+    \State \Call{Backtrack}{0}
+    \State \Return $result$
+\EndProcedure
+
+\Procedure{Backtrack}{$row$}
+    \If{$row == n$}
+        \State Add current board to $result$
+        \State \Return
+    \EndIf
+    \For{$col = 0$ to $n-1$}
+        \If{Safe to place at $(row, col)$}
+            \State Place queen at $(row, col)$
+            \State \Call{Backtrack}{$row + 1$}
+            \State Remove queen from $(row, col)$
+        \EndIf
+    \EndFor
+\EndProcedure
+\end{algorithmic}
+\end{algorithm}
+
+\section{Python Implementation}
+\begin{lstlisting}[style=python, caption={N-Queens in Python}]
+def solve_n_queens(n):
+    board = [['.' for _ in range(n)] for _ in range(n)]
+    result = []
+
+    def is_safe(row, col):
+        for i in range(row):
+            if board[i][col] == 'Q': return False
+            if col - (row - i) >= 0 and board[i][col - (row - i)] == 'Q': return False
+            if col + (row - i) < n and board[i][col + (row - i)] == 'Q': return False
+        return True
+
+    def backtrack(row):
+        if row == n:
+            result.append([''.join(r) for r in board])
+            return
+        for col in range(n):
+            if is_safe(row, col):
+                board[row][col] = 'Q'
+                backtrack(row + 1)
+                board[row][col] = '.'
+
+    backtrack(0)
+    return result
+\end{lstlisting}
+
+\newpage
+\section{C++ Implementation}
+\begin{lstlisting}[style=cpp, caption={N-Queens in C++}]
+#include <iostream>
+#include <vector>
+using namespace std;
+
+bool isSafe(int row, int col, vector<string> &board, int n) {
+    for (int i = 0; i < row; ++i) {
+        if (board[i][col] == 'Q') return false;
+        if (col - (row - i) >= 0 && board[i][col - (row - i)] == 'Q') return false;
+        if (col + (row - i) < n && board[i][col + (row - i)] == 'Q') return false;
+    }
+    return true;
+}
+
+void solve(int row, vector<string> &board, vector<vector<string>> &result, int n) {
+    if (row == n) {
+        result.push_back(board);
+        return;
+    }
+    for (int col = 0; col < n; ++col) {
+        if (isSafe(row, col, board, n)) {
+            board[row][col] = 'Q';
+            solve(row + 1, board, result, n);
+            board[row][col] = '.';
+        }
+    }
+}
+
+vector<vector<string>> solveNQueens(int n) {
+    vector<vector<string>> result;
+    vector<string> board(n, string(n, '.'));
+    solve(0, board, result, n);
+    return result;
+}
+\end{lstlisting}
+
+\newpage
+\section{Key Points to Remember}
+\begin{enumerate}
+    \item N-Queens is a classic backtracking problem.
+    \item A solution is valid if no two queens threaten each other.
+    \item We only place one queen per row.
+    \item Use diagonals and column checks to prune invalid states.
+    \item Base case: all $n$ queens are placed → store result.
+    \item Recursive case: try placing a queen in all columns.
+    \item If placing fails → backtrack and try other positions.
+    \item Total solutions vary: 92 for N=8.
+    \item Very useful in solving constraint satisfaction problems.
+    \item Can be extended to optimization and parallel problems.
+\end{enumerate}
+
+\section{Real-World Applications}
+\begin{itemize}
+    \item \textbf{Constraint Solvers:} Used in scheduling and resource allocation.
+    \item \textbf{Circuit Design:} Placing non-overlapping components.
+    \item \textbf{Parallel Processing:} Task assignments without interference.
+    \item \textbf{Sudoku Solvers:} Similar combinatorial strategy.
+    \item \textbf{AI Problem Solving:} CSP-based agents use similar logic.
+\end{itemize}
+
+\section{Conclusion}
+The N-Queens problem demonstrates a powerful application of backtracking for constraint satisfaction. It helps build strong recursive reasoning, efficient state pruning, and is foundational for problems in AI, search, and optimization domains.
+
+\end{document}
