@@ -1,0 +1,514 @@
+\section{Operating Systems: Synchronization}
+
+\subsection*{Q1. [MCQ]}
+Which of the following is not a necessary condition for a deadlock to occur?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Mutual Exclusion
+    \item Hold and Wait
+    \item No Preemption
+    \item Context Switching
+\end{enumerate}
+
+\subsection*{Q2. [MCQ]}
+Consider two processes accessing a shared variable using busy-wait locks. Which scenario can lead to starvation?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Mutual exclusion is violated
+    \item No process yields the CPU
+    \item Both use priority inheritance
+    \item Critical section is empty
+\end{enumerate}
+
+\subsection*{Q3. [MSQ]}
+Which of the following techniques can help avoid deadlock?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Resource allocation graph with a single instance per resource
+    \item Banker's algorithm
+    \item Wait-for graph cycle detection
+    \item Allowing all requests at once
+\end{enumerate}
+
+
+\subsection*{Q4. [MCQ]}
+The Peterson's algorithm ensures:
+
+\begin{enumerate}[label=(\alph*)]
+    \item Deadlock freedom
+    \item Starvation freedom
+    \item Mutual exclusion
+    \item All of the above
+\end{enumerate}
+
+\subsection*{Q5. [MCQ]}
+Which of the following is true for the Bakery Algorithm?
+
+\begin{enumerate}[label=(\alph*)]
+    \item It requires hardware support
+    \item It prevents mutual exclusion
+    \item It works for more than two processes
+    \item It allows priority scheduling
+\end{enumerate}
+
+\subsection*{Q6. [MCQ]}
+In a system using semaphores, a process executes \textbf{wait(S)} and is put to sleep. When \textbf{signal(S)} is called by another process:
+
+\begin{enumerate}[label=(\alph*)]
+    \item S is incremented, but the sleeping process continues to sleep
+    \item Sleeping process is immediately awakened
+    \item \textbf{signal()} fails silently
+    \item S is reset to 0
+\end{enumerate}
+
+\subsection*{Q7. [MCQ]}
+In which scenario does the use of spinlocks become inefficient?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Multiprocessor systems
+    \item Critical section is very short
+    \item Process holds CPU for long durations in CS
+    \item Atomic instructions are expensive
+\end{enumerate}
+
+\subsection*{Q8. [MSQ]}
+Consider a system with preemptive scheduling and semaphores. Which conditions must be met for bounded waiting?
+
+\begin{enumerate}[label=(\alph*)]
+    \item FIFO ordering of blocked processes
+    \item Starvation prevention
+    \item Mutual exclusion
+    \item Strict priority scheduling
+\end{enumerate}
+
+\subsection*{Q9. [MCQ]}
+Which of the following mechanisms is non-blocking and busy-waiting?
+ 
+\begin{enumerate}[label=(\alph*)]
+    \item Counting semaphore
+    \item Binary semaphore
+    \item Spinlock
+    \item Mutex
+\end{enumerate}
+
+\subsection*{Q10. [MCQ]}
+Which of the following issues is most likely to occur if semaphores are misused?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Deadlock
+    \item Thrashing
+    \item Paging
+    \item Fragmentation
+\end{enumerate}
+
+\newpage
+\subsection*{Q11. [MCQ]}
+Which of the following statements is true regarding priority inversion?
+
+\begin{enumerate}[label=(\alph*)]
+    \item It is solved using Banker's algorithm
+    \item It occurs when a low-priority process holds a lock needed by a high-priority one
+    \item It is always prevented in spinlocks
+    \item Round-robin scheduling prevents it
+\end{enumerate}
+
+\subsection*{Q12. [MCQ]}
+The use of monitors provides:
+
+\begin{enumerate}[label=(\alph*)]
+    \item Mutual exclusion only
+    \item Synchronization without requiring condition variables
+    \item Encapsulation of shared data and synchronization
+    \item Only inter-process communication
+\end{enumerate}
+
+\subsection*{Q13. [MCQ]}
+In a classic producer-consumer problem, using bounded buffer and\\
+semaphores, which semaphore combination is incorrect?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Empty initialized to N
+    \item Full initialized to 0
+    \item Mutex initialized to 0
+    \item Mutex initialized to 1
+\end{enumerate}
+
+\subsection*{Q14. [MSQ]}
+A correct solution to the Dining Philosophers problem must ensure:
+  
+\begin{enumerate}[label=(\alph*)]
+    \item No deadlock
+    \item No starvation
+    \item Maximum concurrency
+    \item No preemption
+\end{enumerate}
+
+\subsection*{Q15. [MCQ]}
+A process enters its critical section. Suddenly, it is preempted. What is the main concern in such a system?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Starvation
+    \item Race condition
+    \item Deadlock
+    \item Context switching overhead
+\end{enumerate}
+
+\subsection*{Q16. [MCQ]}
+Busy waiting in critical section management is:
+
+\begin{enumerate}[label=(\alph*)]
+    \item Always preferable on single-core systems
+    \item Efficient when CS time is small and context-switching is expensive
+    \item Prevented by semaphores
+    \item Never used in modern OS
+\end{enumerate}
+
+\subsection*{Q17. [MCQ]}
+Which of the following statements is false?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Semaphore \textbf{wait()} operation is also called \textbf{P()}
+    \item A monitor can have condition variables
+    \item Spinlock wastes CPU cycles
+    \item Peterson's algorithm works with preemption
+\end{enumerate}
+
+\subsection*{Q18. [MSQ]}
+Which of the following mechanisms support process synchronization?
+ 
+\begin{enumerate}[label=(\alph*)]
+    \item Monitors
+    \item Semaphores
+    \item Message passing
+    \item File I/O operations
+\end{enumerate}
+
+\subsection*{Q19. [MCQ]}
+A deadlock can occur if:
+
+\begin{enumerate}[label=(\alph*)]
+    \item All four Coffman conditions hold
+    \item At least three Coffman conditions hold
+    \item Only circular wait holds
+    \item Mutual exclusion is violated
+\end{enumerate}
+
+\subsection*{Q20. [MCQ]}
+Two threads simultaneously execute \textbf{wait(mutex)} and get stuck. What likely happened?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Mutual exclusion was violated
+    \item \textbf{signal(mutex)} was never called
+    \item Deadlock occurred due to wrong semaphore initialization
+    \item Mutex had a race condition
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Operating Systems: Synchronization - Numerical Problems]
+{Operating Systems:\\ Synchronization - Numerical Problems}
+
+\subsection*{Q1. [NAT]}
+A system has 4 resources of the same type. P1, P2, P3 processes are competing for them. 
+- P1 holds 2 resources
+- P2 holds 1 resource
+- P3 holds 1 resource
+
+No process is releasing a resource. What is the minimum number of additional resources that must be added to avoid deadlock?
+
+\vspace{1em}
+
+\subsection*{Q2. [NAT]}
+A system has 5 processes $\{P_0, P_1, P_2, P_3, P_4\}$ and 3 resource types A, B, C.
+- Total instances: A = 10, B = 5, C = 7  
+- Allocation matrix:  
+\[
+\begin{bmatrix}
+0 & 1 & 0 \\
+2 & 0 & 0 \\
+3 & 0 & 2 \\
+2 & 1 & 1 \\
+0 & 0 & 2 \\
+\end{bmatrix}
+\]  
+- Maximum matrix:  
+\[
+\begin{bmatrix}
+7 & 5 & 3 \\
+3 & 2 & 2 \\
+9 & 0 & 2 \\
+2 & 2 & 2 \\
+4 & 3 & 3 \\
+\end{bmatrix}
+\]  
+
+What is the number of safe sequences possible?
+
+\vspace{1em}
+
+\subsection*{Q3. [NAT]}
+A counting semaphore is initialized to 3. Ten processes simultaneously perform `wait()` on it. How many processes get blocked?
+
+\vspace{1em}
+
+\subsection*{Q4. [MCQ]}
+In a bounded buffer producer-consumer problem:
+- Buffer size = 7
+- `empty` semaphore initialized to 7
+- `full` semaphore initialized to 0
+- 10 producers perform `wait(empty)`
+- 4 consumers perform `wait(full)`
+
+What is the value of the `empty` semaphore after these operations?
+
+(a) 3 \quad (b) 7 \quad (c) 10 \quad (d) 1
+
+\vspace{1em}
+
+\subsection*{Q5. [NAT]}
+Suppose 5 resources of a single type are available. There are 3 processes. Each process may request up to 3 resources. What is the maximum number of resources that can be allocated to prevent deadlock?
+
+\vspace{1em}
+
+\subsection*{Q6. [MCQ]}
+In a Peterson's algorithm-based system, two processes are executing concurrently and take 3 cycles in the critical section and 2 cycles in the remainder section. What is the maximum number of times a process can enter its critical section in 20 cycles?
+
+(a) 3 \quad (b) 4 \quad (c) 5 \quad (d) 6
+
+\vspace{1em}
+
+\subsection*{Q7. [NAT]}
+In a round-robin scheduling system with semaphore synchronization:
+- Semaphore S is initialized to 1
+- Each process needs 3 critical section entries
+- Each entry takes 4 cycles
+- There are 4 processes
+
+Assuming context switching is zero-cost, how many cycles are needed in total?
+
+\vspace{1em}
+
+\subsection*{Q8. [MCQ]}
+In the Dining Philosopher problem with 5 philosophers using semaphores:
+- Each philosopher takes 1 unit time to eat and 2 units to think
+- Two philosophers are allowed to eat concurrently
+What is the minimum total time required for all 5 to eat once?
+
+(a) 3 \quad (b) 5 \quad (c) 7 \quad (d) 9
+
+\vspace{1em}
+
+\subsection*{Q9. [NAT]}
+In a critical section problem with `n` processes using a binary semaphore, each critical section takes 5 ms, and non-critical section takes 15 ms. What is the maximum throughput (in processes/second)?
+
+\vspace{1em}
+
+\subsection*{Q10. [MCQ]}
+A system using monitors has 6 threads accessing a shared resource. The monitor allows at most 2 threads to be inside at a time. If all threads request access simultaneously and one entry takes 10ms, what is the total time for all threads to execute?
+
+(a) 20ms \quad (b) 30ms \quad (c) 40ms \quad (d) 60ms
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Operating Systems: Hard Synchronization Problems]
+{Operating Systems: Hard\\ Synchronization Problems}
+
+\subsection*{Q1. [GATE 2022 - Rephrased]}
+Consider the following threads \(T_1, T_2, T_3\) with 3 semaphores \(S_1, S_2, S_3\). The code for each thread is:
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{T\textsubscript{1}} & \textbf{T\textsubscript{2}} & \textbf{T\textsubscript{3}} \\
+\hline
+\texttt{$while(true)\{$} & \texttt{$while(true)\{$} & \texttt{$while(true)\{$} \\
+\quad \texttt{wait(S3);} & \quad \texttt{wait(S1);} & \quad \texttt{wait(S2);} \\
+\quad \texttt{print("C");} & \quad \texttt{print("B");} & \quad \texttt{print("A");} \\
+\quad \texttt{signal(S2);} & \quad \texttt{signal(S3);} & \quad \texttt{signal(S1);} \\
+\texttt{$\}$} & \texttt{$\}$} & \texttt{$\}$} \\
+\hline
+\end{tabular}
+\end{center}
+
+Which semaphore initialization gives the sequence \texttt{BCABCABCA...}?
+
+(a) \(S_1 = 1, S_2 = 1, S_3 = 1\) \quad
+(b) \(S_1 = 1, S_2 = 1, S_3 = 0\) \\
+(c) \(S_1 = 1, S_2 = 0, S_3 = 0\) \quad
+(d) \(S_1 = 0, S_2 = 1, S_3 = 1\)
+
+\vspace{1em}
+
+\subsection*{Q2. [GATE 2018 - Rephrased]}
+In a classical synchronization producer-consumer problem has following variables:
+\begin{enumerate}
+    \item Buffer size = \(N\)
+    \item Semaphores: \(empty = 0\), \(full = N\), \(mutex = 1\)
+\end{enumerate}
+
+Determine the correct values of \(P, Q, R, S\) in the following code:
+
+\[
+\begin{array}{|l|l|}
+\hline
+\textbf{Producer} & \textbf{Consumer} \\
+\hline
+\texttt{$do \{$} & \texttt{$do \{$} \\
+\quad \texttt{wait(P);} & \quad \texttt{wait(R);} \\
+\quad \texttt{wait(mutex);} & \quad \texttt{wait(mutex);} \\
+\quad \texttt{/* Add/Consume item */} & \quad \texttt{/* Add/Consume item */} \\
+\quad \texttt{signal(mutex);} & \quad \texttt{signal(mutex);} \\
+\quad \texttt{signal(Q);} & \quad \texttt{signal(S);} \\
+\texttt{$\}$ while(1);} & \texttt{$\}$ while(1);} \\
+\hline
+\end{array}
+\]
+
+(a) \(P = full, Q = full, R = empty, S = empty\) \\
+(b) \(P = empty, Q = empty, R = full, S = full\) \\
+(c) \(P = full, Q = empty, R = empty, S = full\) \\
+(d) \(P = empty, Q = full, R = full, S = empty\)
+
+\vspace{1em}
+
+\subsection*{Q3. [GATE 2010 - Rephrased]}
+Three processes \(P_0, P_1, P_2\) and semaphores initialized as: \(S_0 = 1, S_1 = 0, S_2 = 0\)
+\[
+\begin{array}{|l|l|l|}
+\hline
+P_0 & P_1 & P_2 \\
+\hline
+\texttt{while(true)} & \texttt{wait(S1);} & \texttt{wait(S2);} \\
+\quad \texttt{wait(S0);} & \quad \texttt{signal(S0);} & \quad \texttt{signal(S0);} \\
+\quad \texttt{print("0");} & & \\
+\quad \texttt{signal(S1);} & & \\
+\quad \texttt{signal(S2);} & & \\
+\hline
+\end{array}
+\]
+
+How many times can \(P_0\) print \texttt{"0"}?
+
+(a) Exactly once \quad
+(b) Exactly twice \quad
+(c) At least twice \quad
+(d) Exactly thrice
+
+\vspace{1em}
+
+\subsection*{Q4. [Semaphore Sequence]}
+Three semaphores \(S1 = 0\), \(S2 = 1\), \(S3 = 0\). Processes:
+
+\begin{enumerate}[label=-]
+    \item P1: \texttt{wait(S1); print("X"); signal(S2);}
+    \item P2: \texttt{wait(S2); print("Y"); signal(S3);}
+    \item P3: \texttt{wait(S3); print("Z"); signal(S1);}
+\end{enumerate}
+
+
+What is the sequence printed by the processes?
+
+(a) XYZXYZ... \quad
+(b) ZYXZYX... \quad
+(c) YZX... \quad
+(d) Deadlock
+
+\vspace{1em}
+
+\subsection*{Q5. [Critical Section Throughput]}
+A semaphore is used for mutual exclusion between $n=3$ threads. Each thread executes:
+\begin{verbatim}
+while(true){
+    wait(S);
+    critical_section();
+    signal(S);
+}
+\end{verbatim}
+If the critical section takes $10$ ms and the remainder section takes $5$ ms, what is the maximum possible throughput?
+
+\begin{itemize}
+    \item[(a)] 1 thread/sec
+    \item[(b)] 100 threads/sec
+    \item[(c)] 66.67 threads/sec
+    \item[(d)] 200 threads/sec
+\end{itemize}
+
+\vspace{1em}
+
+\subsection*{Q6. [Deadlock Detection]}
+There are $3$ processes and $3$ identical resources. Each process holds one resource and requests one more. Are we guaranteed to have deadlock?
+
+\begin{itemize}
+    \item[(a)] Yes
+    \item[(b)] No
+    \item[(c)] Only if request order is circular
+    \item[(d)] Depends on scheduling
+\end{itemize}
+
+\vspace{1em}
+
+\subsection*{Q7. [Producer-Consumer Semaphore Values]}
+In a bounded-buffer system:
+\begin{itemize}
+    \item Buffer size = $5$
+    \item Initial values: \texttt{empty = 5, full = 0, mutex = 1}
+    \item Producer uses: \texttt{wait(empty); wait(mutex);\\ signal(mutex); signal(full);}
+    \item Consumer uses: \texttt{wait(full); wait(mutex);\\ signal(mutex); signal(empty);}
+\end{itemize}
+If $5$ producer and $5$ consumer operations are performed, what is the value of \texttt{empty}?
+
+\begin{itemize}
+    \item[(a)] 5
+    \item[(b)] 0
+    \item[(c)] 1
+    \item[(d)] 2
+\end{itemize}
+
+\vspace{1em}
+
+\subsection*{Q8. [Thread Interleaving with Semaphore]}
+Two threads $T_1$ and $T_2$ run concurrently:
+\begin{verbatim}
+T1: wait(S); print("A"); signal(S);
+T2: wait(S); print("B"); signal(S);
+\end{verbatim}
+If $S = 1$ initially, which sequences are possible?
+
+\begin{itemize}
+    \item[(a)] AB
+    \item[(b)] BA
+    \item[(c)] AABB
+    \item[(d)] ABAB
+\end{itemize}
+
+\vspace{1em}
+
+\subsection*{Q9. [Semaphore Starvation]}
+A semaphore is initialized to $1$ and accessed by multiple threads. If a few threads wait indefinitely due to scheduler behavior, what phenomenon is observed?
+
+\begin{itemize}
+    \item[(a)] Deadlock
+    \item[(b)] Starvation
+    \item[(c)] Race Condition
+    \item[(d)] Livelock
+\end{itemize}
+
+\vspace{1em}
+
+\subsection*{Q10. [Gate-style Synchronization Loop]}
+Consider $3$ processes synchronized as follows:
+\begin{itemize}
+    \item P1: \texttt{wait(S1); signal(S2);}
+    \item P2: \texttt{wait(S2); signal(S3);}
+    \item P3: \texttt{wait(S3); signal(S1);}
+\end{itemize}
+With initial values: $S1=1$, $S2=0$, $S3=0$
+
+What type of execution order is enforced?
+
+\begin{itemize}
+    \item[(a)] Arbitrary
+    \item[(b)] P1 $\rightarrow$ P2 $\rightarrow$ P3 cyclically
+    \item[(c)] P3 always runs first
+    \item[(d)] Deadlock
+\end{itemize}
+
+
+

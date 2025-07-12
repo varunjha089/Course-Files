@@ -1,0 +1,362 @@
+\section{TOC: FA and Regular Languages}
+
+\subsection*{Q1.}
+Let $L$ be the language over $\{a, b\}$ consisting of all strings that contain an even number of $a$s and an odd number of $b$s. Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $L$ is not regular  
+    \item $L$ is regular and can be accepted by a 4-state DFA  
+    \item $L$ can be accepted by an NFA with 2 states  
+    \item $L$ requires infinite memory  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q2.}
+Which of the following languages is \textbf{not} regular?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{ a^m b^n \mid m,n \geq 0 \text{ and } m = n \}$  
+    \item $\{ w \in \{a, b\}^* \mid w \text{ contains the substring } aba \}$  
+    \item $\{ w \in \{a, b\}^* \mid w \text{ has even length} \}$  
+    \item $\{ w \mid w \text{ is empty or starts and ends with same symbol} \}$  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q3.}
+Which of the following is a \textbf{true} statement regarding regular languages?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Every finite language is regular  
+    \item Regular languages are not closed under reverse  
+    \item Union of a regular and context-free language is always regular  
+    \item Intersection of two regular languages may not be regular  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q4.}
+How many states are required in the minimum DFA for the language $L = \{ w \in \{0,1\}^* \mid w \text{ ends with 01} \}$?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 2  
+    \item 3  
+    \item 4  
+    \item 5  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q5.}
+Which of the following statements is \textbf{false} about the pumping lemma for regular languages?
+
+\begin{enumerate}[label=(\alph*)]
+    \item If a language is regular, then it satisfies the pumping lemma  
+    \item If a language satisfies the pumping lemma, it must be regular  
+    \item Pumping lemma can be used to prove that a language is not regular  
+    \item All regular languages satisfy the conditions of the pumping lemma  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q6.}
+Consider the regular expression $r = (a+b)^*abb$. Which of the following strings is in $L(r)$?
+
+\begin{enumerate}[label=(\alph*)]
+    \item abba  
+    \item aababb  
+    \item abb  
+    \item babba  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q7.}
+Let $A$ be a DFA with 4 states. What is the maximum number of equivalence classes possible after applying the Myhill-Nerode theorem?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 4  
+    \item 16  
+    \item 5  
+    \item Cannot be determined  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q8.}
+Let $L = \{a^n b^m \mid n, m \geq 0 \text{ and } n \mod 2 = m \mod 3 \}$. Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $L$ is not regular  
+    \item $L$ is regular  
+    \item $L$ is context-free but not regular  
+    \item $L$ is recursive  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q9.}
+Which of the following sets of strings does the regular expression $(a+b)^*a(a+b)(a+b)$ generate?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Strings with at least 3 a’s  
+    \item Strings that have 'a' at the third last position  
+    \item Strings that end with 'a'  
+    \item All strings that contain the substring 'aaa'  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q10.}
+Which of the following closure properties do regular languages satisfy?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Complement  
+    \item Intersection  
+    \item Concatenation  
+    \item All of the above  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q11.}
+Let $L = \{ w \in \{0,1\}^* \mid \text{the number of 0's is divisible by 3} \}$. What is the minimum number of states required in a DFA that accepts $L$?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 2  
+    \item 3  
+    \item 4  
+    \item 5  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q12.}
+Which of the following languages is \textbf{not} accepted by any finite automaton?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{a^n b^n \mid n \geq 0 \}$  
+    \item $\{a^* b^* \}$  
+    \item $\{w \in \{a,b\}^* \mid \text{number of a’s is even} \}$  
+    \item $\{w \in \{0,1\}^* \mid \text{w contains 010 as substring} \}$  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q13.}
+Which of the following is true about DFA and NFA?
+
+\begin{enumerate}[label=(\alph*)]
+    \item NFA is more powerful than DFA  
+    \item Every DFA can be converted to an equivalent NFA with at most the same number of states  
+    \item NFA can accept non-regular languages  
+    \item DFA and NFA accept different classes of languages  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q14.}
+Let $L = \{w \in \{a, b\}^* \mid w \text{ has equal number of a's and b's} \}$. Then:
+
+\begin{enumerate}[label=(\alph*)]
+    \item $L$ is regular  
+    \item $L$ is not regular  
+    \item $L$ is regular if length of $w$ is bounded  
+    \item $L$ is finite  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q15.}
+Which regular language has a DFA with exactly one final state that is also the initial state?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{a^n b^n \mid n \geq 0\}$  
+    \item $\{\epsilon\}$  
+    \item $\Sigma^*$  
+    \item $\emptyset$  
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{TOC: PDA, CFL, DCFL}
+
+\subsection*{Q1.}
+Which of the following languages is accepted by a deterministic PDA (DPDA) but not by a finite automaton?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{a^n b^n \mid n \geq 0\}$  
+    \item $\{a^n b^n c^n \mid n \geq 0\}$  
+    \item $\{w w^R \mid w \in \{a, b\}^*\}$  
+    \item $\{a^n b^m \mid n \neq m\}$  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q2.}
+Which of the following languages is not context-free?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{a^n b^n \mid n \geq 0\}$  
+    \item $\{a^n b^n c^m \mid m, n \geq 0\}$  
+    \item $\{a^n b^n c^n \mid n \geq 0\}$  
+    \item $\{a^i b^j \mid i \neq j\}$  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q3.}
+Which of the following statements is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Every context-free language is accepted by a DPDA  
+    \item Every DCFL is a regular language  
+    \item DCFLs are closed under intersection with regular languages  
+    \item CFLs are closed under complement  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q4.}
+Let $L = \{w \in \{a, b\}^* \mid \text{number of a’s equals number of b’s}\}$. Then:
+
+\begin{enumerate}[label=(\alph*)]
+    \item $L$ is regular  
+    \item $L$ is deterministic context-free  
+    \item $L$ is context-free but not deterministic context-free  
+    \item $L$ is not context-free  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q5.}
+Which of the following languages can \textbf{not} be accepted by a PDA?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{w \in \{a,b\}^* \mid w \text{ is a palindrome} \}$  
+    \item $\{a^i b^j c^k \mid i = j \text{ or } j = k \}$  
+    \item $\{a^n b^n c^n \mid n \geq 1\}$  
+    \item $\{a^n b^m \mid n \neq m\}$  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q6.}
+Which of the following operations are CFLs not closed under?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Union  
+    \item Concatenation  
+    \item Intersection  
+    \item Kleene star  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q7.}
+Which of the following languages is \textbf{deterministic context-free}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{w \in \{a,b\}^* \mid w = w^R \}$  
+    \item $\{a^n b^n \mid n \geq 0\}$  
+    \item $\{a^n b^n c^n \mid n \geq 0\}$  
+    \item $\{w \mid \#_a(w) = \#_b(w) = \#_c(w)\}$  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q8.}
+Which of the following is \textbf{not true} about deterministic CFLs?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Every DCFL is closed under complement  
+    \item DCFLs are closed under union  
+    \item DCFLs are closed under intersection with regular languages  
+    \item Not all CFLs are DCFLs  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q9.}
+Let $L = \{ a^n b^n c^m \mid n, m \geq 0 \} \cup \{ a^n b^m c^m \mid n, m \geq 0 \}$. Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $L$ is context-free  
+    \item $L$ is not context-free  
+    \item $L$ is DCFL  
+    \item $L$ is regular  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q10.}
+Which of the following statements is false?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Every regular language is DCFL  
+    \item Some DCFLs are not regular  
+    \item Some CFLs are not DCFLs  
+    \item CFLs are closed under intersection  
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{TOC: Turing Machines}
+
+\subsection*{Q1.}
+Which of the following languages is accepted by a Turing Machine but not by any PDA?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{a^n b^n \mid n \geq 0\}$  
+    \item $\{a^n b^n c^n \mid n \geq 0\}$  
+    \item $\{w \in \{a, b\}^* \mid w \text{ is a palindrome} \}$  
+    \item $\{a^n \mid n \text{ is prime} \}$  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q2.}
+Which of the following is true for Turing machines?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Every Turing-recognizable language is decidable  
+    \item Turing machines can decide the halting problem  
+    \item A Turing Machine can have infinite tape  
+    \item A DFA can simulate a Turing Machine  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q3.}
+Which of the following languages is not recursively enumerable?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Halting problem  
+    \item $\{ \langle M \rangle \mid M \text{ halts on } \epsilon \}$  
+    \item $\{ \langle M \rangle \mid M \text{ accepts } \epsilon \}$  
+    \item $\{ w \in \{0,1\}^* \mid w = w^R \}$  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q4.}
+Let $L$ be a language accepted by a Turing Machine that always halts. Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $L$ is recursively enumerable  
+    \item $L$ is recursive  
+    \item $L$ is context-free  
+    \item $L$ must be finite  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q5.}
+Which of the following statements is \textbf{not true}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Every regular language is recursive  
+    \item Every context-free language is recursive  
+    \item Every recursive language is context-free  
+    \item Every recursive language is recursively enumerable  
+\end{enumerate}

@@ -1,0 +1,732 @@
+\section{C Programming: Tricky Questions}
+
+\subsection*{Q1. Pointer Overlap Copy}
+\noindent
+Consider the C code:
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+void mycopy(char *dest, char *src) {
+    while (*src)
+        *dest++ = *src++;
+}
+int main() {
+    char str[30] = "ABCDE";
+    mycopy(str + 1, str);
+    printf("%s\n", str);
+    return 0;
+}
+\end{lstlisting}
+\textbf{What is the output?}
+\begin{enumerate}[label=(\alph*)]
+    \item AABCDE
+    \item ABCDE
+    \item Infinite loop
+    \item BCDE
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q2. Post-Increment and Array}
+\noindent
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+int main() {
+    int a[] = {10, 20, 30, 40, 50};
+    int i = 0;
+    printf("%d %d %d\n", a[i], i++, a[i]);
+    return 0;
+}
+\end{lstlisting}
+\textbf{What is the output?}
+\begin{enumerate}[label=(\alph*)]
+    \item 10 0 10
+    \item 10 0 20
+    \item 10 1 20
+    \item Undefined behavior
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q3. Pointer to String Literal}
+\noindent
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+int main() {
+    char *p = "GATE2025";
+    printf("%c\n", *(p + 4));
+    return 0;
+}
+\end{lstlisting}
+\textbf{What is the output?}
+\begin{enumerate}[label=(\alph*)]
+    \item 2
+    \item T
+    \item E
+    \item 0
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q4. Evaluation Order in Function Args}
+\noindent
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+void func(int x, int y) {
+    printf("%d %d\n", x, y);
+}
+int main() {
+    int i = 5;
+    func(i++, ++i);
+    return 0;
+}
+\end{lstlisting}
+\textbf{What is the output?}
+\begin{enumerate}[label=(\alph*)]
+    \item 5 7
+    \item 6 6
+    \item Compiler error
+    \item Undefined behavior
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q5. Array Indexing Trick}
+\noindent
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+int main() {
+    char str[] = "abcde";
+    printf("%c\n", 2[str]);
+    return 0;
+}
+\end{lstlisting}
+\textbf{What is the output?}
+\begin{enumerate}[label=(\alph*)]
+    \item b
+    \item c
+    \item Compilation error
+    \item e
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{C Programming: Stack \& Queue Tricky Questions}
+
+\subsection*{Q1. Circular Queue Edge Case}
+Which condition correctly checks if a circular queue is full?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \texttt{rear == SIZE - 1}
+    \item \texttt{front == -1 \&\& rear == -1}
+    \item \texttt{rear + 1 == front}
+    \item \texttt{(rear + 1) \% SIZE == front}
+\end{enumerate}
+
+\subsection*{Q2. Stack Memory Growth}
+Consider the following C code:
+
+\begin{lstlisting}
+#include <stdio.h>
+void foo(int n) {
+    if (n == 0) return;
+    int x = n;
+    foo(n - 1);
+}
+int main() {
+    foo(10000);
+    return 0;
+}
+\end{lstlisting}
+
+What is most likely to happen when this program is run?
+
+\begin{enumerate}[label=(\alph*)]
+    \item It prints numbers from 10000 to 1.
+    \item It runs successfully and terminates normally.
+    \item It causes a stack overflow error.
+    \item It goes into an infinite loop.
+\end{enumerate}
+
+\newpage
+\subsection*{Q3. Queue Implementation Bug}
+What will be the output of the following program?
+
+\begin{lstlisting}
+#include <stdio.h>
+#define SIZE 5
+int queue[SIZE], front = -1, rear = -1;
+
+void enqueue(int x) {
+    if (rear == SIZE - 1) return;
+    queue[++rear] = x;
+    if (front == -1) front = 0;
+}
+
+int dequeue() {
+    if (front == -1 || front > rear) return -1;
+    return queue[front++];
+}
+
+int main() {
+    enqueue(10); enqueue(20); dequeue();
+    dequeue(); dequeue();
+    printf("%d\n", front);
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item -1
+    \item 1
+    \item 0
+    \item 3
+\end{enumerate}
+
+\subsection*{Q4. Stack Address Behavior}
+Which of the following is true about the stack in C?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Stack grows upwards in memory
+    \item Stack grows downwards in memory
+    \item Stack is allocated from heap
+    \item Stack size is infinite
+\end{enumerate}
+
+
+\subsection*{Q5. Stack Push/Pop Behavior}
+What will be the final output?
+
+\begin{lstlisting}
+#include <stdio.h>
+#define SIZE 3
+int stack[SIZE], top = -1;
+
+void push(int val) {
+    if (top < SIZE - 1)
+        stack[++top] = val;
+}
+int pop() {
+    if (top >= 0)
+        return stack[top--];
+    return -1;
+}
+int main() {
+    push(1); push(2); push(3); push(4);
+    printf("%d ", pop());
+    printf("%d ", pop());
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item 3 2
+    \item 4 3
+    \item 2 1
+    \item -1 -1
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\section{C Programming: Recursion Questions}
+
+\subsection*{Q1. Simple Recursion and Return}
+What is the output of the following code?
+
+\begin{lstlisting}
+#include <stdio.h>
+int fun(int n) {
+    if (n == 0) return 0;
+    return n + fun(n - 1);
+}
+int main() {
+    printf("%d", fun(3));
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item 3
+    \item 6
+    \item 0
+    \item 1
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q2. Post-Order Recursion Print}
+What will be printed?
+
+\begin{lstlisting}
+#include <stdio.h>
+void print(int n) {
+    if (n == 0) return;
+    print(n - 1);
+    printf("%d ", n);
+}
+int main() {
+    print(3);
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item 3 2 1
+    \item 1 2 3
+    \item 0 1 2
+    \item 3 2 1 0
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q3. Stack Frame Behavior}
+Which of the following is true about recursive function calls in C?
+
+\begin{enumerate}[label=(\alph*)]
+    \item All calls share a single stack frame
+    \item Each call gets its own stack frame
+    \item Only leaf calls get stack frames
+    \item Recursion doesn't use the stack
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q4. Recursion with Local Static}
+What is the output of the program?
+
+\begin{lstlisting}
+#include <stdio.h>
+int fun(int n) {
+    static int x = 0;
+    if (n > 0) {
+        x++;
+        fun(n - 1);
+    }
+    return x;
+}
+int main() {
+    printf("%d", fun(5));
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item 5
+    \item 1
+    \item 0
+    \item 25
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q5. Mutual Recursion}
+Consider the following code:
+
+\begin{lstlisting}
+#include <stdio.h>
+void odd(int);
+void even(int);
+
+void odd(int x) {
+    if (x == 0) return;
+    printf("Odd: %d\n", x);
+    even(x - 1);
+}
+
+void even(int x) {
+    if (x == 0) return;
+    printf("Even: %d\n", x);
+    odd(x - 1);
+}
+
+int main() {
+    odd(3);
+    return 0;
+}
+\end{lstlisting}
+
+What is the last line printed?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Odd: 3
+    \item Even: 2
+    \item Odd: 1
+    \item Even: 1
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{C Expression Evaluation with Custom Operator Precedence}
+
+\subsection*{Q1. Custom Operator Precedence}
+
+Consider the following custom operator precedence and associativity table:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Operator} & \textbf{Precedence (High to Low)} & \textbf{Associativity} \\
+\hline
+\texttt{+} & 1 (Highest) & Left-to-Right \\
+\texttt{/} & 2 & Left-to-Right \\
+\texttt{-} & 3 & Right-to-Left \\
+\texttt{*} & 4 (Lowest) & Left-to-Right \\
+\hline
+\end{tabular}
+\end{table}
+
+Evaluate the expression below according to the table above (not standard C rules):
+
+\[
+\texttt{6 + 3 * 2 - 4 / 2 + 1 * 2 - 3}
+\]
+
+What is the final result?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 9 \hspace{5cm} (c) 7
+    \item 8 \hspace{5cm} (d) 5
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q2. Operator Table and Mixed Associativity}
+
+You are given the following precedence table:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Operator} & \textbf{Precedence} & \textbf{Associativity} \\
+\hline
+\texttt{-} & 1 (Highest) & Right-to-Left \\
+\texttt{*} & 2 & Left-to-Right \\
+\texttt{+} & 3 & Left-to-Right \\
+\texttt{/} & 4 (Lowest) & Left-to-Right \\
+\hline
+\end{tabular}
+\end{table}
+
+Evaluate the expression:
+
+\[
+\texttt{10 - 2 * 3 + 4 / 2 - 1}
+\]
+
+Assume only integer arithmetic and no parenthesis.
+
+\begin{enumerate}[label=(\alph*)]
+    \item 9 \hspace{5cm} (c) 7
+    \item 8 \hspace{5cm} (d) 6
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[C Programming: Pointer and String Manipulation (Hard MCQs)]
+{C Programming: Pointer and\\ String Manipulation (Hard MCQs)}
+
+\subsection*{Q1}
+What will be the output of the following C code?
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+int main() {
+    char *s = "GATE";
+    s++;
+    printf("%c", *s++);
+    printf("%c", *s);
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item GA  
+    \item AT  
+    \item AE  
+    \item AT
+\end{enumerate}
+
+\subsection*{Q2}
+What is the output of the following code?
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+void fun(char *s) {
+    while(*s) {
+        printf("%c", *s++);
+        s++;
+    }
+}
+int main() {
+    char str[] = "GATECSE";
+    fun(str);
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item GTEC  
+    \item GAE  
+    \item GAESE  
+    \item GTC
+\end{enumerate}
+
+\subsection*{Q3}
+What will be the output of the following program?
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+int main() {
+    char str[] = "abc";
+    char *p = str;
+    printf("%c", ++*p);
+    printf("%c", *p++);
+    printf("%c", *p);
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item abc  
+    \item bbc  
+    \item bac  
+    \item bcc
+\end{enumerate}
+
+\subsection*{Q4}
+Predict the output:
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+void change(char *p) {
+    p++;
+    *p = 'Z';
+}
+int main() {
+    char str[] = "GATE";
+    change(str);
+    printf("%s", str);
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item GATE  
+    \item GZTE  
+    \item GZTE  
+    \item GAZE
+\end{enumerate}
+
+\subsection*{Q5}
+What will the following code print?
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+int main() {
+    char *s = "ABCDE";
+    printf("%c", *s++);
+    printf("%c", *(s+1));
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item AB  
+    \item AC  
+    \item AD  
+    \item AE
+\end{enumerate}
+
+\subsection*{Q6}
+Output of the following program?
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+int main() {
+    char *s = "GATECSE";
+    printf("%c", *(s + *(s+3) - 'A'));
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item G  
+    \item A  
+    \item E  
+    \item C
+\end{enumerate}
+
+\newpage
+\subsection*{Q7}
+What will be the output?
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+int main() {
+    char a[] = "Hello";
+    char *p = a;
+    printf("%s", p + 3);
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Hello  
+    \item llo  
+    \item lo  
+    \item o
+\end{enumerate}
+
+\subsection*{Q8}
+What is the output of this code?
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+int main() {
+    char *p = "GATE";
+    printf("%c", *p);
+    p += 4;
+    printf("%c", *(p-1));
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item GG  
+    \item GE  
+    \item EE  
+    \item EG
+\end{enumerate}
+
+\newpage
+\subsection*{Q9}
+What is the output of the program?
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+void rev(char *s) {
+    if(*s) {
+        rev(s+1);
+        putchar(*s);
+    }
+}
+int main() {
+    rev("CSE");
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item CSE  
+    \item ESC  
+    \item SEC  
+    \item ESC
+\end{enumerate}
+
+\subsection*{Q10}
+What is the output?
+\begin{lstlisting}[language=C]
+#include <stdio.h>
+int main() {
+    char s1[] = "abcde";
+    char *s2 = "abcde";
+    s1[0] = 'z';
+    // s2[0] = 'z'; // Uncommenting causes?
+    printf("%s %s", s1, s2);
+    return 0;
+}
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item zbcde zbcde  
+    \item Compilation error  
+    \item zbcde abcde  
+    \item abcde abcde
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section[Tricky C Programming MCQs: Edge Cases and Pitfalls]
+{Tricky C Programming MCQs:\\ Edge Cases and Pitfalls}
+
+\subsection*{Q1. Assignment inside condition}
+\begin{verbatim}
+#include <stdio.h>
+int main() {
+    int a = 10;
+    if (a = 5)
+        printf("True");
+    else
+        printf("False");
+    return 0;
+}
+\end{verbatim}
+\textbf{What is the output of the program?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item True
+    \item False
+    \item Compilation Error
+    \item Runtime Error
+\end{enumerate}
+
+\subsection*{Q2. Modifying string literal (UB)}
+\begin{verbatim}
+#include <stdio.h>
+int main() {
+    char s[] = "hello";
+    s[5] = '!';
+    printf("%s", s);
+    return 0;
+}
+\end{verbatim}
+\textbf{What is the output of the program?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item hello!
+    \item hello
+    \item Undefined Behavior
+    \item Compilation Error
+\end{enumerate}
+
+\subsection*{Q3. Semicolon after for loop}
+\begin{verbatim}
+#include <stdio.h>
+int main() {
+    int i = 0;
+    for(; i < 3; i++);
+        printf("%d ", i);
+    return 0;
+}
+\end{verbatim}
+\textbf{What is the output of the program?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item 0 1 2 
+    \item 3
+    \item 0 1 2 3
+    \item Nothing
+\end{enumerate}
+
+\subsection*{Q4. undefined behavior on write}
+\begin{verbatim}
+#include <stdio.h>
+void foo(char *str) {
+    str[0] = 'A';
+}
+int main() {
+    char *s = "hello";
+    foo(s);
+    printf("%s", s);
+    return 0;
+}
+\end{verbatim}
+\textbf{What is the output of the program?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Aello
+    \item hello
+    \item Compilation Error
+    \item Segmentation Fault / Undefined Behavior
+\end{enumerate}
+
+\subsection*{Q5. $a[i] == i[a]$ trick}
+\begin{verbatim}
+#include <stdio.h>
+int main() {
+    int arr[3] = {1, 2, 3};
+    printf("%d", 1[arr]);
+    return 0;
+}
+\end{verbatim}
+\textbf{What is the output of the program?}
+
+\begin{enumerate}[label=(\alph*)]
+    \item 1
+    \item 2
+    \item Compilation Error
+    \item Garbage Value
+\end{enumerate}
+
+

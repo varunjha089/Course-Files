@@ -1,0 +1,75 @@
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true, urlcolor=blue, linkcolor=black}
+
+\usepackage{amsmath, amssymb}  % Enables \mathbb, \rightarrow, etc.
+
+\usepackage{listings}
+
+\usepackage{float}
+
+\usepackage{listings}
+\usepackage{xcolor}  % For color customization
+
+\lstset{
+  language=C,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\color{black},
+  stringstyle=\color{black},
+  commentstyle=\color{black}\itshape,
+  numbers=left,
+  numberstyle=\tiny,
+  stepnumber=1,
+  numbersep=5pt,
+  showstringspaces=false,
+  breaklines=true,
+  frame=single,
+  tabsize=2
+}
+
+\usepackage{fancyhdr}
+\setlength{\headheight}{17pt}  % Fix warning from fancyhdr
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{GATE Style Question}
+\lhead{Practice Sheets}
+\rfoot{Page \thepage}
+\lfoot{@varunjha089}
+
+% \titleformat{\section}{\normalfont\Large\bfseries}{Question \thesection:}{1em}{}
+
+% \pagestyle{fancy}
+% \fancyhf{}
+% \rhead{Computer Organization}
+% \lhead{Cache Memory Questions}
+% \rfoot{Page \thepage}
+
+\title{GATE and GATE Type Question}
+\author{Varun Kumar}
+\date{Start Date: July 11, 2025 $\|$ Last Modified: \today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{os.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+% For Part 2 of this project
+\input{verbal_resioning.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\input{answer.tex}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

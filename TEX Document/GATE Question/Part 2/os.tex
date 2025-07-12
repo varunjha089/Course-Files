@@ -1,0 +1,87 @@
+\section{Virtual Memory and Paging}
+\subsection*{Q1. GATE 2008: Multi-level Paging Table Address Bits}
+
+A processor uses \textbf{36-bit physical addresses} and \textbf{32-bit virtual addresses}, with a page frame size of \textbf{4 KB}. Each page table entry is of size \textbf{4 bytes}. A \textbf{three-level page table} is used for virtual to physical address translation, where the virtual address is used as follows:
+
+\begin{itemize}
+    \item Bits \textbf{30--31} index the \textbf{first level} page table.
+    \item Bits \textbf{21--29} index the \textbf{second level} page table.
+    \item Bits \textbf{12--20} index the \textbf{third level} page table.
+    \item Bits \textbf{0--11} are the \textbf{page offset}.
+\end{itemize}
+
+The number of bits required for addressing the next level page table (or page frame) in the page table entries of the \textbf{first, second, and third level} page tables are respectively:
+
+\begin{enumerate}[label=(\alph*)]
+    \item 20, 20, 20 \hspace{5cm} (c) 24, 24, 20
+    \item 24, 24, 24 \hspace{5cm} (d) 25, 25, 24
+\end{enumerate}
+
+% -------------------------------------------
+\subsection*{Q2. Multi-level Virtual Address Structure}
+
+A system uses \textbf{40-bit virtual addresses} and\\
+\textbf{36-bit physical addresses}. The page size is \textbf{8 KB},and each page table\\ 
+entry is \textbf{4 bytes}. The virtual address is broken down as follows for a\\
+\textbf{2-level page table}:
+
+\begin{itemize}
+    \item Bits \textbf{29--39} for the \textbf{first level} index
+    \item Bits \textbf{16--28} for the \textbf{second level} index
+    \item Bits \textbf{0--15} for the \textbf{page offset}
+\end{itemize}
+
+What is the size (in bits) of the physical page number stored in each page table entry?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 36 \hspace{5cm} (c) 24
+    \item 23 \hspace{5cm} (d) 28
+\end{enumerate}
+
+% -------------------------------------------
+\subsection*{Q3. Number of Entries per Table}
+
+A processor has a \textbf{48-bit virtual address}, and page size is \textbf{4 KB}. A \textbf{three-level page table} is used with the following split:
+
+\begin{itemize}
+    \item Level 1: 12 bits
+    \item Level 2: 12 bits
+    \item Level 3: 12 bits
+    \item Offset: 12 bits
+\end{itemize}
+
+How many entries are there in each level of the page table?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $2^{12}, 2^{12}, 2^{12}$ \hspace{5cm} (c) $2^{10}, 2^{12}, 2^{14}$
+    \item $2^{16}, 2^{16}, 2^{4}$  \hspace{5cm} (d) $2^{16}, 2^{12}, 2^{8}$
+\end{enumerate}
+
+% -------------------------------------------
+\subsection*{Q4. Page Table Size Estimation}
+
+A 32-bit machine uses a \textbf{2-level paging} scheme with \textbf{4 KB pages}. Virtual address is split as:
+
+\begin{itemize}
+    \item Level 1 index: 10 bits
+    \item Level 2 index: 10 bits
+    \item Offset: 12 bits
+\end{itemize}
+
+Assume:
+\begin{itemize}
+    \item Each page table entry is \textbf{4 bytes}
+    \item Only \textbf{1 process is running}
+\end{itemize}
+
+What is the \textbf{maximum size} (in bytes) of the total page tables needed for a process?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 8 KB  \hspace{5cm} (c) 4 MB
+    \item 16 KB \hspace{5cm} (d) 4 KB
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Synchronization %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newpage
+\input{synchronization.tex}

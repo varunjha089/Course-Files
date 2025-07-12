@@ -1,0 +1,25 @@
+\subsection*{Cache and Array Access}
+\begin{itemize}
+    \item \textbf{Q1.1:} (a), \quad \textbf{Q1.2:} (a)
+    \item \textbf{Q2.1:} (a), \quad \textbf{Q2.2:} (b)
+    \item \textbf{Q3.1:} (a), \quad \textbf{Q3.2:} (b)
+\end{itemize}
+
+\subsection*{Pipelining: GATE-style Numerical and Conceptual Questions}
+\noindent \textbf{Answers:}
+
+Q1. \textbf{1.33} \hfill (Time with forwarding: 21 cycles, Time without: 28 cycles. Speedup = 28/21 = 1.33)
+
+Q2. \textbf{243 cycles} \hfill (First instruction takes 5 cycles. Remaining 99 overlap but depend on PO stage cycles: $39\times2 + 35\times1 + 25\times0 = 145$ additional cycles. Total = 5 + 99 + 145 = 243)
+
+Q3. \textbf{24 cycles} \hfill (First instruction takes 5 cycles. Then 19 more with 1 cycle overlap each: 5 + 19 = 24. Add 2 branches × 2 cycle penalty = 4 → 24 + 4 = 28)
+
+Q4. \textbf{$n + 3 + k$ cycles} \hfill (3 initial pipeline fill cycles, n instructions, k stalls)
+
+Q5. \textbf{1 stall, 7 cycles} \hfill (Load-to-use hazard after LOAD requires 1 stall. Gantt: 5 stages + 2 more cycles for dependencies)
+
+Q6. \textbf{14 cycles} \hfill (First instruction takes 6 cycles (IF–WB). Then 9 more, each 1 cycle apart: total = 6 + 9 = 15)
+
+Q7. \textbf{600 cycles lost} \hfill (Branch freq = 20\% of 1000 = 200 branches. Penalty per branch = 3 → 200×3 = 600 cycles lost)
+
+Q8: (C) 17, Q9: (B) 17, Q10: (C) 22, Q11: (C) 23

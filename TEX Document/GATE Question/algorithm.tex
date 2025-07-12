@@ -1,0 +1,1295 @@
+\section{MCST Question}
+\subsection*{Q1. GATE 2021}
+% \begin{tcolorbox}[colback=white,colframe=black,title=Question]
+Let $G$ be a connected undirected weighted graph. Consider the following two statements.
+
+\begin{itemize}
+    \item[$S_1$:] There exists a minimum weight edge in $G$ which is present in every minimum spanning tree of $G$.
+    \item[$S_2$:] If every edge in $G$ has distinct weight, then $G$ has a unique minimum spanning tree.
+\end{itemize}
+
+Which one of the following options is correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Both $S_1$ and $S_2$ are true
+    \item $S_1$ is true and $S_2$ is false
+    \item $S_1$ is false and $S_2$ is true
+    \item Both $S_1$ and $S_2$ are false
+\end{enumerate}
+% \end{tcolorbox}
+
+% --------------------------
+\subsection*{GATE 2020 (Shortest Path)}
+% \begin{tcolorbox}[colback=white,colframe=black,title=Question]
+Let $G = (V,E)$ be a directed, weighted graph with weight function $w: E \rightarrow \mathbb{R}$. For some function $f: V \rightarrow \mathbb{R}$, for each edge $(u,v) \in E$, define $w'(u,v)$ as:
+\[
+w'(u,v) = w(u,v) + f(u) - f(v)
+\]
+
+Which one of the options completes the following sentence so that it is \textbf{TRUE}?
+
+\textit{“The shortest paths in $G$ under $w$ are shortest paths under $w'$ too, \underline{\hspace{4cm}}”.}
+
+\begin{enumerate}[label=(\alph*)]
+    \item for every $f: V \rightarrow \mathbb{R}$
+    \item if and only if $\forall u \in V,\ f(u)$ is positive
+    \item if and only if $\forall u \in V,\ f(u)$ is negative
+    \item if and only if $f(u)$ is the distance from $s$ to $u$ in the graph obtained by adding a new vertex $s$ to $G$ and edges of zero weight from $s$ to every vertex of $G$
+\end{enumerate}
+% \end{tcolorbox}
+
+% --------------------------
+\subsection*{GATE 2019}
+% \begin{tcolorbox}[colback=white,colframe=black,title=Question]
+Let $G$ be any connected, weighted, undirected graph. Consider the following statements:
+
+\begin{itemize}
+    \item[I.] $G$ has a unique minimum spanning tree, if no two edges of $G$ have the same weight.
+    \item[II.] $G$ has a unique minimum spanning tree, if for every cut of $G$, there is a unique minimum-weight edge crossing the cut.
+\end{itemize}
+
+Which of the following is/are \textbf{TRUE}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item I only
+    \item II only
+    \item Both I and II
+    \item Neither I nor II
+\end{enumerate}
+% \end{tcolorbox}
+
+% --------------------------
+\subsection*{GATE 2016}
+% \begin{tcolorbox}[colback=white,colframe=black,title=Question]
+Let $G = (V, E)$ be an undirected simple graph in which each edge has a distinct weight, and let $e$ be a particular edge of $G$. Consider the following statements:
+
+\begin{itemize}
+    \item[I.] If $e$ is the lightest edge of some cycle in $G$, then every MST of $G$ includes $e$.
+    \item[II.] If $e$ is the heaviest edge of some cycle in $G$, then every MST of $G$ excludes $e$.
+\end{itemize}
+
+Which of the following is/are TRUE?
+
+\begin{enumerate}[label=(\alph*)]
+    \item I only
+    \item II only
+    \item Both I and II
+    \item Neither I nor II
+\end{enumerate}
+% \end{tcolorbox}
+
+% ===============================
+\section{Conceptual Questions on MCST}
+
+% -------------------------------
+\subsection*{Question 1: Edge in Cycle}
+Let $G = (V, E)$ be a connected, undirected graph with \textbf{distinct edge weights}. Suppose $e \in E$ is the \textbf{heaviest edge} in some cycle $C$ in $G$.
+
+Which of the following is/are always true?
+\begin{enumerate}
+    \item $e$ is \textbf{not} present in any Minimum Spanning Tree (MST) of $G$.
+    \item Removing $e$ from $G$ \textbf{does not} increase the weight of the MST.
+\end{enumerate}
+
+\textbf{Options:}
+\begin{enumerate}[label=(\alph*)]
+    \item Only 1 is true
+    \item Only 2 is true
+    \item Both 1 and 2 are true
+    \item Neither 1 nor 2 is true
+\end{enumerate}
+
+% -------------------------------
+\subsection*{Question 2: Unique MST Conditions}
+Let $G = (V, E)$ be a connected, undirected graph. Consider the following statements:
+
+\begin{itemize}
+    \item[$S_1$:] If for \textbf{every cut} in $G$, the \textbf{minimum weight edge} crossing the cut is unique, then $G$ has a unique MST.
+    \item[$S_2$:] If all edge weights are \textbf{distinct}, then $G$ has a unique MST.
+\end{itemize}
+
+Which of the following is correct?
+\begin{enumerate}[label=(\alph*)]
+    \item Only $S_1$ is true
+    \item Only $S_2$ is true
+    \item Both $S_1$ and $S_2$ are true
+    \item Neither $S_1$ nor $S_2$ is true
+\end{enumerate}
+
+% -------------------------------
+\subsection*{Question 3: Uniform Weight Increase}
+Let $T$ be a Minimum Spanning Tree (MST) of a connected graph $G = (V, E)$ with \textbf{positive weights}. Suppose the weight of \textbf{every edge} in $G$ is increased by the same constant $c > 0$.
+
+Which of the following is true?
+\begin{enumerate}[label=(\alph*)]
+    \item The MST remains unchanged
+    \item The MST may change
+    \item The total weight of the MST increases, but the structure remains the same
+    \item The MST becomes a Maximum Spanning Tree
+\end{enumerate}
+
+% -------------------------------
+\subsection*{Question 4: Edge Weight Decrease}
+Let $G = (V, E)$ be a graph with positive edge weights and a known MST $T$. Suppose the weight of an edge $e \notin T$ is \textbf{reduced}.
+
+Which of the following statements is true?
+\begin{enumerate}[label=(\alph*)]
+    \item $T$ remains the MST
+    \item $T$ is no longer the MST
+    \item A new MST may or may not include $e$
+    \item Edge weight decrease does not affect the MST
+\end{enumerate}
+
+% -------------------------------
+\subsection*{Question 5: Kruskal vs Prim}
+Let $G = (V, E)$ be a connected undirected graph with \textbf{distinct edge weights}. Consider the MSTs generated by \textbf{Kruskal’s} and \textbf{Prim’s} algorithms.
+
+Which of the following statements is always true?
+\begin{enumerate}[label=(\alph*)]
+    \item Both algorithms always produce the same MST
+    \item Kruskal’s and Prim’s may produce different MSTs
+    \item The MST is unique, hence both will produce the same MST
+    \item Prim’s always chooses the minimum edge globally, unlike Kruskal’s
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Prim's Algorithm}
+\subsection*{Q1. Property of Prim's}
+% Let $G = (V, E)$ be a connected undirected graph with non-negative\\
+% weights. Prim's algorithm is run starting from vertex $v_0$. Suppose there\\
+% are two edges $(v_0, u)$ and $(v_0, w)$ with the same weight. Assume the\\
+% priority queue is implemented using a min-heap that breaks ties arbitrarily.\\
+Let $G = (V, E)$ be a connected undirected graph with non-negative \\
+weights. Prim's algorithm is run starting from vertex $v_0$. Suppose there are \\
+two edges $(v_0, u)$ and $(v_0, w)$ with the same weight. Assume the priority \\
+queue is implemented using a min-heap that breaks ties arbitrarily.
+
+Which of the following can happen?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Prim's algorithm may produce different MSTs depending on tie-breaking.
+    \item The output MST is always unique.
+    \item The MST may not be connected.
+    \item Prim’s may skip some minimum weight edges.
+\end{enumerate}
+
+\newpage
+\subsection*{Q2. Multiple MSTs with Same Weight}
+Let $G = (V, E)$ be a connected graph with \textbf{non-negative and non-distinct} edge weights. Prim's algorithm is run starting from vertex $v_0$.
+\vspace{1em}
+Which of the following is correct about \textbf{Prim's algorithm}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The MST is always unique
+    \item It may return different MSTs depending on tie-breaking
+    \item It always returns the lexicographically smallest MST
+    \item It cannot be run if weights are not distinct
+\end{enumerate}
+
+\subsection*{Q3. Disconnected Graph}
+Suppose $G = (V, E)$ is an undirected graph with more than one connected\\
+component. Prim's algorithm is run starting from a vertex in one\\
+component. What will happen?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Prim's algorithm will find the MST of the entire graph
+    \item Prim's algorithm will terminate with an error
+    \item Prim's algorithm will compute the MST of the connected component containing the starting vertex
+    \item Prim's will hang in an infinite loop
+\end{enumerate}
+
+\subsection*{Q4. Start Vertex Effect}
+Let $G = (V, E)$ be a connected undirected graph with some repeated edge\\
+weights. Suppose Prim's algorithm is executed from two different starting\\
+vertices $v_1$ and $v_2$. Which of the following is \textbf{true}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The output MST may differ based on starting vertex
+    \item The total cost of the MST may change
+    \item The MST is always the same regardless of the starting vertex
+    \item Prim's does not depend on the starting vertex
+\end{enumerate}
+
+\newpage
+\subsection*{Q5. Dense Graphs vs Sparse Graphs}
+Let $G = (V, E)$ be a graph with $|V| = n$ and $|E| = m$, where $m = \mathcal{O}(n^2)$. Prim's algorithm is implemented using:
+
+\begin{itemize}
+    \item[(i)] Min-heap with adjacency list
+    \item[(ii)] Adjacency matrix
+\end{itemize}
+
+Which of the following is \textbf{correct} about the time complexities?
+
+\begin{enumerate}[label=(\alph*)]
+    \item (i): $\mathcal{O}(n \log n)$, (ii): $\mathcal{O}(n^2)$
+    \item (i): $\mathcal{O}(m \log n)$, (ii): $\mathcal{O}(n^2)$
+    \item Both: $\mathcal{O}(n^2)$
+    \item Both: $\mathcal{O}(m + n)$
+\end{enumerate}
+
+\subsection*{Q6. Early Termination in Prim's}
+Prim's algorithm maintains a priority queue of all vertices not yet in the MST and selects the minimum-weight edge connecting to the growing MST.
+
+Suppose the algorithm stops as soon as $n - 1$ edges are picked. Which of the following is a potential risk?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The resulting tree may not span all vertices
+    \item Early stopping leads to higher weight than necessary
+    \item The result is always a valid MST
+    \item The number of edges picked may exceed $n - 1$
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Kruskal's Algorithm}
+\subsection*{Q1. Disconnected Graphs}
+Let $G = (V, E)$ be an undirected graph that is not connected, and all edge weights are distinct. Kruskal's algorithm is run on $G$.
+
+What does Kruskal's algorithm return?
+
+\begin{enumerate}[label=(\alph*)]
+    \item A spanning tree of $G$
+    \item A minimum spanning forest (one tree per connected component)
+    \item An error due to disconnection
+    \item A partial spanning tree of minimum cost
+\end{enumerate}
+
+\subsection*{Q2. Edge Case: Self-loops and Parallel Edges}
+Let $G = (V, E)$ be an undirected graph that contains self-loops and parallel edges. Kruskal's algorithm is applied to compute the MST.
+
+Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Self-loops and parallel edges can both be part of the MST
+    \item Self-loops are ignored but the lightest among parallel edges may be selected
+    \item Kruskal's cannot be applied on graphs with parallel edges
+    \item Self-loops are only included if they have zero weight
+\end{enumerate}
+
+\subsection*{Q3. Sorting Stability and Equal Weights}
+Suppose Kruskal's algorithm is applied to a graph with multiple edges having the same weight. The sorting routine used is unstable (i.e., it may change the order of equal-weight elements).
+
+Which of the following is correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The resulting MST is always the same
+    \item The structure of MST may vary, but total cost will be the same
+    \item Kruskal's algorithm requires stable sorting to work correctly
+    \item Kruskal’s will skip some valid edges due to instability
+\end{enumerate}
+
+\subsection*{Q4. Edge Case: Disconnected Graph}
+Let $G = (V, E)$ be an undirected graph that is disconnected and all edge weights are distinct. Kruskal’s algorithm is applied on $G$.
+
+What is the output?
+
+\begin{enumerate}[label=(\alph*)]
+    \item A spanning tree of the graph
+    \item A minimum spanning forest (one tree per component)
+    \item An error due to disconnection
+    \item An empty set
+\end{enumerate}
+
+\subsection*{Q5. Union-Find Optimization Impact}
+In Kruskal's algorithm, union-find with both path compression and union by rank is used. Which of the following best describes the impact?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Time complexity becomes $\mathcal{O}(E \log V)$
+    \item Time complexity becomes $\mathcal{O}(E + V \log V)$
+    \item Time complexity becomes $\mathcal{O}(E \alpha(V))$, where $\alpha$ is inverse Ackermann function
+    \item It doesn't affect the time complexity
+\end{enumerate}
+
+\subsection*{Q6. Edge Case: Edge Reversal}
+Suppose all edge directions in a directed graph are reversed. Kruskal's algorithm is applied to the undirected version of both the original and reversed graphs.
+
+Which of the following statements is correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The MST structure changes completely
+    \item The MST remains unchanged
+    \item The cost of the MST changes
+    \item Reversing edges affects Kruskal’s only if weights are reversed
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Dijkstra's Algorithm}
+\subsection*{Q1. Negative Edge Weights}
+Let $G = (V, E)$ be a directed graph where some edges have negative weights but no negative weight cycles. Dijkstra’s algorithm is run from a source $s$.
+
+Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Dijkstra’s will compute correct shortest paths
+    \item Dijkstra’s will fail due to negative weights
+    \item Dijkstra’s may return incorrect shortest paths
+    \item Dijkstra’s works only if all weights are positive
+\end{enumerate}
+
+\subsection*{Q2. Effect of Negative Edge Weights}
+Let $G = (V, E)$ be a directed graph where some edges have negative weights but there are no negative-weight cycles. Dijkstra's algorithm is run from source $s$.
+
+Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Dijkstra's algorithm will return the correct shortest paths
+    \item Dijkstra's algorithm may give incorrect results
+    \item Dijkstra's will detect the negative edge and stop
+    \item Dijkstra's can be used only for DAGs
+\end{enumerate}
+
+\subsection*{Q3. Unreachable Vertices}
+Let $G = (V, E)$ be a directed graph with non-negative edge weights. Suppose Dijkstra's algorithm is executed from a source vertex $s$, and there exists a vertex $v$ that is not reachable from $s$.
+
+What is the value of $dist[v]$ after execution?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $0$
+    \item $-1$
+    \item Infinity
+    \item The algorithm throws an error
+\end{enumerate}
+
+\subsection*{Q4. Dijkstra on Undirected Graph with Zero Weights}
+Let $G = (V, E)$ be an undirected graph where every edge has weight zero. Dijkstra's algorithm is executed from source $s$.
+
+Which of the following is true about the distances computed?
+
+\begin{enumerate}[label=(\alph*)]
+    \item All distances will be zero
+    \item The algorithm fails because of zero weights
+    \item Some distances may be non-zero
+    \item Dijkstra only works with strictly positive edge weights
+\end{enumerate}
+
+\subsection*{Q5. Priority Queue Implementation}
+In a standard implementation of Dijkstra’s algorithm using a min-priority queue, the relaxation step might insert multiple entries for the same vertex.
+
+Which of the following is a correct optimization?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Use a visited set to ignore already-processed vertices
+    \item Do not use a priority queue at all
+    \item Use a stack instead of a queue
+    \item Restart Dijkstra whenever a duplicate is found
+\end{enumerate}
+
+\subsection*{Q6. Dijkstra vs BFS}
+Let $G$ be an undirected graph where all edge weights are equal to 1. Consider running both Dijkstra’s algorithm and Breadth-First Search (BFS) from the same source $s$.
+
+Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Dijkstra and BFS will compute different shortest path trees
+    \item BFS will be faster but less accurate than Dijkstra
+    \item Both algorithms will compute the same shortest paths
+    \item BFS does not work on weighted graphs
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Bellman-Ford Algorithm}
+\subsection*{Q1. Negative Weight Cycles}
+Let $G = (V, E)$ be a directed graph with a negative weight cycle reachable from source $s$. Bellman-Ford is run to compute shortest paths from $s$.
+
+What will the algorithm do?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Return shortest paths ignoring the negative cycle
+    \item Enter an infinite loop
+    \item Detect the negative cycle and report it
+    \item Overwrite distances indefinitely but never terminate
+\end{enumerate}
+
+\subsection*{Q2. Negative Weight Cycle Detection}
+Let $G = (V, E)$ be a directed graph with a negative weight cycle reachable from source $s$. Bellman-Ford algorithm is run from $s$ to compute shortest paths.
+
+Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Bellman-Ford computes distances correctly for all nodes
+    \item It fails to terminate in presence of negative cycles
+    \item It detects and reports the presence of a negative cycle
+    \item It skips edges that are part of a negative cycle
+\end{enumerate}
+
+\subsection*{Q3. Relaxation Count}
+Let $G$ have $n$ vertices and $m$ edges. What is the \textbf{minimum number of full edge relaxation passes} required in Bellman-Ford to guarantee correct single-source shortest paths in a graph with no negative cycles?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $n$
+    \item $n-1$
+    \item $m$
+    \item Until all distances stop changing
+\end{enumerate}
+
+\subsection*{Q4. Negative Weight Edges but No Cycles}
+Let $G = (V, E)$ be a directed graph with some negative edge weights, but no negative-weight cycles. Which algorithm(s) can be used to find shortest paths from a source $s$?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Only Dijkstra
+    \item Only Bellman-Ford
+    \item Both Dijkstra and Bellman-Ford
+    \item Neither Dijkstra nor Bellman-Ford
+\end{enumerate}
+
+\subsection*{Q5. Disconnected Graph}
+Let $G = (V, E)$ be a directed graph with some unreachable vertices from the source $s$. What does Bellman-Ford return for such vertices?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Assigns distance zero
+    \item Assigns distance infinity
+    \item Reports an error
+    \item Assigns distance as the maximum weight path to that node
+\end{enumerate}
+
+\subsection*{Q6. All Edge Weights Positive}
+Suppose a graph has all edge weights positive. Which of the following is true regarding Bellman-Ford?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Bellman-Ford will fail since there are no negative weights
+    \item Bellman-Ford will give incorrect output due to no negative cycles
+    \item Bellman-Ford works but is slower than Dijkstra
+    \item Bellman-Ford and Dijkstra produce different distances
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Floyd-Warshall Algorithm}
+\subsection*{Q1. Path Reconstruction with Negative Cycles}
+Let $G = (V, E)$ be a directed graph that contains negative weight cycles. Floyd-Warshall is run to compute all-pairs shortest paths.
+
+Which of the following is correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Floyd-Warshall reports the presence of a negative cycle
+    \item The algorithm correctly computes shortest distances for all pairs not affected by negative cycles
+    \item The distance matrix may contain incorrect values
+    \item Floyd-Warshall ignores cycles by default
+\end{enumerate}
+
+\subsection*{Q2. Negative Weight Cycles}
+Let $G = (V, E)$ be a directed graph with a negative-weight cycle. Floyd-Warshall algorithm is used to compute all-pairs shortest paths.
+
+Which of the following is correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item It reports the presence of a negative cycle
+    \item It correctly computes distances for all unaffected pairs
+    \item The output may contain incorrect values due to negative cycles
+    \item It ignores negative cycles by design
+\end{enumerate}
+
+\subsection*{Q3. Self-loop Update}
+Suppose Floyd-Warshall is run on a graph $G$ with no self-loops initially. After the algorithm completes, some diagonal entries in the distance matrix become negative.
+
+What does this imply?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The graph has cycles of weight zero
+    \item There is a negative-weight cycle in the graph
+    \item The source node has distance zero to itself
+    \item The graph contains multiple disconnected components
+\end{enumerate}
+
+\subsection*{Q4. Initialization of Distance Matrix}
+Before running Floyd-Warshall, the distance matrix is initialized as:
+
+\[
+dist[i][j] = 
+\begin{cases}
+0 & \text{if } i = j \\
+w(i, j) & \text{if } (i, j) \in E \\
+\infty & \text{otherwise}
+\end{cases}
+\]
+
+Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item This initialization is incorrect for undirected graphs
+    \item It is correct and necessary for Floyd-Warshall
+    \item It will fail in presence of negative edges
+    \item Zero must be used for all edge weights
+\end{enumerate}
+
+\subsection*{Q5. Graph with Disconnected Components}
+Let $G$ be a directed graph with multiple disconnected components. Floyd-Warshall is run on $G$.
+
+What will the distance between unreachable vertex pairs be in the final matrix?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Zero
+    \item Infinity
+    \item -1
+    \item Depends on the number of components
+\end{enumerate}
+
+\subsection*{Q6. Space and Time Complexity}
+Which of the following correctly describes the time and space complexity of Floyd-Warshall algorithm for a graph with $n$ vertices?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Time: $\mathcal{O}(n^2)$, Space: $\mathcal{O}(n^2)$
+    \item Time: $\mathcal{O}(n^3)$, Space: $\mathcal{O}(n^2)$
+    \item Time: $\mathcal{O}(n^3)$, Space: $\mathcal{O}(n^3)$
+    \item Time: $\mathcal{O}(nm)$, Space: $\mathcal{O}(n^2)$
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Graph Algorithms on Different DS}
+
+\subsection*{Q1. Prim’s Algorithm: Min-Heap vs Adjacency Matrix}
+Let $G = (V, E)$ be a dense connected undirected graph with $|V| = n$ and $|E| = \Theta(n^2)$. Prim’s algorithm is implemented using:
+
+\begin{itemize}
+    \item[(i)] Binary Min-Heap with Adjacency List
+    \item[(ii)] Simple Array with Adjacency Matrix
+\end{itemize}
+
+Which of the following is correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item (i): $\mathcal{O}(n \log n)$, (ii): $\mathcal{O}(n^2)$
+    \item (i): $\mathcal{O}(m \log n)$, (ii): $\mathcal{O}(n^2)$
+    \item Both: $\mathcal{O}(n^2)$
+    \item Both: $\mathcal{O}(m + n)$
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q2. Kruskal’s Algorithm: Union-Find Variants}
+In Kruskal’s algorithm, which Union-Find variant offers the best performance?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Basic Union and Find without optimizations
+    \item Union by Rank only
+    \item Path Compression only
+    \item Union by Rank with Path Compression
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q3. Dijkstra's Algorithm: Min-Heap vs Fibonacci Heap}
+Let $G = (V, E)$ be a sparse graph with $n$ vertices and $m$ edges. Dijkstra's algorithm is implemented using:
+
+\begin{itemize}
+    \item[(i)] Binary Min-Heap
+    \item[(ii)] Fibonacci Heap
+\end{itemize}
+
+What are their respective time complexities?
+
+\begin{enumerate}[label=(\alph*)]
+    \item (i): $\mathcal{O}((n + m) \log n)$, (ii): $\mathcal{O}(n \log n + m)$
+    \item (i): $\mathcal{O}(n \log m)$, (ii): $\mathcal{O}(n + m \log n)$
+    \item Both: $\mathcal{O}(n^2)$
+    \item Both: $\mathcal{O}(m \log n)$
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q4. Bellman-Ford: Queue-Based vs Standard Relaxation}
+Bellman-Ford can be optimized using a queue-based version (like SPFA — Shortest Path Faster Algorithm).
+
+Which of the following statements is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Queue-based version always has better time complexity
+    \item Queue-based version may reduce practical runtime but worst-case is still $\mathcal{O}(nm)$
+    \item Queue-based version fails with negative weights
+    \item Queue-based version always terminates faster
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q5. Floyd-Warshall: 1D vs 2D Arrays}
+Suppose Floyd-Warshall is implemented using a 2D matrix $D[n][n]$. If space is a constraint, a 1D flattened array or reuse of a single row can be used.
+
+Which of the following is correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Using 1D array reduces time complexity
+    \item Space complexity can be reduced using 1D if full path reconstruction is not needed
+    \item 1D and 2D arrays offer identical performance and space usage
+    \item Floyd-Warshall cannot be implemented without 2D matrices
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Algorithms: Sorting (Part 1)}
+
+\subsection*{Q1. Bubble Sort After Second Pass}
+Consider the array: \texttt{[5, 1, 4, 2, 8]}.
+
+What will be the array after the 2\textsuperscript{nd} pass of \textbf{Bubble Sort}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $[1, 2, 4, 5, 8]$ 
+    \item $[1, 4, 2, 5, 8]$ 
+    \item $[1, 2, 4, 8, 5]$ 
+    \item $[1, 2, 4, 5, 8]$
+\end{enumerate}
+
+\textbf{Concept:} Bubble sort pushes the largest to the right. Each pass reduces the unsorted array by one from the end.
+
+\newpage
+\subsection*{Q2. Selection Sort After Third Pass}
+Given array: \texttt{[64, 25, 12, 22, 11]}
+
+What is the array after the 3\textsuperscript{rd} pass of \textbf{Selection Sort}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $[11, 12, 22, 25, 64]$
+    \item $[11, 12, 22, 64, 25]$ 
+    \item $[11, 12, 22, 25, 64]$ 
+    \item $[12, 11, 22, 25, 64]$
+\end{enumerate}
+
+\textbf{Concept:} Selection sort places the smallest element at the beginning each time.
+
+\subsection*{Q3. Insertion Sort After Second Pass}
+Array: \texttt{[3, 1, 4, 2]}
+
+State of array after 2\textsuperscript{nd} pass of \textbf{Insertion Sort}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $[1, 3, 4, 2]$
+    \item $[1, 3, 2, 4]$ 
+    \item $[3, 1, 2, 4]$ 
+    \item $[1, 3, 2, 4]$
+\end{enumerate}
+
+\textbf{Concept:} Insertion sort inserts the current element into the sorted prefix.
+
+
+\subsection*{Q4. Bubble Sort Third Pass - Partially Sorted}
+Given: \texttt{[10, 7, 8, 9, 1, 5]}
+
+What is the array after 3\textsuperscript{rd} pass of \textbf{Bubble Sort}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $[7, 8, 1, 5, 9, 10]$ 
+    \item $[7, 1, 5, 8, 9, 10]$ 
+    \item $[7, 1, 5, 8, 10, 9]$ 
+    \item $[1, 5, 7, 8, 9, 10]$
+\end{enumerate}
+
+
+\subsection*{Q5. Insertion Sort Third Pass - Trick Question}
+Input: \texttt{[2, 4, 6, 3, 5, 1]}
+
+What is the array after 3\textsuperscript{rd} pass of \textbf{Insertion Sort}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $[2, 3, 4, 6, 5, 1]$ 
+    \item $[2, 4, 6, 3, 5, 1]$ 
+    \item $[2, 4, 6, 5, 3, 1]$ 
+    \item $[2, 4, 6, 1, 3, 5]$
+\end{enumerate}
+
+% ----------------------------------------------------------------------------------------------
+\section{Algorithms: Sorting (Part 2)}
+
+\subsection*{Q1. Selection Sort – Final Output}
+Given the array: \texttt{[29, 10, 14, 37, 13]}, what is the array after complete Selection Sort?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $[10, 13, 14, 29, 37]$ 
+    \item $[29, 14, 13, 10, 37]$ 
+    \item $[13, 10, 14, 29, 37]$ 
+    \item $[10, 13, 14, 37, 29]$
+\end{enumerate}
+
+
+\subsection*{Q2. Selection Sort – After Second Pass}
+Array: \texttt{[64, 25, 12, 22, 11]}. What is the array after 2\textsuperscript{nd} pass of Selection Sort?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $[11, 12, 25, 22, 64]$ 
+    \item $[11, 12, 64, 25, 22]$ 
+    \item $[11, 12, 22, 25, 64]$ 
+    \item $[11, 12, 25, 64, 22]$
+\end{enumerate}
+
+
+\subsection*{Q3. Selection Sort – Number of Swaps}
+How many swaps does Selection Sort perform in worst case on an array of \(n\) distinct elements?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(n^2)\) 
+    \item \(O(n\log n)\) 
+    \item \(O(n)\) 
+    \item \(\Theta(n)\)
+\end{enumerate}
+
+% ------------------ Merge Sort ------------------
+
+\subsection*{Q4. Merge Sort – Final Output}
+Input array: \texttt{[38, 27, 43, 3, 9, 82, 10]}. What is the final sorted array?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $[3, 9, 10, 27, 38, 43, 82]$ 
+    \item $[3, 9, 10, 27, 38, 82, 43]$ 
+    \item $[3, 10, 9, 27, 38, 43, 82]$ 
+    \item $[27, 38, 3, 9, 10, 43, 82]$
+\end{enumerate}
+
+
+\subsection*{Q5. Merge Sort – Number of Merges}
+How many merge operations are performed (total) on an array of 8 elements?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 3 
+    \item 7 
+    \item 6 
+    \item 5
+\end{enumerate}
+
+
+\subsection*{Q6. Merge Sort – Stability}
+Which of the following is true for Merge Sort?
+
+\begin{enumerate}[label=(\alph*)]
+    \item It is not stable 
+    \item It requires in-place merging 
+    \item It is stable and divides array recursively 
+    \item It uses pivot and partitioning
+\end{enumerate}
+
+% ------------------ Quick Sort ------------------
+
+\subsection*{Q7. Quick Sort – Final Output}
+For array \texttt{[10, 7, 8, 9, 1, 5]} and pivot = last element, what is final sorted array?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $[1, 5, 7, 8, 9, 10]$ 
+    \item $[1, 5, 7, 9, 8, 10]$
+    \item $[10, 9, 8, 7, 5, 1]$ 
+    \item $[1, 5, 8, 9, 7, 10]$
+\end{enumerate}
+
+
+\subsection*{Q8. Quick Sort – Pivot Partition (1st Pass)}
+Array: \texttt{[4, 3, 5, 2, 1]} with pivot = 1. What is array after 1st partition?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $[1, 3, 5, 2, 4]$ 
+    \item $[1, 4, 3, 5, 2]$ 
+    \item $[1, 3, 5, 2, 4]$ 
+    \item $[1, 2, 3, 4, 5]$
+\end{enumerate}
+
+
+\subsection*{Q9. Quick Sort – Best Case Time}
+What is best case time complexity of Quick Sort?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(n^2)\) \quad
+    \item \(O(n \log n)\) \quad
+    \item \(O(\log n)\) \quad
+    \item \(O(n)\)
+\end{enumerate}
+
+% ------------------ Bucket Sort ------------------
+
+\subsection*{Q10. Bucket Sort – Input Range Suitability}
+Bucket Sort works best when input is:
+
+\begin{enumerate}[label=(\alph*)]
+    \item Uniformly distributed over known range
+    \item Random integers with duplicates
+    \item Sorted in descending order
+    \item Contains large negative numbers
+\end{enumerate}
+
+
+\subsection*{Q11. Bucket Sort – Time Complexity (Best Case)}
+Best case time complexity of Bucket Sort with uniform input distribution is:
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(n^2)\) \quad
+    \item \(O(n \log n)\) \quad
+    \item \(O(n)\) \quad
+    \item \(O(n \log k)\)
+\end{enumerate}
+
+
+\subsection*{Q12. Bucket Sort – Stable or Not}
+Is bucket sort stable?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Always stable
+    \item Never stable
+    \item Stable only if insertion sort is used in buckets
+    \item Stable only for integer data
+\end{enumerate}
+
+% ------------------ Radix Sort ------------------
+
+\subsection*{Q13. Radix Sort – Order Preservation}
+Which of the following sorting algorithms is used in each digit pass of Radix Sort?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Merge Sort \quad
+    \item Quick Sort \quad
+    \item Counting Sort \quad
+    \item Heap Sort
+\end{enumerate}
+
+
+\subsection*{Q14. Radix Sort – Stable Sort Requirement}
+Why must the internal sort in Radix Sort be stable?
+
+\begin{enumerate}[label=(\alph*)]
+    \item To handle negative numbers
+    \item To preserve order of previous digits
+    \item For space efficiency
+    \item It's not required
+\end{enumerate}
+
+
+\subsection*{Q15. Heap Sort – After First Heapify (Max Heap Build)}
+Given array: \texttt{[1, 3, 5, 4, 6, 13, 10, 9, 8, 15, 17]}
+
+What is the array after building the initial max-heap?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $[17, 15, 13, 9, 6, 5, 10, 4, 8, 1, 3]$
+    \item $[17, 13, 15, 9, 6, 5, 10, 4, 8, 1, 3]$
+    \item $[13, 15, 17, 9, 6, 5, 10, 4, 8, 1, 3]$
+    \item $[15, 17, 13, 9, 6, 5, 10, 4, 8, 1, 3]$
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Algorithms: Time Complexity Revision}
+
+\subsection*{Q1. Insertion Sort (Best Case)}
+What is the best-case time complexity of Insertion Sort?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(n^2)\) \quad
+    \item \(O(n \log n)\) \quad
+    \item \(O(n)\) \quad
+    \item \(\Theta(n^2)\)
+\end{enumerate}
+
+
+\subsection*{Q2. Quick Sort – Average Case}
+What is the average-case time complexity of Quick Sort?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(n)\) \quad
+    \item \(O(n \log n)\) \quad
+    \item \(O(\log n)\) \quad
+    \item \(O(n^2)\)
+\end{enumerate}
+
+
+\subsection*{Q3. Merge Sort (Worst Case)}
+What is the worst-case time complexity of Merge Sort on an array of size \(n\)?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(n^2)\) \quad
+    \item \(O(n)\) \quad
+    \item \(O(n \log n)\) \quad
+    \item \(\Theta(n)\)
+\end{enumerate}
+
+
+\subsection*{Q4. Heap Sort (Worst Case)}
+Which of the following is the worst-case time complexity of Heap Sort?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(n^2)\) \quad
+    \item \(O(n \log n)\) \quad
+    \item \(O(n)\) \quad
+    \item \(\Theta(n^2)\)
+\end{enumerate}
+
+
+\subsection*{Q5. Binary Search – Worst Case}
+What is the time complexity of Binary Search in the worst case?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(n)\) \quad
+    \item \(O(\log n)\) \quad
+    \item \(O(1)\) \quad
+    \item \(O(n \log n)\)
+\end{enumerate}
+
+
+\subsection*{Q6. DFS and BFS (Adjacency List)}
+What is the time complexity of DFS and BFS in an adjacency list representation?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(V+E)\) \quad
+    \item \(O(V^2)\) \quad
+    \item \(O(E^2)\) \quad
+    \item \(O(V \log V)\)
+\end{enumerate}
+
+
+\subsection*{Q7. Dijkstra Using Min-Heap}
+Time complexity of Dijkstra’s algorithm using a binary min-heap is:
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(V^2)\) \quad
+    \item \(O((V + E)\log V)\) \quad
+    \item \(O(E \log E)\) \quad
+    \item \(O(VE)\)
+\end{enumerate}
+
+
+\subsection*{Q8. Bellman-Ford Algorithm}
+What is the time complexity of the Bellman-Ford algorithm?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(V + E)\) \quad
+    \item \(O(VE)\) \quad
+    \item \(O(E \log V)\) \quad
+    \item \(O(V^2)\)
+\end{enumerate}
+
+
+\subsection*{Q9. Floyd-Warshall Algorithm}
+Time complexity of Floyd-Warshall algorithm is:
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(VE)\) \quad
+    \item \(O(V^2)\) \quad
+    \item \(O(V^3)\) \quad
+    \item \(O(E \log V)\)
+\end{enumerate}
+
+
+\subsection*{Q10. Recurrence \(T(n) = 2T(n/2) + n\)}
+Solve: \(T(n) = 2T(n/2) + n\)
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(\Theta(n)\) \quad
+    \item \(\Theta(n \log n)\) \quad
+    \item \(\Theta(\log n)\) \quad
+    \item \(\Theta(n^2)\)
+\end{enumerate}
+
+
+\subsection*{Q11. Linear Search – Average Case}
+Time complexity of Linear Search in average case:
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(1)\) \quad
+    \item \(O(n)\) \quad
+    \item \(O(\log n)\) \quad
+    \item \(O(n \log n)\)
+\end{enumerate}
+
+
+\subsection*{Q12. Hash Table (Average Case Search)}
+Average case time complexity for search in a hash table with chaining:
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(n)\) \quad
+    \item \(O(1)\) \quad
+    \item \(O(\log n)\) \quad
+    \item \(O(n \log n)\)
+\end{enumerate}
+
+
+\subsection*{Q13. Counting Sort}
+Time complexity of Counting Sort for \(n\) elements with keys in range \(0\) to \(k\):
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(n \log n)\) \quad
+    \item \(O(n + k)\) \quad
+    \item \(O(n^2)\) \quad
+    \item \(O(nk)\)
+\end{enumerate}
+
+
+\subsection*{Q14. Radix Sort}
+Time complexity of Radix Sort for \(n\) elements with \(d\) digits and base \(k\):
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(d \cdot n)\) \quad
+    \item \(O(n \log n)\) \quad
+    \item \(O(n^2)\) \quad
+    \item \(O(k^d)\)
+\end{enumerate}
+
+
+\subsection*{Q15. Heapify Operation}
+What is the time complexity of `heapify()` for an element at index \(i\) in a binary heap?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(\log n)\) \quad
+    \item \(O(n)\) \quad
+    \item \(O(1)\) \quad
+    \item \(O(n \log n)\)
+\end{enumerate}
+
+
+% --- Continuing from previous set ---
+
+\subsection*{Q16. Recurrence: \(T(n) = T(\sqrt{n}) + 1\)}
+What is the time complexity of the recurrence: \(T(n) = T(\sqrt{n}) + 1\)?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(\log n)\) \quad
+    \item \(O(\log \log n)\) \quad
+    \item \(O(n)\) \quad
+    \item \(O(\sqrt{n})\)
+\end{enumerate}
+
+\textbf{Concept:} Let \(n = 2^m \Rightarrow \log n = m\), recurrence becomes \(T(2^m) = T(2^{m/2}) + 1\)
+
+
+\subsection*{Q17. Recurrence: \(T(n) = T(n/2) + \log n\)}
+What is the time complexity of \(T(n) = T(n/2) + \log n\)?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(\log^2 n)\) \quad
+    \item \(O(n)\) \quad
+    \item \(O(\log n)\) \quad
+    \item \(O(n \log n)\)
+\end{enumerate}
+
+\textbf{Hint:} Number of levels = \(\log n\), and each level costs \(\log n\), so total is \(\log n \cdot \log n = \log^2 n\)
+
+
+\subsection*{Q18. Recurrence: \(T(n) = T(n/2) + n/\log n\)}
+Solve the recurrence: \(T(n) = T(n/2) + \frac{n}{\log n}\)
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(n)\) \quad
+    \item \(O(n \log n)\) \quad
+    \item \(O(n \log \log n)\) \quad
+    \item \(O(n^2)\)
+\end{enumerate}
+
+
+\subsection*{Q19. Recurrence: \(T(n) = T(n-1) + \frac{1}{n}\)}
+What is the time complexity of \(T(n) = T(n-1) + \frac{1}{n}\)?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(\log n)\) \quad
+    \item \(O(n)\) \quad
+    \item \(O(1)\) \quad
+    \item \(O(n \log n)\)
+\end{enumerate}
+
+\textbf{Concept:} Harmonic series → \(1 + \frac{1}{2} + \frac{1}{3} + \dots + \frac{1}{n} = O(\log n)\)
+
+
+\subsection*{Q20. Recurrence: \(T(n) = T(n/3) + T(n/4) + n\)}
+What is the time complexity of \(T(n) = T(n/3) + T(n/4) + n\)?
+
+\begin{enumerate}[label=(\alph*)]
+    \item \(O(n \log n)\) \quad
+    \item \(O(n)\) \quad
+    \item \(O(n^2)\) \quad
+    \item \(O(\log n)\)
+\end{enumerate}
+
+\textbf{Concept:} This follows the Master Theorem Generalization: \(a = 2\), \(b_1 = 3\), \(b_2 = 4\), \(f(n) = n\), gives \(T(n) = \Theta(n)\)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section[Greedy vs Dynamic Programming: Edge-Case Brainstorming Questions (Hard)]
+% {Greedy vs Dynamic Programming:\\ Edge-Case Brainstorming Questions (Hard)}
+\section{Edge-Case Brainstorming Questions}
+
+\subsection*{Q1. Fractional Knapsack Edge Case}
+You are given 3 items with their respective weight and value:
+
+\begin{center}
+- Item 1: weight = 30, value = 60  \\
+- Item 2: weight = 50, value = 100  \\
+- Item 3: weight = 10, value = 20  
+\end{center}
+
+Capacity of knapsack = 60.
+
+Greedy (by value/weight) selects Item 1 and 3.  
+Can this selection ever be \textbf{worse} than an alternative fractional selection?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Yes, if you start with Item 2 
+    \item No, greedy always gives optimal in fractional 
+    \item Depends on tie-breaking 
+    \item Only if weights are not divisible
+\end{enumerate}
+
+---
+
+\subsection*{Q2. 0/1 Knapsack - Greedy Fails Just Barely}
+You are given 3 items with their respective weight and value:
+
+\begin{center}
+- Item 1: weight = 2, value = 40\\
+- Item 2: weight = 3, value = 50\\
+- Item 3: weight = 4, value = 60  
+\end{center}
+
+Capacity = 5.
+
+Greedy (by value/weight) selects Item 1 (20/unit), then 2 (16.6/unit).  
+Does this give optimal?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Yes 
+    \item No — optimal is Item 3 
+    \item No — optimal is Items 2 only 
+    \item No — optimal is Items 1 + 2
+\end{enumerate}
+
+\textbf{Concept:} Greedy fails, DP gives better by 1 unit.
+
+---
+
+\subsection*{Q3. Activity Selection Edge Conflict}
+You are given activities:
+- A1: (1, 4)  
+- A2: (2, 5)  
+- A3: (4, 7)  
+- A4: (5, 9)
+
+Greedy selects A1 and A3.  
+Can A2 and A4 be a valid alternative?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Yes — and gives more total duration 
+    \item No — A2 and A4 conflict 
+    \item Yes — but same number of activities 
+    \item No — greedy always optimal
+\end{enumerate}
+
+---
+
+\subsection*{Q4. Longest Increasing Subsequence (LIS) - Greedy Fails}
+Array: \texttt{[2, 5, 3, 7, 11, 8, 10, 13, 6]}
+
+A greedy choice would extend: 2 → 5 → 7 → 11 → 13  
+But optimal LIS is:?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $[2, 3, 7, 8, 10, 13]$ 
+    \item $[2, 3, 7, 11, 13]$ 
+    \item $[2, 5, 7, 8, 10]$ 
+    \item $[2, 3, 6]$
+\end{enumerate}
+
+\textbf{Concept:} Greedy fails to backtrack, DP or patience sorting succeeds.
+
+
+\subsection*{Q5. Coin Change – Greedy Fails Just Fails}
+Coins: \texttt{[1, 3, 4]}, Amount: 6
+
+\begin{center}
+Greedy picks: 4 → 1 → 1 (3 coins) \\ 
+DP picks: 3 → 3 (2 coins)
+\end{center}
+
+Why does Greedy fail?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Greedy only works for canonical coin systems 
+    \item Greedy fails if 1 is present 
+    \item Greedy fails if 4 not divisible 
+    \item Greedy fails only on odd numbers
+\end{enumerate}
+
+
+\subsection*{Q6. Coin Change - Greedy Just Works}
+Coins: \texttt{[1, 5, 10, 20, 50]}, Amount: 93
+
+Greedy works here.  
+Why?
+
+\begin{enumerate}[label=(\alph*)]
+    \item All coins are multiples of smaller coins 
+    \item Denomination is canonical 
+    \item Only powers of 2 work 
+    \item It always works for Indian currency
+\end{enumerate}
+
+
+\subsection*{Q7. DP or Greedy - Rod Cutting Variant}
+Rod length = 8 and Prices: 
+
+\begin{enumerate}[label=(\alph*)]
+    \item length 1 = Rs. 1 \hspace{2.5cm} (e) length 5 = Rs. 10 
+    \item length 2 = Rs. 5 \hspace{2.5cm} (f) length 6 = Rs. 17 
+    \item length 3 = Rs. 8 \hspace{2.5cm} (g) length 7 = Rs. 17 
+    \item length 4 = Rs. 9 \hspace{2.5cm} (h) length 8 = Rs. 20
+\end{enumerate}
+
+
+What is the max value using optimal cuts?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 20 \quad (No cut) 
+    \item 22 \quad (2+6) 
+    \item 24 \quad (2+2+2+2) 
+    \item 25 \quad (2+3+3)
+\end{enumerate}
+
+\textbf{Hint:} Greedy (highest price per unit) may not give best total.
+
+
+\subsection*{Q8. Weighted Interval Scheduling – Greedy Fails}
+You are given jobs with (Start, End, Profit):
+
+\begin{center}
+- J1: (1, 3, 20)  \hspace{1.5cm} - J4: (6, 7, 40) \\
+- J2: (2, 5, 50)  \hspace{1.5cm} - J5: (5, 9, 30) \\
+- J3: (4, 6, 10)  \hspace{1.5cm} - J6: (8, 10, 20)
+\end{center}
+
+Greedy (earliest finish) picks: J1, J3, J4, J6 → Total = 90
+
+Can a better profit be achieved?
+
+% \begin{enumerate}[label=(\alph*)]
+%     \item No - Greedy is optimal \\
+%     \item Yes - J2 + J4 = 90 \\
+%     \item Yes - J2 + J6 = 70 \\
+%     \item Yes - J2 + J4 = 90 is same, but DP needed to find
+% \end{enumerate}
+\begin{enumerate}[label=(\alph*)]
+    \item No - Greedy is optimal
+    \item Yes - start time order gives more 
+    \item Yes - max job duration helps 
+    \item Yes - some tie-breaking matters
+\end{enumerate}
+
+
+
+\subsection*{Q9. DP vs Greedy - Scheduling with Weights}
+Jobs:
+\begin{center}
+- J1: (1, 3), weight = 20\\
+- J2: (2, 5), weight = 50\\ 
+- J3: (4, 6), weight = 10\\
+- J4: (6, 8), weight = 40\\
+\end{center}
+Which gives max weight?
+
+\begin{enumerate}[label=(\alph*)]
+    \item J1 + J3 + J4 = 70 
+    \item J2 + J4 = 90 
+    \item J1 + J2 = 70 
+    \item J1 + J4 = 60
+\end{enumerate}
+
+\textbf{Concept:} DP needed for weighted interval scheduling
+
+
+\subsection*{Q10. Subset Sum - Greedy vs DP}
+Set: \{3, 34, 4, 12, 5, 2\}, Target = 9\\
+Greedy selects: 34 (too large), then 5 + 4 (valid)\\
+Does Greedy always find a solution?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Yes, for sorted inputs only 
+    \item No, DP is required for exact match 
+    \item Greedy works if set has no duplicates 
+    \item Greedy works if max element < sum
+\end{enumerate}

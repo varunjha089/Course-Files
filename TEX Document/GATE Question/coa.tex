@@ -1,0 +1,221 @@
+\section{Cache Memory and Array Access}
+\subsection*{Q1. 1D Array in Direct-Mapped Cache}
+
+A machine has a byte-addressable main memory of \textbf{64 KB} and uses a \textbf{direct-mapped cache} with \textbf{128 lines}, each of \textbf{16 bytes}. A one-dimensional array $A[512]$ of bytes is stored in main memory starting from address \texttt{0x0000}. The cache is initially empty. The array is accessed sequentially \textbf{twice}. Assume that the cache contents \textbf{do not change} between the two accesses.
+
+
+\begin{enumerate}[label=\textbf{Q1.\arabic*.}]
+    \item How many \textbf{data misses} will occur in total?
+    \item How many \textbf{cache lines} will be \textbf{replaced} during the second traversal of the array?
+\end{enumerate}
+
+\vspace{1em}
+% ===============================
+\subsection*{Q2. 2D Array: Row-wise vs Column-wise Access}
+
+A byte-addressable system has a main memory of \textbf{1 MB}. The system uses a \textbf{direct-mapped cache} with \textbf{256 cache lines}, and a \textbf{block size} of \textbf{8 bytes}.
+
+A 2D array $A[64][8]$ of bytes is stored in \textbf{row-major} order starting at address \texttt{0x1000}. The cache is initially empty. All elements are accessed \textbf{exactly once} in two phases:
+\begin{itemize}
+    \item First: \textbf{Row-wise access} (i.e., $A[0][0], A[0][1], \ldots, A[1][0], \ldots$)
+    \item Then: \textbf{Column-wise access} (i.e., $A[0][0], A[1][0], \ldots, A[0][1], \ldots$)
+\end{itemize}
+
+
+\begin{enumerate}[label=\textbf{Q2.\arabic*.}]
+    \item How many \textbf{cache misses} occur in the \textbf{row-wise access}?
+    \item How many \textbf{cache misses} occur in the \textbf{column-wise access}?
+\end{enumerate}
+
+\vspace{1em}
+% ===============================
+\newpage
+\subsection*{Q30 Conflict Misses in Direct-Mapped Cache}
+A system has:
+\begin{itemize}
+    \item Byte-addressable memory of \textbf{256 KB}
+    \item A \textbf{direct-mapped cache} with \textbf{64 lines}
+    \item \textbf{Block size = 8 bytes}
+\end{itemize}
+A 2D byte array $B[128][16]$ is stored starting from address \texttt{0x0000}. The array is accessed \textbf{row by row}, and each element is accessed exactly once.
+
+
+\begin{enumerate}[label=\textbf{Q3.\arabic*.}]
+    \item How many \textbf{cache lines} will be used during this traversal?
+    \item How many \textbf{conflict misses} will occur due to cache line replacements?
+\end{enumerate}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Pipelining %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%5
+
+\section{Pipelining: GATE-style Numerical and Conceptual Questions}
+
+\subsection*{Q1 [GATE 2021 Style]}
+Consider a pipelined processor with $5$ stages: Instruction Fetch (\textsf{IF}), Instruction Decode (\textsf{ID}), Execute (\textsf{EX}), Memory Access (\textsf{MEM}), and Write Back (\textsf{WB}). Each stage takes $1$ cycle, except for \textsf{EX}, which takes $1$ cycle for \textsf{ADD} and $2$ cycles for \textsf{MUL}. Assume that the \textsf{EX} stage performs register reads as well. The following sequence of $8$ instructions is executed:
+\[
+\textsf{ADD, MUL, ADD, MUL, ADD, MUL, ADD, MUL}
+\]
+Each \textsf{MUL} depends on the preceding \textsf{ADD}, and each \textsf{ADD} (except the first) depends on the previous \textsf{MUL}. 
+
+Assuming in-order execution:
+\begin{itemize}
+    \item[a.] Calculate the execution time with operand forwarding.
+    \item[b.] Calculate the execution time without operand forwarding (stall cycles inserted).
+    \item[c.] Compute the \textit{speedup} as:
+    \[
+    \text{Speedup} = \dfrac{\text{Time without forwarding}}{\text{Time with forwarding}}
+    \]
+    Round to two decimal places.
+\end{itemize}
+
+\subsection*{Q2 [GATE 2018 Style]}
+The instruction pipeline of a RISC processor has the following stages: Instruction Fetch (IF), Instruction Decode (ID), Operand Fetch (OF), Perform Operation (PO), and Writeback (WB). The IF, ID, OF, and WB stages take $1$ cycle each. Consider a sequence of $100$ instructions. In the PO stage:
+\begin{itemize}
+    \item 40 instructions take 3 cycles,
+    \item 35 instructions take 2 cycles,
+    \item 25 instructions take 1 cycle.
+\end{itemize}
+Assume no hazards.
+
+\textbf{Q:} What is the total number of cycles to complete all 100 instructions?
+
+\subsection*{Q3}
+In a non-interleaved $5$-stage pipeline, each stage takes $1$ cycle. There are $2$ branches in the instruction sequence of $20$ instructions. The branch penalty is $2$ cycles (i.e., two flushes). 
+
+\textbf{Q:} How many cycles are needed to complete the program assuming ideal conditions otherwise?
+
+\subsection*{Q4}
+A $4$-stage pipeline with stages: IF, ID, EX, WB, executes $n$ instructions. The pipeline starts with empty registers. There are $k$ RAW data hazards, each causing $1$ stall. 
+
+\textbf{Q:} Give a formula to compute the total number of cycles to execute $n$ instructions.
+
+\newpage
+\subsection*{Q5}
+Assume a $5$-stage pipelined processor with full forwarding and hazard detection. An instruction requires a stall if its source operand is produced by a load immediately before it. 
+
+Given the instruction sequence:
+\begin{verbatim}
+LOAD R1, 0(R2)
+ADD R3, R1, R4
+MUL R5, R3, R6
+\end{verbatim}
+\textbf{Q:} How many stalls are required and what is the total number of cycles needed?
+
+\subsection*{Q6}
+Consider a pipeline with the following execution times per stage:
+\[
+\text{IF: }1, \quad \text{ID: }1, \quad \text{EX: }2, \quad \text{MEM: }1, \quad \text{WB: }1
+\]
+A sequence of 10 instructions with no dependencies is run. Assume full pipelining and no stalls.
+
+\textbf{Q:} What is the total time taken to complete all instructions?
+
+\subsection*{Q7}
+In a $6$-stage pipeline, a branch instruction is resolved in the fourth stage. The branch penalty is 3 cycles. The branch frequency in a program is 20\%. The program consists of $1000$ instructions.
+
+\textbf{Q:} Estimate the total number of cycles lost due to branch penalty.
+
+\newpage
+\subsection*{Q8.} A $5$-stage pipelined processor has Instruction Fetch (IF), Instruction Decode (ID), Operand Fetch (OF), Perform Operation (PO), and Write Operand (WO) stages. The IF, ID, OF, and WO stages take $1$ clock cycle each for any instruction. The PO stage takes:
+\begin{itemize}
+    \item $1$ cycle for \texttt{ADD}, \texttt{SUB}
+    \item $3$ cycles for \texttt{MUL}
+    \item $6$ cycles for \texttt{DIV}
+\end{itemize}
+Operand forwarding is used.
+
+What is the total number of clock cycles required to execute the following instruction sequence?
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Instruction} & \textbf{Meaning} \\
+\hline
+\texttt{$I_{0}$: MUL R2, R0, R1} & $R_2 \leftarrow R_0 \times R_1$ \\
+\texttt{$I_{1}$: DIV R5, R3, R4} & $R_5 \leftarrow R_3 \div R_4$ \\
+\texttt{$I_{2}$: ADD R2, R5, R2} & $R_2 \leftarrow R_5 + R_2$ \\
+\texttt{$I_{3}$: SUB R5, R2, R6} & $R_5 \leftarrow R_2 - R_6$ \\
+\hline
+\end{tabular}
+\caption{Instruction Sequence with Meaning}
+\end{table}
+
+
+\begin{enumerate}[label=(\alph*)]
+    \item 13 \hspace{5cm} (c) 17
+    \item 15 \hspace{5cm} (d) 19
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection*{Q9.} Same processor as in Q8. What is the total number of clock cycles required to execute:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Instruction} & \textbf{Meaning} \\
+\hline
+\texttt{$I_{0}$: ADD R1, R2, R3} & $R_1 \leftarrow R_2 + R_3$ \\
+\texttt{$I_{1}$: MUL R4, R1, R5} & $R_4 \leftarrow R_1 \times R_5$ \\
+\texttt{$I_{2}$: DIV R6, R4, R1} & $R_6 \leftarrow R_4 \div R_1$ \\
+\texttt{$I_{3}$: SUB R7, R6, R8} & $R_7 \leftarrow R_6 - R_8$ \\
+\hline
+\end{tabular}
+\caption{Instruction Sequence with Semantic Meaning}
+\end{table}
+
+
+\begin{enumerate}[label=(\alph*)]
+    \item 14 \hspace{5cm} (c) 20
+    \item 17 \hspace{5cm} (d) 23
+\end{enumerate}
+
+\subsection*{Q10.} Same setup. Evaluate the pipeline execution time (in clock cycles) for the following:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Instruction} & \textbf{Meaning} \\
+\hline
+\texttt{$I_{0}$: DIV R9, R1, R2} & $R_9 \leftarrow R_1 \div R_2$ \\
+\texttt{$I_{1}$: ADD R5, R3, R4} & $R_5 \leftarrow R_3 + R_4$ \\
+\texttt{$I_{2}$: MUL R9, R5, R6} & $R_9 \leftarrow R_5 \times R_6$ \\
+\texttt{$I_{3}$: SUB R1, R9, R7} & $R_1 \leftarrow R_9 - R_7$ \\
+\hline
+\end{tabular}
+\caption{Instruction Sequence and Semantics}
+\end{table}
+
+
+\begin{enumerate}[label=(\alph*)]
+    \item 16 \hspace{5cm} (c) 22
+    \item 19 \hspace{5cm} (d) 25
+\end{enumerate}
+
+\subsection*{Q11.} Pipeline and instruction latencies same as above. Estimate clock cycles for:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.3}
+\begin{tabular}{|c|l|}
+\hline
+\textbf{Instruction} & \textbf{Meaning} \\
+\hline
+\texttt{$I_{0}$: MUL R1, R2, R3} & $R_1 \leftarrow R_2 \times R_3$ \\
+\texttt{$I_{1}$: DIV R4, R1, R5} & $R_4 \leftarrow R_1 \div R_5$ \\
+\texttt{$I_{2}$: MUL R6, R4, R1} & $R_6 \leftarrow R_4 \times R_1$ \\
+\hline
+\end{tabular}
+\caption{Instruction Sequence and Semantics}
+\end{table}
+
+\begin{enumerate}[label=(\alph*)]
+    \item 18 \hspace{5cm} (c) 23
+    \item 20 \hspace{5cm} (d) 25
+\end{enumerate}

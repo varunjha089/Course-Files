@@ -1,0 +1,944 @@
+\section{Functional Dependencies (FDs)}
+
+\subsection*{Q1. Definition Understanding}
+Let $R(A, B, C)$ be a relation. Which of the following best defines a functional dependency?
+
+\begin{enumerate}[label=(\alph*)]
+    \item A constraint where $A$ and $B$ must be unique.
+    \item A rule where the value of one attribute determines another.
+    \item A relationship between two tables.
+    \item A key that uniquely identifies a tuple.
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q2. Trivial Functional Dependency}
+Which of the following is always a \textbf{trivial functional dependency}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A \rightarrow B$
+    \item $AB \rightarrow A$
+    \item $A \rightarrow AB$
+    \item $A \rightarrow A$
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q3. Inferring Dependencies}
+Given the FDs: $A \rightarrow B$, $B \rightarrow C$, what can be inferred?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $C \rightarrow A$
+    \item $A \rightarrow C$
+    \item $AB \rightarrow C$
+    \item $C \rightarrow B$
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q4. Attribute Closure}
+Consider relation $R(A, B, C, D)$ and FDs: $A \rightarrow B$, $B \rightarrow C$, $CD \rightarrow A$. What is the closure of $\{C, D\}^+$?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{C, D, A, B\}$
+    \item $\{C, D, A, B, C\}$
+    \item $\{C, D, A, B, C, D\}$
+    \item $\{C, D\}$
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q5. Minimal Cover}
+Which of the following is \textbf{not} a required condition for a set of functional dependencies to be in \textbf{minimal cover}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Right side of each FD is a single attribute
+    \item No FD can be removed without changing closure
+    \item Left side of each FD is a single attribute
+    \item No attribute can be removed from LHS without changing closure
+\end{enumerate}
+
+
+\section[Normalization: 1NF, 2NF, 3NF, and BCNF]
+{Normalization: 1NF, 2NF, 3NF, and\\ BCNF}
+
+\subsection*{Question 1: First Normal Form (1NF)}
+Which of the following is a requirement for a relation to be in \textbf{First Normal Form (1NF)}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item It should have only atomic values
+    \item It must have a primary key
+    \item It must eliminate partial dependencies
+    \item It must eliminate transitive dependencies
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 2: Partial Dependency}
+Which of the following violates \textbf{Second Normal Form (2NF)}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Functional dependency from a candidate key to a non-prime attribute
+    \item Functional dependency from a part of candidate key to a non-prime attribute
+    \item Functional dependency between two non-prime attributes
+    \item Transitive dependency
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 3: Transitive Dependency}
+Which of the following is an example of a \textbf{transitive dependency}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A \rightarrow B$ and $B \rightarrow C$
+    \item $A \rightarrow B$ and $A \rightarrow C$
+    \item $AB \rightarrow C$
+    \item $C \rightarrow A$ and $C \rightarrow B$
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 4: Second Normal Form (2NF)}
+A relation is in \textbf{2NF} if:
+
+\begin{enumerate}[label=(\alph*)]
+    \item It is in 1NF and there is no transitive dependency
+    \item It is in 1NF and there is no partial dependency
+    \item It is in 3NF
+    \item All attributes are prime
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 5: Third Normal Form (3NF)}
+A relation is in \textbf{3NF} if:
+
+\begin{enumerate}[label=(\alph*)]
+    \item Every non-prime attribute is functionally dependent on every super key
+    \item No transitive dependency exists
+    \item It is in 2NF and every non-prime attribute is non-transitively dependent on every candidate key
+    \item It is in 2NF and all dependencies are trivial
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 6: Boyce-Codd Normal Form (BCNF)}
+Which of the following is a necessary condition for a relation to be in \textbf{BCNF}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item LHS of every FD is a super key
+    \item RHS of every FD is a super key
+    \item Relation is in 2NF and 3NF
+    \item Every attribute is part of some candidate key
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 7: 3NF vs BCNF}
+Which of the following is always true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $3NF \subseteq BCNF$
+    \item $BCNF \subseteq 3NF$
+    \item 3NF = BCNF
+    \item A relation in 3NF is always in BCNF
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 8: Normalization Goal}
+What is the primary objective of normalization?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Increase redundancy
+    \item Eliminate data anomalies
+    \item Improve data retrieval speed
+    \item Reduce memory size
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 9: Prime Attribute}
+In normalization, which of the following is a \textbf{prime attribute}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Attribute which is always NULL
+    \item Attribute not present in any key
+    \item Attribute which is part of a candidate key
+    \item Attribute that is a foreign key
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 10: Redundancy and Normal Forms}
+Which of the following statements is \textbf{correct}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 1NF eliminates redundancy completely
+    \item 2NF is sufficient to remove all data anomalies
+    \item 3NF ensures no transitive dependency
+    \item BCNF allows transitive dependencies
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[Normalization with Lossless Join and Dependency Preservation]
+{Normalization with Lossless Join and\\ Dependency Preservation}
+
+\subsection*{Question 1: Lossless Join Property}
+Which of the following decomposition guarantees a \textbf{lossless join}?\\
+\textbf{$R(A, B, C)$ with FD:}
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A \rightarrow B$ decomposed into $R_1(A, B)$ and $R_2(B, C)$
+    \item $A \rightarrow B$ decomposed into $R_1(A, B)$ and $R_2(A, C)$
+    \item $A \rightarrow C$ decomposed into $R_1(B, C)$ and $R_2(A, C)$
+    \item $A \rightarrow C$ decomposed into $R_1(B, C)$ and $R_2(B, A)$
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 2: Dependency Preservation Check}
+A relation $R(A, B, C)$ has FDs: $A \rightarrow B$, $B \rightarrow C$. It is decomposed into $R_1(A, B)$ and $R_2(B, C)$. Which of the following is \textbf{true}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The decomposition is dependency preserving but lossy
+    \item The decomposition is lossless and dependency preserving
+    \item The decomposition is lossless but not dependency preserving
+    \item The decomposition is neither lossless nor dependency preserving
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 3: 3NF vs BCNF with Dependency Preservation}
+Which of the following is \textbf{always true} about 3NF decomposition?
+
+\begin{enumerate}[label=(\alph*)]
+    \item It guarantees both lossless join and dependency preservation
+    \item It always gives BCNF decomposition
+    \item It guarantees lossless join only if all FDs are preserved
+    \item It is more strict than BCNF
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 4: Lossless Join Condition}
+Consider a decomposition of $R$ into $R_1$ and $R_2$. The decomposition is said to be \textbf{lossless} if:
+
+\begin{enumerate}[label=(\alph*)]
+    \item $R_1 \cap R_2 \rightarrow R_1$
+    \item $R_1 \cap R_2 \rightarrow R_2$
+    \item $(R_1 \cap R_2) \rightarrow R_1$ or $R_2$
+    \item $(R_1 \cap R_2) \rightarrow R$
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Question 5: Trade-off between BCNF and Dependency Preservation}
+Which of the following is \textbf{true} regarding BCNF decomposition?
+
+\begin{enumerate}[label=(\alph*)]
+    \item BCNF always preserves dependencies but may be lossy
+    \item BCNF is guaranteed to be lossless and dependency preserving
+    \item BCNF ensures lossless join but may not preserve all dependencies
+    \item BCNF does not ensure either lossless join or dependency preservation
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{SQL Conceptual Questions}
+
+% ----------------------------
+\subsection*{Q1. Basic SELECT - 1}
+Consider the table \texttt{Student}:
+
+\vspace{0.4cm}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{RollNo} & \textbf{Name} & \textbf{Marks} \\
+\hline
+101 & Alice & 70 \\
+102 & Bob & 85 \\
+103 & Charlie & 90 \\
+104 & David & 65 \\
+\hline
+\end{tabular}
+
+\vspace{0.4cm}
+What will be the output of the query?
+
+\begin{lstlisting}[language=SQL]
+SELECT Name FROM Student WHERE Marks > 75;
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Alice, David \hspace{5cm} (c) Charlie
+    \item Bob, Charlie \hspace{5cm} (d) No rows
+\end{enumerate}
+
+% ----------------------------
+\subsection*{Q2. Basic SELECT - 2}
+Consider the same \texttt{Student} table.\newline What is the output of the query?
+
+\begin{lstlisting}[language=SQL]
+SELECT COUNT(*) FROM Student WHERE Name LIKE '%a%';
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item 1 \hspace{5cm} (c) 3
+    \item 2 \hspace{5cm} (c) 4
+\end{enumerate}
+
+% ----------------------------
+\subsection*{Q3. Aggregates - 1}
+Consider the table \texttt{Sales}:
+\vspace{0.4cm}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Salesman} & \textbf{Region} & \textbf{Amount} \\
+\hline
+S1 & East & 100 \\
+S1 & East & 150 \\
+S2 & West & 200 \\
+S2 & East & 100 \\
+\hline
+\end{tabular}
+
+What will the following query return?
+
+\begin{lstlisting}[language=SQL]
+SELECT Region, SUM(Amount) 
+FROM Sales 
+GROUP BY Region;
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Two rows: (East, 350) and (West, 200)
+    \item One row: (East, 250)
+    \item Three rows
+    \item Error
+\end{enumerate}
+
+% ----------------------------
+\subsection*{Q4. Aggregates - 2}
+Consider the same \texttt{Sales} table. What will be the output of the query?
+
+\begin{lstlisting}[language=SQL]
+SELECT Salesman 
+FROM Sales 
+GROUP BY Salesman 
+HAVING SUM(Amount) > 200;
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item S1
+    \item S2
+    \item S1 and S2
+    \item None
+\end{enumerate}
+
+% ----------------------------
+\subsection*{Q5. CTE (WITH) - 1}
+Consider the table \texttt{Employee}:
+
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{EmpID} & \textbf{Name} & \textbf{Salary} \\
+\hline
+1 & A & 10000 \\
+2 & B & 20000 \\
+3 & C & 30000 \\
+4 & D & 40000 \\
+\hline
+\end{tabular}
+
+What will the following query return?
+
+\begin{lstlisting}[language=SQL]
+WITH HighSalary AS (
+    SELECT * FROM Employee WHERE Salary > 20000
+)
+SELECT COUNT(*) FROM HighSalary;
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item 2
+    \item 1
+    \item 3
+    \item 0
+\end{enumerate}
+
+% ----------------------------
+\subsection*{Q6. CTE (WITH) - 2}
+Consider the same \texttt{Employee} table. What does this query return?
+
+\begin{lstlisting}[language=SQL]
+WITH EmpCTE AS (
+    SELECT Name, Salary FROM Employee
+)
+SELECT Name FROM EmpCTE WHERE Salary < 25000;
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item A, B
+    \item A
+    \item B, C
+    \item A, B, C
+\end{enumerate}
+
+% ----------------------------
+\subsection*{Q7. Joins - 1}
+Consider the following tables:
+
+\textbf{Course}
+
+\begin{tabular}{|c|c|}
+\hline
+\textbf{CID} & \textbf{CName} \\
+\hline
+1 & DBMS \\
+2 & OS \\
+\hline
+\end{tabular}
+
+\textbf{Enrolled}
+
+\begin{tabular}{|c|c|}
+\hline
+\textbf{SID} & \textbf{CID} \\
+\hline
+101 & 1 \\
+102 & 2 \\
+103 & 1 \\
+\hline
+\end{tabular}
+
+What will the following query return?
+
+\begin{lstlisting}[language=SQL]
+SELECT CName 
+FROM Course C, Enrolled E 
+WHERE C.CID = E.CID;
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item DBMS, OS
+    \item DBMS, OS, DBMS
+    \item OS, OS
+    \item DBMS only
+\end{enumerate}
+
+% ----------------------------
+\subsection*{Q8. Joins - 2}
+Using the same \texttt{Course} and \texttt{Enrolled} tables, consider:
+
+\begin{lstlisting}[language=SQL]
+SELECT C.CName, COUNT(*)
+FROM Course C LEFT JOIN Enrolled E
+ON C.CID = E.CID
+GROUP BY C.CName;
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item DBMS: 2, OS: 1
+    \item DBMS: 1, OS: 2
+    \item DBMS: 1, OS: 1
+    \item DBMS: 2, OS: 2
+\end{enumerate}
+
+% ======================================
+\subsection*{Q9. Relational Division - 1 (Moderate)}
+Consider the following two tables:
+
+\textbf{Student}
+
+\begin{tabular}{|c|c|}
+\hline
+\textbf{SID} & \textbf{Name} \\
+\hline
+1 & Alice \\
+2 & Bob \\
+3 & Charlie \\
+\hline
+\end{tabular}
+
+\textbf{Enrolled}
+
+\begin{tabular}{|c|c|}
+\hline
+\textbf{SID} & \textbf{Course} \\
+\hline
+1 & DBMS \\
+1 & OS \\
+2 & DBMS \\
+2 & OS \\
+3 & DBMS \\
+\hline
+\end{tabular}
+
+We want to find students who are enrolled in **all** courses that Bob is enrolled in. Which query achieves this?
+
+\begin{lstlisting}[language=SQL]
+SELECT S.Name 
+FROM Student S
+WHERE NOT EXISTS (
+    SELECT C.Course
+    FROM Enrolled C
+    WHERE C.SID = 2
+    EXCEPT
+    SELECT E.Course
+    FROM Enrolled E
+    WHERE E.SID = S.SID
+);
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Alice only
+    \item Alice and Bob
+    \item Bob only
+    \item Charlie
+\end{enumerate}
+
+% ======================================
+\subsection*{Q10. Relational Division - 2 (Hard)}
+Using the same tables as above, which students are enrolled in **all** the courses offered in the \texttt{Course} table?
+
+\textbf{Course}
+
+\begin{tabular}{|c|}
+\hline
+\textbf{Course} \\
+\hline
+DBMS \\
+OS \\
+\hline
+\end{tabular}
+
+\begin{lstlisting}[language=SQL]
+SELECT S.Name
+FROM Student S
+WHERE NOT EXISTS (
+    SELECT C.Course
+    FROM Course C
+    EXCEPT
+    SELECT E.Course
+    FROM Enrolled E
+    WHERE E.SID = S.SID
+);
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Bob only
+    \item Alice and Bob
+    \item All students
+    \item No student
+\end{enumerate}
+
+% ======================================
+\subsection*{Q11. Set Operation - INTERSECT (Moderate)}
+Consider the table \texttt{Takes}:
+
+\begin{tabular}{|c|c|}
+\hline
+\textbf{SID} & \textbf{Course} \\
+\hline
+1 & DBMS \\
+1 & OS \\
+2 & DBMS \\
+3 & OS \\
+\hline
+\end{tabular}
+
+What will the following query return?
+
+\begin{lstlisting}[language=SQL]
+SELECT SID FROM Takes WHERE Course = 'DBMS'
+INTERSECT
+SELECT SID FROM Takes WHERE Course = 'OS';
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item 1 only
+    \item 1 and 2
+    \item 1 and 3
+    \item All students
+\end{enumerate}
+
+% ======================================
+\subsection*{Q12. Set Operation - EXCEPT (Hard)}
+Using the same \texttt{Takes} table, evaluate:
+
+\begin{lstlisting}[language=SQL]
+SELECT SID FROM Takes WHERE Course = 'DBMS'
+EXCEPT
+SELECT SID FROM Takes WHERE Course = 'OS';
+\end{lstlisting}
+
+\begin{enumerate}[label=(\alph*)]
+    \item 1
+    \item 2
+    \item 2 and 3
+    \item None
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section{Tuple Relational Calculus (TRC)}
+\textbf{- Moderate to Hard Questions}
+
+\subsection*{Q1. Division Query using TRC (Moderate)}
+Let \texttt{Enrolled(SID, Course)} store student-course enrollments, and\\ 
+\texttt{Course(Course)} store all available courses. Write a TRC query to\\ 
+find all students who are enrolled in \textbf{all courses}.
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{ t \mid \exists s\ (Enrolled(s) \wedge t.SID = s.SID)\}$
+    \item $\{ t \mid \forall c\ (Course(c) \rightarrow \exists e\ (Enrolled(e) \wedge e.SID = t.SID \wedge e.Course = c.Course)) \}$
+    \item $\{ t \mid \forall c\ (Course(c) \wedge Enrolled(t.SID, c.Course)) \}$
+    \item $\{ t \mid \exists c\ (Course(c) \wedge \neg Enrolled(t.SID, c.Course)) \}$
+\end{enumerate}
+
+% ================================
+\subsection*{Q2. Universal Quantification (Hard)}
+Let \texttt{Takes(SID, Course)}. Find all students who are enrolled in **every course that student 10 is enrolled in**.
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{ t \mid \forall x\ (Takes(x) \wedge x.SID = 10 \rightarrow Takes(t.SID, x.Course)) \}$
+    \item $\{ t \mid \forall x\ (Takes(x) \wedge x.Course = t.Course \rightarrow x.SID = 10) \}$
+    \item $\{ t \mid \exists x\ (Takes(x) \wedge x.SID = 10 \wedge Takes(t.SID, x.Course)) \}$
+    \item $\{ t \mid \exists x\ (Takes(x) \wedge x.SID = 10 \rightarrow \neg Takes(t.SID, x.Course)) \}$
+\end{enumerate}
+
+% ================================
+\subsection*{Q3. Negation in TRC (Moderate)}
+Which of the following TRC queries correctly returns students who have **not enrolled** in any course?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{ t \mid Student(t) \wedge \neg \exists e\ (Enrolled(e) \wedge e.SID = t.SID) \}$
+    \item $\{ t \mid \exists e\ (Enrolled(e) \wedge e.SID \neq t.SID) \}$
+    \item $\{ t \mid \forall e\ (Enrolled(e) \rightarrow e.SID \neq t.SID) \}$
+    \item Both (a) and (c)
+\end{enumerate}
+
+% ================================
+\subsection*{Q4. Existential-Negation Trap (Moderate)}
+What does the following TRC query return?
+
+\[
+\{ t \mid Student(t) \wedge \exists e\ (\neg Enrolled(e) \vee e.SID \neq t.SID) \}
+\]
+
+\begin{enumerate}[label=(\alph*)]
+    \item Students not enrolled in any course
+    \item All students
+    \item Students enrolled in all courses
+    \item Students enrolled in exactly one course
+\end{enumerate}
+
+% ================================
+\subsection*{Q5. Complex Join in TRC (Hard)}
+Let \texttt{Employee(EID, Name, DeptID)} and\\ 
+\texttt{Department(DeptID, ManagerID)}. \\
+Find all employees who manage their own department.
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{ t \mid Employee(t) \wedge \exists d\ (Department(d) \wedge t.EID = d.ManagerID) \}$
+    \item
+        \begin{multline*}
+        \{ t \mid \exists d\ (Department(d) \wedge\ t.DeptID = d.DeptID \\
+        \wedge\ t.EID = d.ManagerID) \}
+        \end{multline*}
+    \item $\{ t \mid Department(t) \wedge t.EID = t.ManagerID \}$
+    \item $\{ t \mid \exists d\ (Employee(d) \wedge d.ManagerID = t.EID) \}$
+\end{enumerate}
+
+% ================================
+\subsection*{Q6. Ambiguous Variable Binding (Hard)}
+Which of the following TRC expressions is **incorrect** due to ambiguous or unsafe use of variables?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\{ t \mid Enrolled(t) \wedge \exists x\ (Student(x) \wedge x.SID = y.SID) \}$
+    \item \begin{multline*}
+            \{ t \mid \forall x\ (Course(x) \rightarrow \exists e\ (Enrolled(e) \\
+            \wedge\ e.SID = t.SID \wedge\ e.Course = x.Course)) \}
+            \end{multline*}
+    % \item $\{ t \mid \forall x\ (Course(x) \rightarrow \exists e\ (Enrolled(e) \wedge e.SID = t.SID \wedge e.Course = x.Course)) \}$
+    \item $\{ t \mid \neg \exists x\ (Enrolled(x) \wedge x.SID = t.SID) \}$
+    \item $\{ t \mid \exists x\ (Student(x) \wedge t.SID = x.SID) \}$
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+% \section{Transaction Scheduling:\newline Conflict-Equivalence and Serializability}
+\section[Transaction Scheduling: Conflict-Equivalence and Serializability]
+{Transaction Scheduling:\\ Conflict-Equivalence and Serializability}
+
+\subsection*{Q1. Conflict Serializability - Cycle Detection (Moderate)}
+Consider the following schedule $S_1$ involving three transactions $T_1$, $T_2$, and $T_3$:
+
+\begin{center}
+\begin{tabular}{l}
+    $r_1(X);$ $r_2(Y);$ $w_1(Y);$ $r_3(X);$ $w_2(X);$ $w_3(Y)$
+\end{tabular}
+\end{center}
+
+Which of the following is true?
+\begin{enumerate}[label=(\alph*)]
+    \item $S_1$ is conflict-serializable and equivalent to $T_1 \rightarrow T_2 \rightarrow T_3$
+    \item $S_1$ is not conflict-serializable
+    \item $S_1$ is conflict-serializable and equivalent to $T_2 \rightarrow T_1 \rightarrow T_3$
+    \item $S_1$ is conflict-serializable and equivalent to $T_3 \rightarrow T_2 \rightarrow T_1$
+\end{enumerate}
+
+% ================================
+\subsection*{Q2. Precedence Graph Trick (Hard)}
+Consider the following schedule $S_2$:
+
+\begin{center}
+\begin{tabular}{l}
+    $r_1(A);$ $r_2(B);$ $w_2(A);$ $r_3(B);$ $w_1(B);$ $w_3(A)$
+\end{tabular}
+\end{center}
+
+Which of the following is true about $S_2$?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $S_2$ has a cycle in the precedence graph; not serializable
+    \item $S_2$ is view-serializable but not conflict-serializable
+    \item $S_2$ is conflict-serializable and equivalent to $T_2 \rightarrow T_1 \rightarrow T_3$
+    \item $S_2$ is conflict-serializable and equivalent to $T_1 \rightarrow T_2 \rightarrow T_3$
+\end{enumerate}
+
+% ================================
+\subsection*{Q3. Conflict-Equivalence Reasoning (Moderate)}
+Which of the following pairs of schedules are conflict-equivalent?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $S_3: r_1(X); w_2(X); w_1(Y); r_2(Y)$ and $S_4: w_2(X); r_1(X); w_1(Y); r_2(Y)$
+    \item $S_3: r_1(X); w_2(X); w_1(Y); r_2(Y)$ and $S_4: w_2(X); w_1(Y); r_2(Y); r_1(X)$
+    \item $S_3: r_1(X); w_2(X); w_1(Y); r_2(Y)$ and $S_4: w_2(X); w_1(Y); r_1(X); r_2(Y)$
+    \item None of the above
+\end{enumerate}
+
+% ================================
+\subsection*{Q4. Conflict-Serializability of Long Schedule (Hard)}
+Given the following schedule $S_5$:
+
+\begin{center}
+\begin{tabular}{l}
+    $r_1(A); w_2(B); r_3(A); w_1(B); r_2(A); w_3(B);$
+\end{tabular}
+\end{center}
+
+Which of the following is the correct serialization order?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Not conflict-serializable due to cycle
+    \item $T_1 \rightarrow T_3 \rightarrow T_2$
+    \item $T_3 \rightarrow T_1 \rightarrow T_2$
+    \item $T_2 \rightarrow T_1 \rightarrow T_3$
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{B and B+ Tree Indexing (DBMS)}
+
+\subsection*{Q1}
+A B-Tree of order $d$ contains $n$ keys. What is the minimum number of nodes (excluding leaves) that the B-Tree can have?
+
+\subsection*{Q2}
+In a B+ Tree of order $4$, each internal node (except root) must have at least how many children?
+
+\subsection*{Q3}
+Consider a B+ Tree used for indexing records in a file. Which of the following is true?  
+
+\begin{enumerate}[label=(\alph*)]
+    \item Search always ends at internal node  
+    \item All keys are stored only in the internal nodes
+    \item Data is stored only at the leaf level
+    \item It requires more space than a B-Tree
+\end{enumerate}
+
+\subsection*{Q4}
+Suppose a B+ Tree of order $5$ is storing 10000 records. If each node (except leaves) has maximum children and fan-out remains the same throughout the tree, what is the height of the tree?
+
+\subsection*{Q5}
+A B-Tree has a branching factor of $6$ and contains $30000$ keys. What is the maximum number of nodes that this B-Tree can have?
+
+\subsection*{Q6}
+A B+ Tree index is built on a file with $2^{20}$ records. Each leaf node of the tree can store $256$ key-pointer pairs. What is the minimum height of the B+ Tree (including root and leaf levels)?
+
+\subsection*{Q7}
+What is the main difference between B and B+ Trees that makes B+ Trees better suited for range queries?
+
+\subsection*{Q8}
+In a B+ Tree, how many block accesses are required to locate a record if the tree has height $h$ (including root and leaf), assuming binary search is used at each node?
+
+\subsection*{Q9}
+Which of the following scenarios can cause a B-Tree node split during insertion?  
+\begin{enumerate}[label=(\alph*)]
+    \item When inserting at an internal node  
+    \item When inserting at a leaf node only
+    \item When a node becomes full  
+    \item Only if all sibling nodes are also full
+\end{enumerate}
+
+
+\subsection*{Q10}
+Which of the following operations is more efficient in a B+ Tree than a B-Tree?  
+
+\begin{enumerate}[label=(\alph*)]
+    \item Point Queries
+    \item Insertion
+    \item Deletion
+    \item Range Search queries
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{B+ Tree: Moderate to Hard}
+
+\subsection*{Q1 [MCQ]}
+Consider a B$^+$ tree with a block size of $512$ bytes, key size of $8$ bytes, and pointer size of $4$ bytes. What is the maximum number of keys that can be stored in an internal node?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 32
+    \item 42
+    \item 63
+    \item 64
+\end{enumerate}
+
+\subsection*{Q2 [MSQ]}
+Which of the following are true about B$^+$ trees?
+  
+\begin{enumerate}[label=(\alph*)]
+    \item All data records are stored only in leaf nodes
+    \item Leaf nodes of B$^+$ trees are linked
+    \item Internal nodes store both data and pointers
+    \item A B$^+$ tree of order $m$ has a maximum of $m$ children for internal nodes
+\end{enumerate}
+
+\subsection*{Q3 [NAT]}
+A B$^+$ tree index is built on a field with 10,000 unique keys. The tree has a fanout of $100$. What is the minimum height of the tree (root to leaf)?
+
+\textbf{Answer:} \rule{3cm}{0.15mm}
+
+\subsection*{Q4 [MCQ]}
+What is the minimum number of keys in a B$^+$ tree of order $m$ and height $h$ (root at level 1)?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $m^{h} - 1$  
+    \item $2^{h} - 1$  
+    \item $2m^{h-1} - 1$  
+    \item $m^{h-1}$
+\end{enumerate}
+
+
+\subsection*{Q5 [MSQ]}
+Which of the following operations may require merging or redistribution in a B$^+$ tree?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Insertion  
+    \item Deletion  
+    \item Searching  
+    \item Updating a key
+\end{enumerate}  
+
+
+\subsection*{Q6 [MCQ]}
+In a B$^+$ tree used for indexing, which of the following is false?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Searching always starts from the root
+    \item All leaf nodes are at the same depth
+    \item Data is present in both internal and leaf nodes
+    \item Leaf nodes are linked in a sequential manner
+\end{enumerate}
+
+\subsection*{Q7 [NAT]}
+In a B$^+$ tree, the leaf nodes can store up to $100$ data entries. If there are $1,000,000$ records in a table, the minimum number of leaf nodes required is:
+
+\textbf{Answer:} \rule{3cm}{0.15mm}
+
+\subsection*{Q8 [MCQ]}
+If a B$^+$ tree has a fanout $f$ and contains $N$ keys, what is the worst-case time complexity to find a key?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\mathcal{O}(\log_2 N)$ 
+    \item $\mathcal{O}(\log_f N)$ 
+    \item $\mathcal{O}(f)$ 
+    \item $\mathcal{o}(1)$
+\end{enumerate}
+
+\subsection*{Q9 [MSQ]}
+Which of the following advantages do B$^+$ trees have over B-trees?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Range queries are faster  
+    \item Leaf nodes form a linked list
+    \item Supports binary search directly on internal nodes
+    \item All records can be found in internal nodes
+\end{enumerate}
+
+\subsection*{Q10 [NAT]}
+A B$^+$ tree is used for indexing 500,000 records. The fanout of the tree is $50$, and each leaf node holds $100$ records.  
+What is the minimum height of the tree?
+
+\textbf{Answer:} \rule{3cm}{0.15mm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \subsection[B and B$^+$ Trees: Balance Property Questions]
+% {B and B$^+$ Trees:\\ Balance Property Questions}
+\section[B and B+ Trees: Balance Property Questions]
+{B and B\textsuperscript{+} Trees:\\ Balance Property Questions}
+
+
+\subsection*{Q1 [MCQ]}
+Which of the following is \textbf{true} about the balance property of a B or B$^+$ tree?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Only the root and leaves need to be at the same level
+    \item All internal nodes must be full for the tree to be balanced
+    \item All leaf nodes must be at the same depth
+    \item Balance is not a property of B and B$^+$ trees
+\end{enumerate}
+
+
+\subsection*{Q2 [MSQ]}
+Under which of the following conditions is a B$^+$ tree guaranteed to remain balanced?
+
+\begin{enumerate}[label=(\alph*)]
+    \item After every insertion, keys are redistributed or split
+    \item After every deletion, underflow is handled by merging or redistributing
+    \item The height of subtrees may differ at most by 1  
+    \item All paths from root to any leaf must be of same length
+\end{enumerate}
+
+\subsection*{Q3 [MCQ]}
+In a B-tree of order $m$, which of the following is necessary to ensure that the tree remains balanced after several insertions and deletions?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Leaf nodes must be sorted 
+    \item Every non-leaf node except the root must have at least $\lceil \frac{m}{2} \rceil$ children
+    \item Every internal node must have exactly $m$ children
+    \item All internal nodes must be leaves
+\end{enumerate}
+
+
+\subsection*{Q4 [MCQ]}
+A B$^+$ tree is built by inserting $N$ unique keys into an initially empty tree. Which statement is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item It may become unbalanced due to skewed insertions
+    \item Its internal structure ensures it is always balanced
+    \item Balance is manually enforced by rebalancing operations periodically 
+    \item Balance is only possible when $N$ is a power of the tree's order
+\end{enumerate}
+
+\subsection*{Q5 [MSQ]}
+Which of the following operations can affect the balance of a B or B$^+$ tree?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Insertion at a leaf node
+    \item Deletion from an internal node
+    \item Search operation
+    \item Range query between leaf nodes
+\end{enumerate}

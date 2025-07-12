@@ -1,0 +1,132 @@
+\section{Discrete Distributions and Conditional Expectation}
+
+% \subsection*{Probability: Bernoulli, Binomial, Geometric, Poisson, Joint RVs}
+
+\begin{enumerate}
+
+\item Let \(X\) be a Bernoulli random variable with \(P(X=1)=0.7\). Find \(E[X]\).
+
+\begin{enumerate}[label=(\alph*)]
+\item 0.3 \quad \item 0.7 \quad \item 1.0 \quad \item 0.49
+\end{enumerate}
+
+\item A Binomial variable \(X \sim \text{Bin}(n=5, p=0.6)\). Find \(P(X=2)\).
+
+\begin{enumerate}[label=(\alph*)]
+\item 0.3456 \quad \item 0.2304 \quad \item 0.4096 \quad \item 0.345
+\end{enumerate}
+
+\item A fair coin is tossed 4 times. What is the expected number of heads?
+
+\begin{enumerate}[label=(\alph*)]
+\item 1 \quad \item 2 \quad \item 4 \quad \item 0.5
+\end{enumerate}
+
+\item \(X \sim \text{Geom}(p=0.25)\). Find \(E[X]\).
+
+\begin{enumerate}[label=(\alph*)]
+\item 1 \quad \item 2 \quad \item 4 \quad \item 3
+\end{enumerate}
+
+\item A machine produces defective items with probability \(p=0.05\). If 100 items are produced, what is the expected number of defectives?
+
+\begin{enumerate}[label=(\alph*)]
+\item 1 \quad \item 5 \quad \item 10 \quad \item 2
+\end{enumerate}
+
+\item For \(X \sim \text{Poisson}(\lambda = 3)\), compute \(P(X = 2)\).
+
+\begin{enumerate}[label=(\alph*)]
+\item \(\frac{9e^{-3}}{2}\) \quad \item \(3e^{-2}\) \quad \item \(\frac{6e^{-3}}{2}\) \quad \item \(\frac{6e^{-3}}{1}\)
+\end{enumerate}
+
+\newpage
+\item A Poisson random variable has mean 4. What is its variance?
+
+\begin{enumerate}[label=(\alph*)]
+\item 2 \quad \item 4 \quad \item 1 \quad \item 8
+\end{enumerate}
+
+\item If \(X \sim \text{Bin}(n=10, p=0.2)\), find \(\text{Var}(X)\).
+
+\begin{enumerate}[label=(\alph*)]
+\item 1.6 \quad \item 2.0 \quad \item 4.0 \quad \item 3.2
+\end{enumerate}
+
+\item Let \(X \sim \text{Bin}(n=5, p)\). For what value of \(p\) is \(\text{Var}(X)\) maximized?
+
+\begin{enumerate}[label=(\alph*)]
+\item \(p = 0.5\) \quad \item \(p = 1.0\) \quad \item \(p = 0.25\) \quad \item \(p = 0.75\)
+\end{enumerate}
+
+\item In a Poisson process, what is \(P(X \geq 1)\) if \(\lambda = 2\)?
+
+\begin{enumerate}[label=(\alph*)]
+\item \(1 - e^{-2}\) \quad \item \(e^{-2}\) \quad \item \(1 - 2e^{-2}\) \quad \item \(1\)
+\end{enumerate}
+
+\item Two dice are rolled. Let \(X = \) sum, \(Y = \) max. What is \(E[Y \mid X=7]\)?
+
+\begin{enumerate}[label=(\alph*)]
+\item 4.5 \quad \item 5 \quad \item 4.83 \quad \item 6
+\end{enumerate}
+
+\newpage
+\item Joint PMF of \(X, Y\) is given as \(P(X=0,Y=0)=0.1\), \(P(0,1)=0.2\), \(P(1,0)=0.3\), \(P(1,1)=0.4\). Find \(P(X=1)\).
+
+\begin{enumerate}[label=(\alph*)]
+\item 0.7 \quad \item 0.4 \quad \item 0.3 \quad \item 0.5
+\end{enumerate}
+
+\item Using above joint PMF, find \(E[Y \mid X = 1]\)
+
+\begin{enumerate}[label=(\alph*)]
+\item 0.4 \quad \item 0.5 \quad \item 0.6 \quad \item 0.8
+\end{enumerate}
+
+\item Let \(X = 1\) if coin is Head, \(0\) otherwise. \(Y = 2X + 1\). Find \(\text{Cov}(X, Y)\)
+
+\begin{enumerate}[label=(\alph*)]
+\item 0.25 \quad \item 0.5 \quad \item 0 \quad \item 1
+\end{enumerate}
+
+\item If \(X, Y\) are independent with \(\text{Var}(X) = 3\), \(\text{Var}(Y) = 2\), what is \(\text{Cov}(X, Y)\)?
+
+\begin{enumerate}[label=(\alph*)]
+\item 0 \quad \item 1 \quad \item 5 \quad \item 6
+\end{enumerate}
+
+\item For same data, what is \(\text{Var}(X + Y)\)?
+
+\begin{enumerate}[label=(\alph*)]
+\item 3 \quad \item 5 \quad \item 6 \quad \item 1
+\end{enumerate}
+
+\item If \(\text{Cov}(X,Y) = 0\), and \(\rho(X,Y) = 0\), then:
+
+\begin{enumerate}[label=(\alph*)]
+\item X and Y are independent
+\item X and Y are uncorrelated
+\item X = Y
+\item None of these
+\end{enumerate}
+
+\item A fair die is rolled. Let \(X\) be the outcome. Compute \(E[X]\).
+
+\begin{enumerate}[label=(\alph*)]
+\item 3.0 \quad \item 3.5 \quad \item 4.0 \quad \item 3
+\end{enumerate}
+
+\item Let \(X\) be Poisson(\(\lambda = 2\)). Find \(P(X = 0 \mid X \text{ even})\)
+
+\begin{enumerate}[label=(\alph*)]
+\item \(\frac{e^{-2}}{\cosh(2)}\) \quad \item \(e^{-2}\) \quad \item \(2e^{-2}\) \quad \item \(\frac{e^{-2}}{2}\)
+\end{enumerate}
+
+\item For independent \(X,Y\) with \(E[X]=2, E[Y]=3\), compute \(E[XY]\)
+
+\begin{enumerate}[label=(\alph*)]
+\item 5 \quad \item 6 \quad \item 3 \quad \item 1
+\end{enumerate}
+
+\end{enumerate}

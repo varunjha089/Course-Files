@@ -1,0 +1,396 @@
+\section{Expected Value: GATE-Style Questions}
+
+\subsection*{Q1: Quiz Show Strategy (Based on GATE 2021)}
+A contestant is presented with two questions. If he answers the first question correctly, he is allowed to attempt the second one. Otherwise, he is disqualified. If he attempts question $i$ first, he will only be allowed to attempt the other question if he answers $i$ correctly. Let the probabilities that he knows the answers be $P_1 = 0.8$ and $P_2 = 0.5$. The rewards for answering questions correctly are $V_1 = 1000$ and $V_2 = 2000$ respectively.\\
+\textbf{Which question should he attempt first to maximize expected reward?}
+
+\begin{enumerate}[label=(\alph*)]
+\item Question 1
+\item Question 2
+\item Either order gives same expected value
+\item Not enough data to decide
+\end{enumerate}
+
+\subsection*{Q2: Quiz Show Variation}
+Let $P_1 = 0.6$, $P_2 = 0.9$, $V_1 = 3000$, $V_2 = 1000$.\\
+\textbf{Which question should he answer first for maximum expected value?}
+
+\begin{enumerate}[label=(\alph*)]
+\item Question 1
+\item Question 2
+\item Either order gives same expected value
+\item Cannot determine
+\end{enumerate}
+
+\subsection*{Q3: Quiz Show - NAT}
+Let $P_1 = 0.5$, $P_2 = 0.6$, $V_1 = 1000$, $V_2 = 2000$.\\
+\textbf{What is the maximum expected value (in \$) the contestant can receive?} (Enter integer)
+
+\subsection*{Q4: Quiz Show with Equal Rewards}
+Let $P_1 = 0.9$, $P_2 = 0.5$, and both questions carry reward of $V = 2000$.\\
+\textbf{Which question should be attempted first?}
+
+\begin{enumerate}[label=(\alph*)]
+\item Question 1
+\item Question 2
+\item Order does not matter
+\item Attempt both simultaneously
+\end{enumerate}
+
+\subsection*{Q5: Coin Toss Game}
+A biased coin with probability $p = 0.6$ of Heads is tossed 3 times. You earn \$10 for each Head and lose \$5 for each Tail.\\
+\textbf{What is the expected net earning?}
+
+\begin{enumerate}[label=(\alph*)]
+\item \$5.4
+\item \$6.0
+\item \$7.2
+\item \$8.1
+\end{enumerate}
+
+\subsection*{Q6: Dice Gamble}
+A player rolls a fair six-sided die. If it shows 1 or 2, he earns \$10. If it shows 3, 4, or 5, he earns \$5. If it shows 6, he loses \$20.\\
+\textbf{What is the expected earning from one roll?} (NAT – round to nearest integer)
+
+\subsection*{Q7: Card Drawing Game}
+You draw one card from a well-shuffled standard deck (52 cards). You get:
+- \$20 if the card is an Ace,
+- \$10 if it's a face card (J, Q, K),
+- \$5 if it's a number card (2–10).\\
+\textbf{What is the expected reward?} (NAT – up to 2 decimal places)
+
+\subsection*{Q8: Decision Tree EV}
+You are offered a game where you flip a coin:
+- If Heads, you roll a fair 6-sided die and earn \$die\_value × 10.
+- If Tails, you get nothing.\\
+\textbf{What is the expected value of this game?} (NAT – integer answer)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Variance: GATE-Level Conceptual and Numerical Questions}
+
+\subsection*{Q1: Conceptual (MCQ)}
+Let $X$ be a discrete random variable taking values in $\{1,2,3,4\}$ with uniform probability.\\
+What is $\text{Var}(X)$?
+
+\begin{enumerate}[label=(\alph*)]
+\item $\dfrac{5}{4}$
+\item $\dfrac{3.5^2}{2}$
+\item $\dfrac{5}{3}$
+\item $\dfrac{5}{2}$
+\end{enumerate}
+
+\subsection*{Q2: Calculation (NAT)}
+Let a random variable $X$ take values $\{-1, 0, 1\}$ with probabilities $P(X = -1) = 0.25$, $P(X = 0) = 0.5$, $P(X = 1) = 0.25$.\\
+Compute $\text{Var}(X) = \rule{2cm}{0.15mm}$
+
+\subsection*{Q3: Distribution Transformation (MCQ)}
+Let $X$ be a random variable with $\mathbb{E}[X] = 3$ and $\text{Var}(X) = 4$. Define $Y = 2X + 5$.\\
+What is $\text{Var}(Y)$?
+
+\begin{enumerate}[label=(\alph*)]
+\item $4$
+\item $8$
+\item $16$
+\item $64$
+\end{enumerate}
+
+\subsection*{Q4: Variance of Indicator Variable (MCQ)}
+Let $X$ be a Bernoulli random variable such that $P(X=1) = p$ and $P(X=0) = 1 - p$. What is $\text{Var}(X)$?
+
+\begin{enumerate}[label=(\alph*)]
+\item $p$
+\item $1-p$
+\item $p(1-p)$
+\item $p^2$
+\end{enumerate}
+
+\subsection*{Q5: Composite Distribution (NAT)}
+Let $X$ be a discrete random variable taking values $1, 2, 3$ with probabilities proportional to their square:
+\[
+P(X = x) = \dfrac{x^2}{\sum_{k=1}^3 k^2}
+\]
+Compute $\text{Var}(X)$.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Binomial Distribution}
+
+\subsection*{Q1}
+Let $X$ be a binomial random variable with parameters $n = 10$ and $p = 0.3$. What is the probability that $X$ is even? \\ 
+(a) $0.3828$ \quad (b) $0.5168$ \quad (c) $0.6578$ \quad (d) $0.8234$
+
+\subsection*{Q2}
+You toss a biased coin $n = 8$ times. Probability of getting a head is $p = 0.6$. What is the expected number of times you get exactly 3 heads? \\ 
+(a) $0.2458$ \quad (b) $0.2936$ \quad (c) $0.3125$ \quad (d) $0.3362$
+
+\subsection*{Q3}
+A random variable $X$ follows Binomial distribution with unknown $n$, but with $p = 0.5$. If $E[X] = 6$ and $\text{Var}(X) = 3$, then the value of $n$ is $\rule{1cm}{0.15mm}$.
+
+\subsection*{Q4}
+Let $X$ be a binomial random variable with parameters $n = 6$ and $p = 1/4$. Then $\mathbb{P}(X = 0 \cup X = 6)$ is equal to:\\  
+(a) $0.1780$ \quad (b) $0.2373$ \quad (c) $0.3342$ \quad (d) $0.3184$
+
+\subsection*{Q5}
+Consider a random variable $X \sim \text{Binomial}(10, p)$. Suppose it is known that $\mathbb{P}(X=3)$ is maximum. Which of the following values can $p$ take?  
+Select all that apply:\\  
+\textbf{MSQ:}  
+(a) $p = 0.25$ \quad (b) $p = 0.30$ \quad (c) $p = 0.33$ \quad (d) $p = 0.40$
+
+\subsection*{Q6}
+Let $X \sim \text{Binomial}(n, p)$ and $Y = n - X$. Which of the following statements is/are always true? \\ 
+\textbf{MSQ:}  \\
+(a) $Y$ is also binomially distributed with parameters $(n, 1 - p)$  \\
+(b) $\mathbb{E}[Y] = n(1 - p)$  \\
+(c) $\text{Var}(X) = \text{Var}(Y)$  \\
+(d) $X$ and $Y$ are independent
+
+\subsection*{Q7}
+Suppose you conduct $n$ independent Bernoulli trials with success probability $p$ and record the number of successes $X$. If $p$ is doubled and $n$ is halved (assume $np$ remains constant), then:\\  
+(a) Mean of $X$ remains the same but variance decreases  \\
+(b) Mean of $X$ increases but variance remains the same  \\
+(c) Both mean and variance remain the same  \\
+(d) Mean remains the same, but variance increases  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% The Poisson Random Variable %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Poisson Distribution}
+
+\subsection*{Q1}
+If the number of phone calls arriving at a call center follows a Poisson distribution with mean $5$ per minute, what is the probability that exactly $7$ calls arrive in a given minute?
+
+\subsection*{Q2}
+The number of errors in a page of a printed book follows a Poisson distribution with mean $0.3$. What is the probability that a randomly chosen page has \textbf{no} errors?
+
+\subsection*{Q3}
+Let $X \sim \text{Poisson}(\lambda)$. Which of the following statements is/are true?  
+\textbf{MSQ:}  \\
+(a) $\mathbb{E}[X] = \lambda$  \\
+(b) $\text{Var}(X) = \lambda^2$  \\
+(c) $P(X = 0) = e^{-\lambda}$  \\
+(d) $P(X = k) = \dfrac{\lambda^k e^{-\lambda}}{k!}, \forall k \in \mathbb{N}_0$\\
+
+\subsection*{Q4}
+The arrival of customers at a ticket counter follows a Poisson process with an average of $4$ customers per 10 minutes. What is the probability that \textbf{at least one} customer arrives in a 5-minute interval?
+
+\subsection*{Q5}
+Let $X_1 \sim \text{Poisson}(\lambda_1)$ and $X_2 \sim \text{Poisson}(\lambda_2)$ be independent. Then $X = X_1 + X_2$ follows a Poisson distribution. What is the parameter $\lambda$ of $X$?
+
+\newpage
+\subsection*{Q6}
+Suppose the number of customer arrivals at a store follows a Poisson process. Which of the following is \textbf{not} a property of the Poisson process?
+
+\textbf{MSQ:}  \\
+(a) Arrivals occur one at a time.  \\
+(b) The process has independent increments.  \\
+(c) The probability of an arrival in a very small interval is proportional to the length of the interval.  \\
+(d) The time between successive arrivals follows a uniform distribution.\\
+
+\subsection*{Q7}
+Let $X$ be a Poisson random variable with parameter $\lambda$. Consider the following statements:
+
+\textbf{MSQ:}  \\
+(a) The moment generating function (MGF) of $X$ exists and is finite for all real numbers. \\ 
+(b) The Poisson distribution is a limiting case of the Binomial distribution. \\ 
+(c) The sum of two independent Poisson random variables is not a Poisson random variable.  \\
+(d) The probability that $X$ takes an even value is the same as the probability it takes an odd value when $\lambda = \ln(2)$.\\
+
+\subsection*{Q8}
+The number of calls arriving at a call center in one minute follows a Poisson distribution with mean $\lambda = 4$. What is the probability that the number of calls in two consecutive minutes differs by more than $3$?
+
+\textbf{(a)} $>0.5$  \\
+\textbf{(b)} $<0.5$  \\
+\textbf{(c)} Equal to 0.5  \\
+\textbf{(d)} Cannot be determined without more information
+
+\newpage
+\subsection*{Q9}
+Let the number of printing errors per 100 pages in a book follow a Poisson distribution with a mean of $2$. What is the probability that a randomly selected 200-page segment contains \textbf{at most 2} errors?
+
+\textbf{(a)} $e^{-4}(1 + 4 + 8)$  \\
+\textbf{(b)} $e^{-2}(1 + 2 + 2^2)$  \\
+\textbf{(c)} $e^{-4}(1 + 4 + 8 + \frac{16}{6})$  \\
+\textbf{(d)} $1 - e^{-2}$
+
+\subsection*{Q10}
+A radioactive source emits $\alpha$-particles at an average rate of $3$ per second. What is the probability that in a $10$-second interval, at least one second will have more than $5$ emissions?
+
+\textbf{(a)} Greater than $0.9$  \\
+\textbf{(b)} Less than $0.5$  \\
+\textbf{(c)} Equal to 1  \\
+\textbf{(d)} Cannot be determined exactly\\
+
+\subsection*{Q11}
+A post office receives an average of $10$ customers per hour. If the post office is open for $8$ hours a day, what is the probability that there are \textbf{exactly 5 hours} in the day during which the number of customers exceeds 12?
+
+\textbf{(a)} Poisson with $\lambda = 8$ used with binomial  \\
+\textbf{(b)} Binomial with $n=8$, $p = P(X>12)$  \\
+\textbf{(c)} Cannot be modeled  \\
+\textbf{(d)} Binomial with $n=12$, $p = P(X<10)$\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% The Geometric Random Variable %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Geometric Random Variable: Moderate to Hard GATE Questions}
+
+\subsection*{Q1}
+Let $X$ be a geometric random variable with success probability $p = 0.2$. Compute $\mathbb{P}(X > 4)$.
+
+\textbf{(a)} $0.4096$  \\
+\textbf{(b)} $0.32768$  \\
+\textbf{(c)} $0.8^4$  \\
+\textbf{(d)} Both (b) and (c)
+
+\subsection*{Q2}
+If $X$ is a geometric random variable with parameter $p$, then what is the expected number of trials until the first success?
+
+\textbf{(a)} $\dfrac{1}{1 - p}$  \\
+\textbf{(b)} $\dfrac{1}{p}$  \\
+\textbf{(c)} $\dfrac{1 - p}{p}$  \\
+\textbf{(d)} $\dfrac{p}{1 - p}$
+
+\subsection*{Q3}
+Let $X$ be a geometric random variable with $p = 0.4$. Compute $\mathbb{P}(X = 3)$.
+
+\textbf{(a)} $0.144$  \\
+\textbf{(b)} $0.096$  \\
+\textbf{(c)} $0.36$  \\
+\textbf{(d)} $0.064$
+
+\subsection*{Q4}
+If $X$ is a geometric random variable with mean $5$, what is the value of $p$?
+
+\textbf{(a)} $0.2$  \\
+\textbf{(b)} $0.8$  \\
+\textbf{(c)} $5$  \\
+\textbf{(d)} $1 - 0.2$
+
+\subsection*{Q5}
+Let $X$ and $Y$ be independent geometric random variables with parameters $p = 0.5$ and $q = 0.25$ respectively. Find $\mathbb{P}(X < Y)$.
+
+\textbf{(a)} $\dfrac{p}{p + q - pq}$  \\
+\textbf{(b)} $\dfrac{p}{p + q}$  \\
+\textbf{(c)} $\dfrac{q}{p + q}$  \\
+\textbf{(d)} $\dfrac{1}{2}$
+
+% --------------------------
+% Theoretical Conceptual
+% --------------------------
+
+\subsection*{Q6}
+In a memoryless process, the probability of success on the $n$-th trial, given that the first $n-1$ trials were failures, is the same as the probability of success on the first trial. This property is uniquely satisfied by:
+
+\textbf{(a)} Binomial Distribution  \\
+\textbf{(b)} Geometric Distribution  \\
+\textbf{(c)} Poisson Distribution  \\
+\textbf{(d)} Normal Distribution
+
+\subsection*{Q7}
+Which of the following is true for the geometric distribution with success probability $p$?
+
+\textbf{(a)} It has finite variance only for $p > 0.5$  \\
+\textbf{(b)} It can take values from $0$ to $\infty$  \\
+\textbf{(c)} It is memoryless and discrete  \\
+\textbf{(d)} Its PMF is symmetric about the mean
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Expected Value of Sums of Random Variable %%%%%%%%%%%%%%%%%%%%
+\section{Expected Value of Sums of Random Variables}
+
+\subsection*{Q1}
+Let $X$ and $Y$ be two independent random variables with $\mathbb{E}[X] = 4$ and $\mathbb{E}[Y] = 6$. Compute $\mathbb{E}[2X + 3Y]$.
+
+\textbf{(a)} $26$  \\
+\textbf{(b)} $24$  \\
+\textbf{(c)} $30$  \\
+\textbf{(d)} $18$
+
+\subsection*{Q2}
+Suppose $X_1, X_2, \dots, X_{10}$ are i.i.d. random variables each with $\mathbb{E}[X_i] = \mu = 5$. What is $\mathbb{E}[X_1 + X_2 + \dots + X_{10}]$?
+
+\textbf{(a)} $50$  \\
+\textbf{(b)} $25$  \\
+\textbf{(c)} $10$  \\
+\textbf{(d)} $5$
+
+\subsection*{Q3}
+Let $X$ and $Y$ be two dependent random variables with $\mathbb{E}[X] = 2$, $\mathbb{E}[Y] = 3$, and $\mathbb{E}[XY] = 10$. What is $\mathbb{E}[X + Y]$?
+
+\textbf{(a)} $10$  \\
+\textbf{(b)} $6$  \\
+\textbf{(c)} $5$  \\
+\textbf{(d)} Cannot be determined
+
+\subsection*{Q4}
+Let $X_1, X_2, \dots, X_n$ be independent and identically distributed (i.i.d) random variables with $\mathbb{E}[X_i] = \mu$ and $\text{Var}(X_i) = \sigma^2$. What is the expected value of their average $\overline{X}_n = \dfrac{1}{n} \sum_{i=1}^n X_i$?
+
+\textbf{(a)} $n\mu$  \\
+\textbf{(b)} $\dfrac{\mu}{n}$  \\
+\textbf{(c)} $\mu$  \\
+\textbf{(d)} Cannot be determined
+
+\subsection*{Q5}
+Let $X$ be a discrete random variable taking values $\{1, 2, 3\}$ with probabilities $\mathbb{P}(X=1) = \dfrac{1}{6}$, $\mathbb{P}(X=2) = \dfrac{1}{2}$, $\mathbb{P}(X=3) = \dfrac{1}{3}$. Let $Y = 2X + 1$. Compute $\mathbb{E}[Y]$.
+
+\textbf{(a)} $5$  \\
+\textbf{(b)} $6$  \\
+\textbf{(c)} $7$  \\
+\textbf{(d)} $8$
+
+% ----------- Conceptual Brainstorming -----------
+
+\subsection*{Q6}
+Which of the following is always true for any two random variables $X$ and $Y$?
+
+\textbf{(a)} $\mathbb{E}[X+Y] = \mathbb{E}[X] + \mathbb{E}[Y]$  \\
+\textbf{(b)} $\mathbb{E}[XY] = \mathbb{E}[X] \cdot \mathbb{E}[Y]$  \\
+\textbf{(c)} $\mathbb{E}[X-Y] = \mathbb{E}[X] - \mathbb{E}[Y]$  \\
+\textbf{(d)} Both (a) and (c)
+
+\subsection*{Q7}
+Let $X_1, X_2, ..., X_n$ be i.i.d. random variables. Which of the following statements is \textbf{false}?
+
+\textbf{(a)} $\mathbb{E}\left[\sum_{i=1}^n X_i\right] = n \cdot \mathbb{E}[X_1]$  \\
+\textbf{(b)} $\mathbb{E}\left[\dfrac{1}{n} \sum_{i=1}^n X_i\right] = \mathbb{E}[X_1]$  \\
+\textbf{(c)} $\mathbb{E}[X_i + X_j] = \mathbb{E}[X_i] + \mathbb{E}[X_j]$  \\
+\textbf{(d)} $\mathbb{E}[X_i^2 + X_j^2] = (\mathbb{E}[X_i])^2 + (\mathbb{E}[X_j])^2$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%% Properties of Cumulative Distribution Function %%%%%%%%%%%%%%%%%%%%%
+
+\section{Cumulative Distribution Function (CDF): Conceptual Questions}
+
+\subsection*{Q1}
+Let $F_X(x)$ be the cumulative distribution function of a random variable $X$. Which of the following is \textbf{not necessarily true} for all real-valued random variables?
+
+\textbf{(a)} $F_X$ is a non-decreasing function. \\
+\textbf{(b)} $\lim_{x \to \infty} F_X(x) = 1$ \\
+\textbf{(c)} $F_X(x)$ is continuous for all $x$ \\
+\textbf{(d)} $\lim_{x \to -\infty} F_X(x) = 0$
+
+\subsection*{Q2}
+If $F_X(x)$ is the cumulative distribution function of a discrete random variable $X$, then $F_X(x)$ is:
+
+\textbf{(a)} A step function that is right-continuous \\
+\textbf{(b)} A step function that is left-continuous \\
+\textbf{(c)} A continuous and differentiable function \\
+\textbf{(d)} Always strictly increasing
+
+\subsection*{Q3}
+Suppose $X$ is a random variable and $F_X(x)$ is its CDF. Which of the following expressions correctly represents the probability that $X$ lies in the interval $(a, b]$?
+
+\textbf{(a)} $F_X(b) - F_X(a)$ \\
+\textbf{(b)} $F_X(b) - F_X(a-)$ \\
+\textbf{(c)} $F_X(b) - F_X(a+)$ \\
+\textbf{(d)} $F_X(b+) - F_X(a+)$
+
+\subsection*{Q4}
+Which of the following statements about the CDF of any real-valued random variable is \textbf{false}?
+
+\textbf{(a)} $F_X(x)$ is bounded between $0$ and $1$ \\
+\textbf{(b)} $F_X(x)$ is differentiable everywhere \\
+\textbf{(c)} $F_X(x)$ is right-continuous \\
+\textbf{(d)} $\lim_{x \to -\infty} F_X(x) = 0$ and $\lim_{x \to \infty} F_X(x) = 1$
+
+\subsection*{Q5}
+Let $F_X(x)$ be the CDF of a random variable $X$. Then $\mathbb{P}(X = a)$ equals:
+
+\textbf{(a)} $F_X(a) - F_X(a-)$ \\
+\textbf{(b)} $F_X(a+)$ \\
+\textbf{(c)} $F_X(a)$ \\
+\textbf{(d)} $F_X(a-) - F_X(a+)$

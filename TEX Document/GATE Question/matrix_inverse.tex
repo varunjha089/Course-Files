@@ -1,0 +1,343 @@
+\section{Matrix Inverse: Numerical and Conceptual Questions}
+
+\subsection*{Q1. [MCQ]}
+Let $A = \begin{bmatrix} 2 & 1 \\ 5 & 3 \end{bmatrix}$. What is $A^{-1}$?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\begin{bmatrix} 3 & -1 \\ -5 & 2 \end{bmatrix}$  
+    \item $\begin{bmatrix} 3 & -1 \\ -5 & 2 \end{bmatrix} \cdot \frac{1}{1}$ 
+    \item $\begin{bmatrix} 3 & -1 \\ -5 & 2 \end{bmatrix} \cdot \frac{1}{(2)(3)-(5)(1)}$
+    \item $A$ is not invertible.
+\end{enumerate}
+
+\subsection*{Q2. [NAT]}
+If $A$ is a $2 \times 2$ matrix with $\det(A) = -4$, and $\text{adj}(A) = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$, then find $A^{-1}$.
+
+\newpage
+\subsection*{Q3. [MCQ]}
+Which of the following matrices is not invertible?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\begin{bmatrix} 1 & 2 \\ 3 & 6 \end{bmatrix}$
+    \item $\begin{bmatrix} 2 & 3 \\ 1 & 5 \end{bmatrix}$
+    \item Identity matrix 
+    \item $\begin{bmatrix} 4 & -1 \\ 2 & 1 \end{bmatrix}$
+\end{enumerate}
+
+
+\subsection*{Q4. [MSQ]}
+Which of the following statements are true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item A matrix with zero determinant is not invertible.
+    \item If $AB = I$, then $A$ is the inverse of $B$.
+    \item $A^{-1}$ exists $\Rightarrow$ $A$ is non-singular.
+    \item For any square matrix $A$, $A \cdot A^{-1} = A$.
+\end{enumerate}
+
+\subsection*{Q5. [Conceptual MCQ]}
+If $A^{-1}$ exists, which of the following is also true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $(A^T)^{-1} = (A^{-1})^T$ 
+    \item $AA^{-1} = I$ 
+    \item $A^{-1}A = I$ 
+    \item All of the above
+\end{enumerate}
+
+\subsection*{Q6. [NAT]}
+Let $A = \begin{bmatrix} 1 & 1 \\ 1 & 2 \end{bmatrix}$. Compute the $(2,1)$ entry of $A^{-1}$.
+
+\subsection*{Q7. [MCQ]}
+Which of the following must be true for $A^{-1}$ to exist?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A$ must be diagonal
+    \item $\det(A) \neq 0$
+    \item $A$ must be symmetric
+    \item All eigenvalues of $A$ must be positive
+\end{enumerate}
+
+\subsection*{Q8. [Conceptual MSQ]}
+Let $A$ and $B$ be invertible $n \times n$ matrices. Which of the following are true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $(AB)^{-1} = B^{-1}A^{-1}$
+    \item $(A^{-1})^{-1} = A$
+    \item $A + B$ is always invertible
+    \item $ABA^{-1}$ is invertible
+\end{enumerate}
+
+\subsection*{Q9. [MCQ]}
+If $A$ is an orthogonal matrix, then:
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A^T = A^{-1}$
+    \item $\det(A) = 1$
+    \item $AA^T = I$ 
+    \item All of the above
+\end{enumerate}
+
+\subsection*{Q10. [NAT]}
+Let $A$ be such that $A^2 = I$ and $A \neq I$. What is $A^{-1}$?
+
+\subsection*{Q11. [MCQ]}
+Let $A = \begin{bmatrix} 1 & 2 \\ 0 & 1 \end{bmatrix}$. Then $A^{-1} =$
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\begin{bmatrix} 1 & -2 \\ 0 & 1 \end{bmatrix}$ 
+    \item $\begin{bmatrix} 1 & 2 \\ 0 & -1 \end{bmatrix}$
+    \item $\begin{bmatrix} 1 & 0 \\ -2 & 1 \end{bmatrix}$ 
+    \item $A$ is not invertible.
+\end{enumerate}
+
+\subsection*{Q12. [MCQ]}
+If $A^{-1} = A^T$, then $A$ is:
+
+\begin{enumerate}[label=(\alph*)]
+    \item Diagonal
+    \item Orthogonal
+    \item Skew-symmetric
+    \item None of the above
+\end{enumerate}
+
+\subsection*{Q13. [NAT]}
+Let $A = \begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$. Compute $A^{-1}$.
+
+\subsection*{Q14. [Conceptual MCQ]}
+Let $A$ be invertible. Which of the following operations does **not** preserve invertibility?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Pre-multiplication by $A$
+    \item Transposition
+    \item Taking adjoint
+    \item Multiplying one row by zero
+\end{enumerate}
+
+\subsection*{Q15. [MCQ]}
+If $A$ is a $2 \times 2$ matrix and $A^2 = 0$, then $A^{-1}$:
+
+\begin{enumerate}[label=(\alph*)]
+    \item Exists
+    \item Equals zero
+    \item Does not exist
+    \item Is undefined
+\end{enumerate}
+
+\subsection*{Q16. [Conceptual MSQ]}
+Which of the following matrices are always invertible?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Identity matrix
+    \item Diagonal matrix with non-zero entries
+    \item Orthogonal matrix
+    \item Upper triangular matrix with all diagonal entries non-zero
+\end{enumerate}
+
+\subsection*{Q17. [NAT]}
+Let $A = \begin{bmatrix} 3 & 1 \\ 2 & 1 \end{bmatrix}$. Compute $\det(A)$ and determine if $A^{-1}$ exists.
+
+\subsection*{Q18. [MCQ]}
+Which matrix has \textbf{no inverse}?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$
+    \item $\begin{bmatrix} 1 & 0 \\ 0 & 0 \end{bmatrix}$
+    \item $\begin{bmatrix} 2 & -1 \\ -1 & 2 \end{bmatrix}$
+    \item $\begin{bmatrix} 0 & 1 \\ -1 & 0 \end{bmatrix}$
+\end{enumerate}
+
+\subsection*{Q19. [Conceptual MCQ]}
+For a $n \times n$ matrix $A$, if one row is a linear combination of others, then:
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\det(A) \neq 0$
+    \item $A$ is invertible
+    \item $A$ is not invertible
+    \item All rows are linearly independent
+\end{enumerate}
+
+\subsection*{Q20. [MCQ]}
+Let $A$ be an $n \times n$ matrix such that $A^T = A$ and $\det(A) \neq 0$. Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A$ is orthogonal
+    \item $A^{-1}$ is also symmetric
+    \item $A$ is skew-symmetric 
+    \item None of the above
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \newpage
+\section[Interconnected Questions on Determinant, Inverse, Rank, Eigenvalues and Eigenvectors]
+{Interconnected Questions on\\ Determinant, Inverse, Rank,\\ Eigenvalues and Eigenvectors}
+
+\subsection*{Q1. [MCQ]}
+If a matrix $A$ is such that $\det(A) = 0$ and $A \vec{x} = \lambda \vec{x}$ has a non-zero solution, which of the following is necessarily true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\lambda = 0$ 
+    \item $\lambda \neq 0$
+    \item $A$ is invertible
+    \item $\vec{x}$ is the zero vector
+\end{enumerate}
+
+
+
+\subsection*{Q2. [MSQ]}
+Let $A$ be a $3 \times 3$ matrix with eigenvalues $\lambda_1 = 0$, $\lambda_2 = 2$, $\lambda_3 = 3$. Then which of the following are true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\det(A) = 0$ 
+    \item $\text{Rank}(A) = 3$
+    \item $A$ is non-invertible 
+    \item $\text{Rank}(A) < 3$
+\end{enumerate}
+
+\subsection*{Q3. [NAT]}
+Let $A$ be a $4 \times 4$ matrix with eigenvalues $1, 1, 0, 2$. What is the rank of $A$?
+
+\subsection*{Q4. [MCQ]}
+If $A$ is a $3 \times 3$ real matrix such that $A^T = A$ and $\lambda = 0$ is one of its eigenvalues, then:
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A$ is invertible
+    \item $\text{Rank}(A) = 3$
+    \item $\det(A) = 0$
+    \item All eigenvalues are positive
+\end{enumerate}
+
+\subsection*{Q5. [NAT]}
+Let $A = \begin{bmatrix} 2 & 1 \\ 1 & 2 \end{bmatrix}$. Find $\text{tr}(A)$ and $\det(A)$, then compute the sum and product of its eigenvalues.
+
+\newpage
+\subsection*{Q6. [MCQ]}
+If a matrix $A$ satisfies $A^2 = I$, and $\text{Rank}(A) = 2$, which of the following are true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Eigenvalues are $\pm 1$
+    \item $\det(A) = 1$
+    \item $A$ is symmetric
+    \item $A^{-1} = A$
+\end{enumerate}
+
+\subsection*{Q7. [MSQ]}
+Let $A$ be a diagonalizable matrix with eigenvalues $\{1, 1, 0\}$. Which are true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A$ is not invertible
+    \item $\text{nullity}(A) = 1$
+    \item $\text{Rank}(A) = 3$
+    \item $\det(A) = 0$
+\end{enumerate}
+
+\subsection*{Q8. [MCQ]}
+Given a $3 \times 3$ matrix $A$ such that $A^3 = 0$, which of the following must be true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A$ is invertible
+    \item All eigenvalues are zero
+    \item $\text{Rank}(A) = 3$
+    \item $\det(A) = 1$
+\end{enumerate}
+
+\subsection*{Q9. [MCQ]}
+Let $A$ be a matrix such that $A^T = -A$ and $\vec{x}^T A \vec{x} = 0$ for all $\vec{x}$. Then:
+
+\begin{enumerate}[label=(\alph*)]
+    \item All eigenvalues of $A$ are imaginary
+    \item $A$ is invertible
+    \item $\text{Rank}(A)$ is even  
+    \item $\det(A) = 0$
+\end{enumerate}
+
+\subsection*{Q10. [NAT]}
+Let $A$ be a $2 \times 2$ matrix with $\text{Rank}(A) = 1$. What is the determinant of $A$?
+
+\subsection*{Q11. [MSQ]}
+Let $A$ be a $3 \times 3$ matrix with eigenvalues $3, 5, -2$. Then which of the following are true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\det(A) = -30$
+    \item $A$ is invertible
+    \item $\text{Rank}(A) = 3$
+    \item At least one eigenvector is a zero vector
+\end{enumerate}
+
+\subsection*{Q12. [MCQ]}
+If $A$ is orthogonal and $\lambda$ is an eigenvalue of $A$, then which of the following must be true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $|\lambda| = 1$
+    \item $\lambda = 0$
+    \item $A$ is not invertible
+    \item $\text{Rank}(A) < n$
+\end{enumerate}
+
+\subsection*{Q13. [NAT]}
+Let $A = \begin{bmatrix} 0 & 1 \\ -2 & -3 \end{bmatrix}$. Compute $\det(A)$ and the eigenvalues of $A$.
+
+\subsection*{Q14. [MCQ]}
+If a matrix $A$ has all eigenvalues as $1$, then:
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A = I$ 
+    \item $A$ may not be $I$ 
+    \item $\det(A) = 1$ 
+    \item $\text{Rank}(A) = n$
+\end{enumerate}
+
+\subsection*{Q15. [MSQ]}
+Let $A$ be a symmetric matrix with eigenvalues $1, 0, 0$. Then:
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\text{Rank}(A) = 1$
+    \item $\text{nullity}(A) = 2$
+    \item $\det(A) = 0$ 
+    \item $A$ is invertible
+\end{enumerate}
+
+\subsection*{Q16. [MCQ]}
+Let $A$ be a $4 \times 4$ matrix with $\det(A) \neq 0$ and $A^T = A^{-1}$. Which of the following must be true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A$ is symmetric
+    \item $A$ is orthogonal
+    \item $\text{Rank}(A) < 4$
+    \item All eigenvalues of $A$ are zero
+\end{enumerate}
+
+\subsection*{Q17. [MCQ]}
+Let $A$ be an $n \times n$ matrix with $\text{Rank}(A) = n$. Then:
+
+\begin{enumerate}[label=(\alph*)]
+    \item $A$ is invertible
+    \item $\det(A) \neq 0$
+    \item All eigenvalues are non-zero
+    \item $A$ is orthogonal
+\end{enumerate}
+
+\subsection*{Q18. [NAT]}
+Let $A$ be a $2 \times 2$ matrix with eigenvalues $2$ and $5$. Find $\det(A^{-1})$.
+
+\subsection*{Q19. [MSQ]}
+If $A$ is invertible, which of the following are always true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\det(A^{-1}) = 1/\det(A)$ 
+    \item $\text{Rank}(A^{-1}) = \text{Rank}(A)$ 
+    \item All eigenvalues of $A^{-1}$ are reciprocals of those of $A$ 
+    \item $\det(A^{-1}) < 0$ always
+\end{enumerate}
+
+\subsection*{Q20. [MCQ]}
+Let $A$ be a $3 \times 3$ matrix and $A^2 = A$. Which of the following must be true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $\det(A) = 0$ or $1$
+    \item $A$ is invertible  
+    \item All eigenvalues are either $0$ or $1$ 
+    \item $\text{Rank}(A) = 3$
+\end{enumerate}
+
+

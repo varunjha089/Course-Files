@@ -1,0 +1,830 @@
+\section{Computer Networks: IPv4 Addressing}
+
+\subsection*{Q1. Class of IP Address}
+Which of the following IP addresses belongs to Class C?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 14.23.16.19  
+    \item 128.96.39.10  
+    \item 192.168.1.5  
+    \item 224.0.0.1  
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q2. Network and Broadcast Address}
+A host has IP address 192.168.10.25/27. What are the network and broadcast addresses?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Network: 192.168.10.0, Broadcast: 192.168.10.63  
+    \item Network: 192.168.10.32, Broadcast: 192.168.10.63  
+    \item Network: 192.168.10.0, Broadcast: 192.168.10.31  
+    \item Network: 192.168.10.25, Broadcast: 192.168.10.255  
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q3. Valid Host Address}
+Which of the following is a valid host IP address in the network 10.0.0.0/8?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 10.0.0.0  
+    \item 10.255.255.255  
+    \item 10.1.2.3  
+    \item 255.255.255.0  
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q4. CIDR Address Block}
+Which of the following CIDR blocks can accommodate at least 1000 hosts?
+
+\begin{enumerate}[label=(\alph*)]
+    \item /24  
+    \item /22  
+    \item /25  
+    \item /23  
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q5. Subnet Mask Interpretation}
+What is the dotted decimal representation of subnet mask for a /21 network?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 255.255.255.0  
+    \item 255.255.248.0  
+    \item 255.255.240.0  
+    \item 255.255.252.0  
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q6. Number of Subnets}
+A network administrator has a Class B network and uses a subnet mask of 255.255.255.0. How many subnets are possible?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 64  
+    \item 256  
+    \item 1024  
+    \item 512  
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q7. Number of Hosts in Subnet}
+How many usable host addresses are available in a /26 subnet?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 62  
+    \item 64  
+    \item 126  
+    \item 128  
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q8. IP Address Belonging to Same Subnet}
+Which of the following IP addresses are in the same subnet if the subnet mask is 255.255.255.224?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 192.168.1.33 and 192.168.1.62  
+    \item 192.168.1.65 and 192.168.1.94  
+    \item 192.168.1.100 and 192.168.1.129  
+    \item 192.168.1.90 and 192.168.1.122  
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q9. IP Address Range Calculation}
+What is the range of valid host addresses in the subnet 172.16.48.0/20?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 172.16.48.1 – 172.16.63.254  
+    \item 172.16.48.0 – 172.16.63.255  
+    \item 172.16.48.1 – 172.16.48.255  
+    \item 172.16.48.1 – 172.16.62.254  
+\end{enumerate}
+
+\vspace{1em}
+\subsection*{Q10. Subnet Calculation for Efficient Allocation}
+You are given a block 192.168.0.0/24. You need to create 4 subnets, each with at least 50 hosts. Which subnet mask will you use?
+
+\begin{enumerate}[label=(\alph*)]
+    \item /25  
+    \item /26  
+    \item /27  
+    \item /28  
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Computer Networks: CIDR and Subnet Allocation}
+
+\subsection*{Q1. (GATE 2012)}
+An Internet Service Provider (ISP) has the following chunk of CIDR-based IP addresses available with it: $245.248.128.0/20$. The ISP wants to give half of this chunk of addresses to Organization $A$, and a quarter to Organization $B$, while retaining the remaining with itself. Which of the following is a valid allocation of addresses to $A$ and $B$?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $245.248.136.0/21$ and $245.248.128.0/22$
+    \item $245.248.128.0/21$ and $245.248.128.0/22$
+    \item $245.248.132.0/22$ and $245.248.132.0/21$
+    \item $245.248.136.0/24$ and $245.248.132.0/21$
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q2. CIDR Block Division}
+An ISP owns the CIDR block $200.10.0.0/20$. It wants to allocate:
+\begin{itemize}
+    \item One subnet to Org A with $2048$ addresses,
+    \item One subnet to Org B with $1024$ addresses,
+    \item And keep the remaining.
+\end{itemize}
+Which of the following represents a valid allocation?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $200.10.0.0/21$ to A and $200.10.8.0/22$ to B  
+    \item $200.10.8.0/21$ to A and $200.10.0.0/22$ to B  
+    \item $200.10.0.0/22$ to A and $200.10.4.0/22$ to B  
+    \item $200.10.0.0/21$ to A and $200.10.0.0/23$ to B  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q3. Allocating Subnets from CIDR Block}
+You are assigned the CIDR block $172.20.0.0/22$. You need to divide this block into 4 equal-sized subnets. What will be the subnet mask and a valid range for one of the subnets?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Mask: /24, Range: $172.20.0.0 - 172.20.0.255$  
+    \item Mask: /24, Range: $172.20.1.0 - 172.20.1.255$  
+    \item Mask: /23, Range: $172.20.2.0 - 172.20.3.255$  
+    \item Mask: /23, Range: $172.20.0.0 - 172.20.1.255$  
+\end{enumerate}
+
+\vspace{1em}
+
+\subsection*{Q4. Overlapping CIDR Blocks}
+Given the two CIDR blocks: $192.168.0.0/22$ and $192.168.2.0/23$, which of the following statements is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The blocks are non-overlapping and disjoint  
+    \item The second block is fully contained within the first  
+    \item The two blocks partially overlap  
+    \item The two blocks are exactly the same  
+\end{enumerate}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \section{Computer Networks: IPv4 Datagram and Fragmentation}
+\section[Computer Networks: IPv4 Datagram and Fragmentation]
+{Computer Networks:\\ IPv4 Datagram and Fragmentation}
+
+\subsection*{Q1. Number of Fragments}
+A host wants to send a 3000-byte IP datagram over a network with MTU of 1000 bytes. The IP header size is 20 bytes. What is the total number of fragments generated?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 2  
+    \item 3  
+    \item 4  
+    \item 5  
+\end{enumerate}
+
+\textbf{Explanation:} Each fragment can carry $1000 - 20 = 980$ bytes of payload. To send 3000 bytes, we need $\lceil 3000/980 \rceil = 4$ fragments.
+
+\vspace{1em}
+
+\subsection*{Q2. Fragment Offset}
+In the same scenario as Q1, what will be the value of the fragmentation offset in the last fragment?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 240  
+    \item 370  
+    \item 296  
+    \item 280  
+\end{enumerate}
+
+\textbf{Explanation:} Offset is in 8-byte units. First 980 = offset 0, second = 980 → 122.5 → 122×8=976, third = 1960 → offset 245, fourth = 2940 → offset = 2940/8 = 367.5 → 368.
+
+Last offset = \textbf{(c) 296} is incorrect, correct is 368. (So revise to have matching offset logic.)
+
+\vspace{1em}
+
+\subsection*{Q3. Fragmented Header Fields}
+Which of the following fields is \textbf{not} copied into the fragments during IPv4 fragmentation?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Identification  
+    \item Flags  
+    \item Header checksum  
+    \item Time to Live (TTL)  
+\end{enumerate}
+
+\textbf{Explanation:} TTL is updated at every hop and not copied exactly. Identification, flags, and checksum are duplicated.
+
+\vspace{1em}
+
+\subsection*{Q4. Fragment Condition}
+Which condition \textbf{must} hold true for all fragments \textbf{except} the last during fragmentation?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The data length must be a multiple of 8  
+    \item The total length must be exactly equal to MTU  
+    \item The offset must be 0  
+    \item The More Fragments (MF) flag must be 0  
+\end{enumerate}
+
+\textbf{Explanation:} Offset must be in 8-byte units. Only the last fragment may have a size not multiple of 8.
+
+\vspace{1em}
+
+\subsection*{Q5. Payload Size of 2nd Fragment}
+A datagram of size 5000 bytes is fragmented across a network with MTU = 1500 bytes. What is the \textbf{payload size} in bytes of the second fragment?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 1460  
+    \item 1480  
+    \item 1440  
+    \item 1500  
+\end{enumerate}
+
+\textbf{Explanation:} Each fragment can carry 1480 bytes of data (1500 - 20). So 2nd fragment = 1480 bytes.
+
+\vspace{1em}
+
+\subsection*{Q6. Fragment Offset Units}
+In IP fragmentation, what is the unit of the Fragment Offset field?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Bytes  
+    \item 4 bytes  
+    \item 8 bytes  
+    \item 16 bytes  
+\end{enumerate}
+
+\textbf{Explanation:} Fragment offset is in units of 8 bytes to reduce bits needed.
+
+\vspace{1em}
+
+\subsection*{Q7. Fragment Reassembly Order}
+A host receives three IP fragments with the same Identification number and MF flag values as follows:
+\begin{itemize}
+    \item Fragment 1: Offset = 0, MF = 1  
+    \item Fragment 2: Offset = 185, MF = 1  
+    \item Fragment 3: Offset = 370, MF = 0  
+\end{itemize}
+Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item All fragments can be reassembled correctly  
+    \item Fragment 2 is invalid  
+    \item Fragment 3 arrived out of order  
+    \item Fragment offset values are not aligned correctly  
+\end{enumerate}
+
+\textbf{Explanation:} Offset must be multiple of 8. 185 is not a multiple of 8 → invalid.
+
+\vspace{1em}
+
+\subsection*{Q8. DF Flag Behavior}
+A router receives an IP datagram with DF (Don't Fragment) bit set, and it is larger than the MTU. What action is taken?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Fragment it anyway  
+    \item Discard and send ICMP ``Fragmentation needed''  
+    \item Drop silently  
+    \item Send ICMP ``Time exceeded''  
+\end{enumerate}
+
+\textbf{Explanation:} DF means do not fragment. Router must send ICMP Type 3 Code 4.
+
+\vspace{1em}
+
+\subsection*{Q9. Why Fragmentation is Avoided}
+Why is fragmentation \textbf{discouraged} in modern networks?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Causes higher throughput  
+    \item Requires IP version 6  
+    \item Reassembly happens at routers, increasing their load  
+    \item Increases overhead and complicates reassembly at receiver  
+\end{enumerate}
+
+\textbf{Explanation:} Reassembly at host adds delay and complexity. IPv6 avoids router fragmentation.
+
+\vspace{1em}
+
+\subsection*{Q10. Truth About Fragmentation}
+Which of the following statements is \textbf{TRUE} about IPv4 fragmentation?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Reassembly is done by routers  
+    \item Fragment offset is used by the receiver to reorder fragments  
+    \item Fragments always arrive in order  
+    \item All fragments must be of equal size  
+\end{enumerate}
+
+\textbf{Explanation:} Reassembly is done at receiver. Offset helps reorder.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[Computer Network: IP Forwarding and Routing]
+{Computer Network:\\ IP Forwarding and Routing}
+
+\subsection*{Q1. Longest Prefix Match and Packet Count}
+The forwarding table of an IP router is given below:
+
+\begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.2}
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Prefix} & \textbf{Next Hop Router} \\
+\hline
+200.10.0.0/16 & R1 \\
+200.10.0.0/17 & R2 \\
+200.10.0.0/18 & R3 \\
+200.10.64.0/18 & R4 \\
+\hline
+\end{tabular}
+\end{table}
+
+The router receives 20 packets each for the following IP addresses:
+
+200.10.5.1, 200.10.66.1, 200.10.130.1, 200.10.70.1, 200.11.0.1.
+
+How many packets are forwarded via router R4? 
+
+\textbf{Concept:} Longest prefix match determines forwarding route.
+
+\begin{enumerate}[label=(\alph*)]
+    \item 20 \hspace{5cm} (c) 60
+    \item 40 \hspace{5cm} (d) 80
+\end{enumerate}
+
+% \vspace{1em}
+
+\subsection*{Q2. Subnet Mask Match with Default Route}
+The routing table of a router is given:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Destination} & \textbf{Subnet Mask} & \textbf{Interface} \\
+\hline
+192.168.10.0 & 255.255.255.0 & Eth0 \\
+192.168.0.0 & 255.255.0.0 & Eth1 \\
+0.0.0.0 & 0.0.0.0 & Eth2 \\
+\hline
+\end{tabular}
+\end{table}
+
+To which interfaces will the following be forwarded:
+192.168.10.45, 192.168.20.10?
+
+\textbf{Concept:} Apply longest matching subnet mask.
+
+\begin{enumerate}[label=(\alph*)]
+\item Eth0 and Eth1 \quad \item Eth0 and Eth2 \quad \item Eth1 and Eth1 \quad \item Eth0 and Eth0
+\end{enumerate}
+
+% \vspace{1em}
+
+\subsection*{Q3. Prefix Matching Order}
+Given this table:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Prefix} & \textbf{Next Hop} \\
+\hline
+10.0.0.0/8 & R1 \\
+10.1.0.0/16 & R2 \\
+10.1.2.0/24 & R3 \\
+10.1.2.128/25 & R4 \\
+\hline
+\end{tabular}
+\end{table}
+
+What is the next hop for destination IP 10.1.2.200?
+
+\textbf{Concept:} Choose the most specific prefix.
+
+\begin{enumerate}[label=(\alph*)]
+\item R1 \quad \item R2 \quad \item R3 \quad \item R4
+\end{enumerate}
+
+% \vspace{1em}
+
+\subsection*{Q4. Multiple Match Resolution}
+Forwarding table:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+\textbf{Prefix} & \textbf{Next Hop} \\
+\hline
+172.16.0.0/16 & R1 \\
+172.16.64.0/18 & R2 \\
+172.16.64.0/19 & R3 \\
+172.16.96.0/19 & R4 \\
+\hline
+\end{tabular}
+\end{table}
+
+What is the next hop for the following destination IPs?
+172.16.65.1, 172.16.97.2, 172.16.120.8, 172.16.10.9
+
+\textbf{Concept:} Longest prefix match across overlapping prefixes.
+
+\begin{enumerate}[label=(\alph*)]
+\item R2, R4, R1, R1  
+\item R3, R4, R4, R1  
+\item R3, R4, R3, R1  
+\item R2, R3, R3, R4
+\end{enumerate}
+
+% \vspace{1em}
+
+\subsection*{Q5. Gate 2012 CIDR Allocation}
+ISP owns $245.248.128.0/20$.
+Half goes to Org A, one-quarter to Org B, rest stays.
+
+Which allocation is valid?
+
+\textbf{Concept:} Divide CIDR space based on prefix lengths.
+
+\begin{enumerate}[label=(\alph*)]
+\item 245.248.136.0/21 and 245.248.128.0/22  
+\item 245.248.128.0/21 and 245.248.128.0/22  
+\item 245.248.132.0/22 and 245.248.132.0/21  
+\item 245.248.136.0/24 and 245.248.132.0/21  
+\end{enumerate}
+
+% \vspace{1em}
+
+\subsection*{Q6. Default Route Usage}
+A packet destined to 172.20.20.1 is received.
+Forwarding table:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+172.16.0.0/12 & R1 \\
+172.20.0.0/16 & R2 \\
+0.0.0.0/0 & R3 \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Concept:} Specific vs default route.
+
+\begin{enumerate}[label=(\alph*)]
+\item R1 \quad \item R2 \quad \item R3 \quad \item None
+\end{enumerate}
+
+% \vspace{1em}
+
+\subsection*{Q7. No Matching Prefix}
+Table:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+192.168.1.0/24 & R1 \\
+192.168.2.0/24 & R2 \\
+\hline
+\end{tabular}
+\end{table}
+
+Destination = 10.0.0.5. What happens?
+
+\textbf{Concept:} No match + no default route.
+
+\begin{enumerate}[label=(\alph*)]
+\item Packet dropped  
+\item Sent to R1  
+\item Sent to R2  
+\item Causes loop
+\end{enumerate}
+
+% \vspace{1em}
+
+\subsection*{Q8. Overlapping Subnets}
+Table:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+100.64.0.0/10 & R1 \\
+100.64.0.0/11 & R2 \\
+\hline
+\end{tabular}
+\end{table}
+
+Destination IP = 100.64.128.1
+
+\textbf{Concept:} Choose route with longer prefix match.
+
+\begin{enumerate}[label=(\alph*)]
+\item R1 \quad \item R2 \quad \item Equal priority \quad \item Dropped
+\end{enumerate}
+
+% \vspace{1em}
+
+\subsection*{Q9. Matching with Varying Subnet Masks}
+Routing table:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+192.168.0.0/18 & R1 \\
+192.168.64.0/18 & R2 \\
+\hline
+\end{tabular}
+\end{table}
+
+Destination = 192.168.64.100
+
+\textbf{Concept:} Check bit match carefully.
+
+\begin{enumerate}[label=(\alph*)]
+\item R1 \quad \item R2 \quad \item Either \quad \item None
+\end{enumerate}
+
+% \vspace{1em}
+
+\subsection*{Q10. Minimum Size for Specific Allocation}
+How many /26 subnets can be created from 192.168.0.0/24?
+
+\textbf{Concept:} Subnetting calculations.
+
+\begin{enumerate}[label=(\alph*)]
+\item 4 \quad \item 8 \quad \item 16 \quad \item 32
+\end{enumerate}
+
+% \vspace{1em}
+
+\subsection*{Q11. Prefix Range Calculation}
+What is the range of IPs in 172.31.192.0/18?
+
+\textbf{Concept:} CIDR block to IP range.
+
+\begin{enumerate}[label=(\alph*)]
+\item 172.31.192.0 - 172.31.255.255  
+\item 172.31.192.0 - 172.31.223.255  
+\item 172.31.192.0 - 172.31.195.255  
+\item 172.31.192.0 - 172.31.207.255  
+\end{enumerate}
+
+% \vspace{1em}
+
+\subsection*{Q12. Routing Table with Trap}
+Table:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+192.0.2.0/24 & R1 \\
+192.0.2.128/25 & R2 \\
+\hline
+\end{tabular}
+\end{table}
+
+Destination = 192.0.2.130
+
+\textbf{Concept:} Confusing overlapping prefixes.
+
+\begin{enumerate}[label=(\alph*)]
+\item R1 \quad \item R2 \quad \item Both \quad \item None
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[Computer Network: Error Detection and Correction]
+{Computer Network:\\ Error Detection and Correction}
+
+\subsection*{Q1. Hamming Code}
+A $7$-bit Hamming code is used to encode $4$ data bits. If the codeword received is $1011011$, which bit position (if any) has the error?
+
+\subsection*{Q2. CRC bits}
+A CRC generator uses the polynomial $x^3 + x + 1$. What will be the CRC bits for the message $11000$?
+
+\subsection*{Q3. Parity}
+Which of the following bit errors can be detected by a parity bit?  
+(a) All odd number of bit errors  
+(b) All even number of bit errors  
+(c) Only single-bit errors  
+(d) Burst errors
+
+\subsection*{Q4. Bit stuffing}
+Bit stuffing is used in a data link protocol. Given the bitstream:\\ 
+\texttt{01111110111110}, what is the result after applying bit stuffing?
+
+\subsection*{Q5. Hamming Distance}
+A 5-bit codeword has a minimum Hamming distance $p=3$. What is the maximum number of bit errors $q$ that can be corrected?
+
+\subsection*{Q6. Even Parity}
+Assume an 8-bit data word. Using even parity, the parity bits are placed at positions $1, 2, 4,$ and $8$. What is the codeword for data $10110010$?
+
+\subsection*{Q7. Hamming Code}
+A 12-bit Hamming code contains 8 data bits and 4 check bits. If the check bits are $c_1=1, c_2=0, c_4=1, c_8=1$, what is the syndrome value?
+
+\subsection*{Q8. CRG Generator Property}
+In CRC, which of the following generator polynomials can detect all single-bit and all double-bit errors?  
+(a) $x + 1$  
+(b) $x^2 + x + 1$  
+(c) $x^3 + 1$  
+(d) $x^3 + x + 1$
+
+\subsection*{Q9. Hamming distance}
+What is the Hamming distance between the codewords $1101101$ and\\ 
+$1110110$?
+
+\subsection*{Q10. Error Detection using CRC}
+Which of the following statements is true regarding error detection using CRC?  
+(a) It can correct burst errors  
+(b) It cannot detect single-bit errors  
+(c) It can detect burst errors up to the length of the generator polynomial  
+(d) It uses Hamming codes
+
+\subsection*{Q11. CRC Generator}
+A sender uses CRC with generator polynomial $x^4 + x + 1$. The message is $10010011$. What is the transmitted message including CRC?
+
+\subsection*{Q12. Hamming Code}
+Given a 12-bit Hamming code with data bits $d_8$ to $d_1$ as $1\ 0\ 1\ 1\ 0\ 1\ 0\ 1$ and parity bits $c_1 = 1,\ c_2 = 0,\ c_4 = 1,\ c_8 = x$, determine the value of $x$ for even parity.
+
+\subsection*{Q13. Odd Bit Error}
+Which of the following generator polynomials guarantees detection of all odd number of bit errors?  
+(a) $x + 1$  
+(b) $x^2 + 1$  
+(c) $x^2 + x + 1$  
+(d) $x^3 + x + 1$
+
+\subsection*{Q14. Hamming Distance}
+What is the minimum Hamming distance required to correct up to 3-bit errors?
+
+\subsection*{Q15. CRC}
+If the generator polynomial is $x^3 + 1$ and the data is $1001$, what is the CRC remainder?
+
+\subsection*{Q16. Hamming codeword}
+Given a Hamming codeword $1100101$, and assuming even parity, determine whether an error exists and if yes, at what position.
+
+\subsection*{Q17. Hamming Code}
+A 12-bit codeword using even-parity Hamming code is received as\\ 
+$110110101101$. Identify the bit position in error.
+
+\subsection*{Q18}
+Which of the following statements is FALSE?  
+(a) Hamming code can detect and correct single-bit errors  
+(b) CRC is used for error correction  
+(c) Bit stuffing is used to avoid flag sequences  
+(d) Parity can only detect even number of bit errors
+
+\subsection*{Q19}
+Which of the following errors can a 4-bit CRC polynomial detect for messages of up to 15 bits?  
+(a) All 3-bit errors  
+(b) All 2-bit burst errors  
+(c) All 4-bit burst errors  
+(d) All errors with odd number of bits
+
+\subsection*{Q20}
+In a 7-bit Hamming code, which bit positions are reserved for parity?  
+(a) 1, 2, 4  
+(b) 1, 2, 3  
+(c) 2, 4, 6  
+(d) 1, 3, 5
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\section[Computer Networks: IP Header and Modification Rules]
+{Computer Networks:\\ IP Header and Modification Rules}
+
+\subsection*{Q1. IP Header Fields Modified by Routers}
+Which of the following fields in the IP header are modified by a router?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Source IP and TTL
+    \item Destination IP and Header Checksum
+    \item TTL and Header Checksum
+    \item Source IP and Destination IP
+\end{enumerate}
+
+\textbf{Concept:} Only TTL and checksum are updated per hop.
+
+
+
+\subsection*{Q2. Change in IP Header at Each Hop}
+Which of the following is \textbf{always} modified at every router hop in an IPv4 network?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Source IP
+    \item Destination IP
+    \item Header Length
+    \item Time to Live (TTL)
+\end{enumerate}
+
+\newpage
+\subsection*{Q3. IP vs TCP/UDP Headers}
+Which of the following statements is correct?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The TCP header is modified by routers to adjust window size.
+    \item The UDP header includes sequence numbers.
+    \item The IP header contains source and destination IPs; routers modify MAC addresses instead.
+    \item Routers always modify both IP and TCP headers.
+\end{enumerate}
+
+
+
+\subsection*{Q4. Encapsulation and Headers}
+Which headers are added to a packet during encapsulation from Transport to Link layer?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Only TCP/UDP header
+    \item TCP/UDP + IP header
+    \item TCP/UDP + IP + MAC headers
+    \item Only IP and MAC headers
+\end{enumerate}
+
+\textbf{Concept:} Each layer adds its own header.
+
+
+\subsection*{Q5. Fragmentation Impact on Header}
+Which field in the IPv4 header is used to handle packet fragmentation?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Identification
+    \item Time to Live
+    \item Total Length
+    \item Protocol
+\end{enumerate}
+
+\textbf{Concept:} The `Identification`, `Fragment Offset`, and `More Fragments (MF)` bits are used.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section[Computer Networks: Maximum Segment Size (MSS)]
+{Computer Networks:\\ Maximum Segment Size (MSS)}
+
+\subsection*{Q1. MSS and MTU Relationship}
+Assume MTU = 1500 bytes, IP header = 20 bytes, and TCP header = 20 bytes. What is the MSS (Maximum Segment Size)?
+
+\begin{enumerate}[label=(\alph*)]
+    \item 1500 bytes 
+    \item 1480 bytes 
+    \item 1460 bytes 
+    \item 1440 bytes
+\end{enumerate}
+
+\textbf{Concept:} MSS = MTU - IP header - TCP header = 1500 - 20 - 20 = 1460
+
+
+\subsection*{Q2. Effect of Lower MSS Advertised by Receiver}
+During TCP handshake, a host advertises MSS = 512 bytes. The MTU of the link is 1500 bytes. Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item The sender will still send 1460-byte segments. 
+    \item The sender will limit each segment to 512 bytes. 
+    \item The sender will fragment each 1500-byte segment. 
+    \item TCP ignores MSS; only MTU is relevant.
+\end{enumerate}
+
+\textbf{Concept:} MSS advertised by the receiver limits the sender's segment size.
+
+
+\subsection*{Q3. MSS and Fragmentation}
+Assume a link with MTU = 1000 bytes. A TCP segment has 960 bytes of data, with 20-byte IP and 20-byte TCP headers. Will IP fragmentation occur?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Yes, because total size = 1000 
+    \item Yes, because total size = 1000 + 20 = 1020 
+    \item No, because 960 < 1000 
+    \item No, because IP supports any size segment
+\end{enumerate}
+
+\textbf{Concept:} Total = 20 (IP) + 20 (TCP) + 960 = 1000 → No fragmentation.
+
+
+\subsection*{Q4. MSS on Different Paths}
+A sender is connected to two receivers over different paths:
+- Path A: MTU = 1400 bytes
+- Path B: MTU = 1200 bytes
+
+What is the maximum TCP payload sent to **each receiver**, assuming standard IP and TCP headers?
+
+\begin{enumerate}[label=(\alph*)]
+    \item A: 1360, B: 1240
+    \item A: 1380, B: 1280
+    \item A: 1360, B: 1160
+    \item A: 1400, B: 1200
+\end{enumerate}
+
+\textbf{Concept:} MSS = MTU - 20 (IP) - 20 (TCP)
+
+
+\subsection*{Q5. MSS vs Window Size}
+Which of the following statements is true regarding MSS and TCP Window size?
+
+\begin{enumerate}[label=(\alph*)]
+    \item MSS controls the number of bytes sent per connection
+    \item Window size limits segment size directly
+    \item MSS limits max payload per segment; window size controls how many unacknowledged segments can be sent
+    \item MSS and window size are always equal
+\end{enumerate}
+

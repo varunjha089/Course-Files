@@ -1,0 +1,532 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Introduction to Continuour Random Variable %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section[Introduction to Continuous Random Variables]
+{Introduction to\\ Continuous Random Variables}
+
+\subsection*{Q1}
+Let $X$ be a continuous random variable with probability density function (PDF) given by
+\[
+f(x) = \begin{cases}
+2x & 0 \leq x \leq 1 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+Compute $\mathbb{P}(0.25 \leq X \leq 0.75)$.
+
+\subsection*{Q2}
+If $X$ is a continuous random variable with PDF $f(x)$, which of the following is \textbf{always true}?
+
+\textbf{(a)} $f(x) \geq 0$ for all $x$ \\
+\textbf{(b)} $f(x)$ is always continuous \\
+\textbf{(c)} $f(x) \leq 1$ for all $x$ \\
+\textbf{(d)} $f(x)$ has a finite number of local maxima
+
+\subsection*{Q3}
+Let $X$ be a continuous random variable with PDF:
+\[
+f(x) = \begin{cases}
+k(1 - x^2), & -1 \leq x \leq 1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+Find the value of $k$ such that $f(x)$ is a valid PDF.
+
+\subsection*{Q4}
+Let $X$ be a continuous random variable uniformly distributed over $[a, b]$. Then the cumulative distribution function (CDF) $F_X(x)$ is:
+
+\textbf{(a)} $\dfrac{x - a}{b - a}$ for $x \in [a, b]$ \\
+\textbf{(b)} $1 - \dfrac{x - a}{b - a}$ for $x \in [a, b]$ \\
+\textbf{(c)} Constant for all $x$ \\
+\textbf{(d)} $\dfrac{b - x}{b - a}$ for $x \in [a, b]$
+
+\subsection*{Q5}
+Let $X$ be a continuous random variable with PDF $f(x)$ defined as
+\[
+f(x) = \begin{cases}
+3x^2, & 0 \leq x \leq 1 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+Compute $\mathbb{E}[X]$.
+
+\subsection*{Q6}
+Which of the following statements is \textbf{false} for a continuous random variable $X$?
+
+\textbf{(a)} $\mathbb{P}(a < X \leq b) = \int_a^b f(x)\,dx$ \\
+\textbf{(b)} $\mathbb{P}(X = c) = 0$ for any real $c$ \\
+\textbf{(c)} $\mathbb{P}(a \leq X \leq b) = \mathbb{P}(a < X < b)$ \\
+\textbf{(d)} The area under the PDF curve can be greater than $1$
+
+\subsection*{Q7}
+A continuous random variable $X$ has the PDF:
+\[
+f(x) = \begin{cases}
+\lambda e^{-\lambda x}, & x \geq 0 \\
+0, & x < 0
+\end{cases}
+\]
+This distribution is known as:
+
+\textbf{(a)} Normal distribution \\
+\textbf{(b)} Poisson distribution \\
+\textbf{(c)} Exponential distribution \\
+\textbf{(d)} Uniform distribution
+
+%%%%%%%%%%%%%%%%%%%%% Expectation and Variance of Continuous Random Variable %%%%%%%%%%%%%%%%%%%%%%%%
+\section[Expectation and Variance of Continuous Random Variables]
+{Expectation and Variance of\\ Continuous Random Variables}
+
+\subsection*{Q1}
+Let $X$ be a continuous random variable with PDF:
+\[
+f(x) = \begin{cases}
+3x^2 & 0 \leq x \leq 1 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+Compute $\mathbb{E}[X]$ and $\text{Var}(X)$.
+
+\subsection*{Q2}
+Let $X$ be a continuous random variable uniformly distributed over $[2, 4]$. Compute $\mathbb{E}[X^2]$ and $\text{Var}(X)$.
+
+\subsection*{Q3}
+The exponential distribution with parameter $\lambda > 0$ has the PDF
+\[
+f(x) = \begin{cases}
+\lambda e^{-\lambda x} & x \geq 0 \\
+0 & \text{otherwise}
+\end{cases}
+\]
+Compute $\mathbb{E}[X]$ and $\text{Var}(X)$.
+
+\subsection*{Q4}
+Let $X$ be a continuous random variable with PDF:
+\[
+f(x) = \begin{cases}
+\frac{1}{2}x, & 0 \leq x \leq 2 \\
+0, & \text{otherwise}
+\end{cases}
+\]
+Find $\mathbb{E}[X]$ and $\text{Var}(X)$.
+
+\subsection*{Q5}
+If $X$ is a continuous random variable with mean $\mu$ and variance $\sigma^2$, what is the variance of $Y = 3X + 5$?
+
+\subsection*{Q6 (Conceptual)}
+Which of the following is \textbf{true} for a continuous random variable $X$?
+
+\textbf{(a)} $\mathbb{E}[a] = a$ for any constant $a$ \\
+\textbf{(b)} $\mathbb{E}[aX + b] = a\mathbb{E}[X] + b$ \\
+\textbf{(c)} $\text{Var}(aX + b) = a^2\text{Var}(X)$ \\
+\textbf{(d)} All of the above
+
+\subsection*{Q7 (Conceptual)}
+Let $X$ and $Y$ be independent continuous random variables with variances $\sigma_X^2$ and $\sigma_Y^2$. What is the variance of $X + Y$?
+
+\textbf{(a)} $\sigma_X^2 + \sigma_Y^2$ \\
+\textbf{(b)} $\sigma_X^2 - \sigma_Y^2$ \\
+\textbf{(c)} $|\sigma_X^2 - \sigma_Y^2|$ \\
+\textbf{(d)} Depends on the distribution
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Uniform Random Variable %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Uniform Random Variable: GATE-Style Questions}
+
+\subsection*{Q1 (MCQ)}
+Let $X \sim \mathcal{U}(2, 6)$. What is the probability that $X \leq 3$?
+
+\textbf{(a)} $\frac{1}{4}$  
+\textbf{(b)} $\frac{1}{2}$  
+\textbf{(c)} $\frac{1}{6}$  
+\textbf{(d)} $\frac{2}{3}$
+
+\subsection*{Q2 (NAT)}
+Let $X$ be uniformly distributed over $[1, 5]$. Find the expected value $\mathbb{E}[X]$.
+
+\subsection*{Q3 (MCQ)}
+Let $X$ be a discrete uniform random variable over the set $\{1,2,3,4,5,6\}$. What is $\mathbb{E}[X]$?
+
+\textbf{(a)} $3.5$  
+\textbf{(b)} $3$  
+\textbf{(c)} $4$  
+\textbf{(d)} $2.5$
+
+\subsection*{Q4 (MSQ)}
+Let $X \sim \mathcal{U}(0, 10)$. Which of the following are true?
+
+\textbf{(a)} $\mathbb{E}[X] = 5$  
+\textbf{(b)} $\text{Var}(X) = \frac{25}{3}$  
+\textbf{(c)} $\mathbb{P}(X > 8) = 0.2$  
+\textbf{(d)} PDF is constant for $x \in [0, 10]$
+
+\subsection*{Q5 (MCQ)}
+Let $X$ be a continuous uniform random variable on $[a,b]$. Which of the following is the correct formula for $\text{Var}(X)$?
+
+\textbf{(a)} $\frac{(b-a)^2}{4}$  
+\textbf{(b)} $\frac{(b-a)^2}{12}$  
+\textbf{(c)} $\frac{(b+a)^2}{12}$  
+\textbf{(d)} $\frac{(b+a)^2}{4}$
+
+\subsection*{Q6 (NAT)}
+Let $X$ be a continuous random variable with uniform distribution over $[3, 9]$. Compute $\text{Var}(X)$.
+
+\subsection*{Q7 (Conceptual MCQ)}
+Which of the following statements is always true for a continuous uniform distribution $\mathcal{U}(a, b)$?
+
+\textbf{(a)} The PDF is symmetric about $\frac{a+b}{2}$  \\
+\textbf{(b)} The mode equals the mean  \\
+\textbf{(c)} The CDF is linear in $[a, b]$  \\
+\textbf{(d)} $\text{Var}(X)$ depends only on the range $(b-a)$
+
+\subsection*{Q8 (Conceptual MSQ)}
+Which of the following statements are true for a discrete uniform distribution on the set $\{1, 2, ..., n\}$?
+
+\textbf{(a)} All values have the same probability  \\
+\textbf{(b)} $\text{Var}(X) = \frac{n^2 - 1}{12}$  \\
+\textbf{(c)} $\mathbb{E}[X] = \frac{n+1}{2}$  \\
+\textbf{(d)} $\text{PDF}(x) = \frac{1}{n}$ for all $x$
+
+\subsection*{Q9 (NAT)}
+Let $X$ be a discrete uniform random variable on $\{1, 2, 3, 4, 5\}$.\\ 
+Find $\text{Var}(X)$.
+
+\subsection*{Q10 (MCQ)}
+Let $X \sim \mathcal{U}(-1, 1)$. What is the probability that $|X| < \frac{1}{2}$?
+
+\textbf{(a)} $0.25$  
+\textbf{(b)} $0.5$  
+\textbf{(c)} $1$  
+\textbf{(d)} $0.75$
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Normal Random Variable %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Normal Random Variable}
+
+\subsection*{Q1 (MCQ)}
+Let $X \sim \mathcal{N}(5, 4)$ (i.e., mean $= 5$, variance $= 4$). What is the probability that $X$ lies within one standard deviation of the mean?
+
+\textbf{(a)} $0.68$  
+\textbf{(b)} $0.95$  
+\textbf{(c)} $0.997$  
+\textbf{(d)} $0.34$
+
+\subsection*{Q2 (NAT)}
+If $X \sim \mathcal{N}(0, 1)$ and $P(X \leq z) = 0.8413$, then the value of $z$ is \underline{\hspace{2cm}} (round to 2 decimal places).
+
+\subsection*{Q3 (MSQ)}
+Which of the following are properties of the standard normal distribution?
+
+\textbf{(a)} Mean = 0  
+\textbf{(b)} Variance = 1  
+\textbf{(c)} Symmetric about $x = 1$  
+\textbf{(d)} Total area under PDF = 1
+
+\subsection*{Q4 (MCQ)}
+Let $X \sim \mathcal{N}(10, 1)$. What is the value of $P(9 \leq X \leq 11)$ approximately?
+
+\textbf{(a)} $0.68$  
+\textbf{(b)} $0.95$  
+\textbf{(c)} $0.997$  
+\textbf{(d)} $0.50$
+
+\subsection*{Q5 (Conceptual MCQ)}
+Which of the following best describes the shape of a normal distribution?
+
+\textbf{(a)} Bell-shaped and symmetric  
+\textbf{(b)} Skewed left  
+\textbf{(c)} Skewed right  
+\textbf{(d)} Uniform
+
+\subsection*{Q6 (NAT)}
+Let $X \sim \mathcal{N}(\mu, \sigma^2)$ with $\mu = 100$ and $\sigma = 15$. What value of $X$ corresponds to $Z = 2$?
+
+\subsection*{Q7 (MSQ)}
+Let $X \sim \mathcal{N}(10, 25)$. Which of the following transformations result in a standard normal variable $Z$?
+
+\textbf{(a)} $Z = \frac{X - 10}{5}$  
+\textbf{(b)} $Z = \frac{X - 10}{\sqrt{25}}$  
+\textbf{(c)} $Z = \frac{10 - X}{5}$  
+\textbf{(d)} $Z = \frac{X}{10}$
+
+\subsection*{Q8 (Conceptual MCQ)}
+If $X \sim \mathcal{N}(\mu, \sigma^2)$, then which of the following statements is true?
+
+\textbf{(a)} $P(X = \mu) = 1$  
+\textbf{(b)} $P(X = \mu) = 0$  
+\textbf{(c)} $P(X < \mu) = 0$  
+\textbf{(d)} $P(X < \mu) = 0.5$
+
+\subsection*{Q9 (MCQ)}
+Let $X \sim \mathcal{N}(0, 1)$. What is the value of $P(-2 \leq X \leq 2)$?
+
+\textbf{(a)} $0.95$  
+\textbf{(b)} $0.997$  
+\textbf{(c)} $0.68$  
+\textbf{(d)} $0.84$
+
+\subsection*{Q10 (NAT)}
+The height of adult males in a population is normally distributed with a mean of $170$ cm and a standard deviation of $10$ cm. What is the height below which approximately $97.5\%$ of the males lie?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Exponential Random Variable %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exponential Random Variable}
+
+\subsection*{Q1 [MCQ]}
+Let $X$ be an exponential random variable with mean $5$. What is $P(X > 10)$?
+
+\begin{enumerate}[label=(\alph*)]
+\item $e^{-2}$
+\item $e^{-1}$
+\item $1 - e^{-2}$
+\item $0.5$
+\end{enumerate}
+
+\subsection*{Q2 [MSQ]}
+Let $X$ be an exponential random variable with rate parameter $\lambda = 3$. Which of the following are true?
+
+\begin{enumerate}[label=(\alph*)]
+\item $E[X] = \dfrac{1}{3}$
+\item $\text{Var}(X) = \dfrac{1}{9}$
+\item $P(X > 1) = e^{-3}$
+\item $P(X < 1) = 1 - e^{-3}$
+\end{enumerate}
+
+\subsection*{Q3 [NAT]}
+Let $X$$~\sim$Exponential with mean $4$. Compute $\text{Var}(X)$.
+
+\noindent\textbf{Answer:} \underline{\hspace{3cm}}
+
+\subsection*{Q4 [MCQ]}
+Which of the following represents the memoryless property of the exponential distribution?
+
+\begin{enumerate}[label=(\alph*)]
+\item $P(X > s + t) = P(X > s) \cdot P(X > t)$
+\item $P(X > s + t \mid X > s) = P(X > t)$
+\item $P(X < s + t \mid X > s) = P(X < t)$
+\item $P(X > t \mid X > s + t) = P(X > s)$
+\end{enumerate}
+
+\subsection*{Q5 [MCQ]}
+Let $X$ be exponentially distributed with $\lambda = 2$. What is the value of the PDF $f_X(x)$ at $x = 1$?
+
+\begin{enumerate}[label=(\alph*)]
+\item $2e^{-2}$
+\item $e^{-2}$
+\item $4e^{-2}$
+\item $2e^{-1}$
+\end{enumerate}
+
+\subsection*{Q6 [MSQ]}
+Let $X$ and $Y$ be independent exponential random variables with rate $\lambda = 1$. Which of the following are true?
+
+\begin{enumerate}[label=(\alph*)]
+\item $P(X < Y) = \dfrac{1}{2}$
+\item $P(X = Y) = 0$
+\item $P(\min(X, Y) > t) = e^{-2t}$
+\item $\min(X, Y)$ is exponential with rate $2$
+\end{enumerate}
+
+\subsection*{Q7 [NAT]}
+Let $X \sim \text{Exp}(\lambda)$ and $Y = aX$, where $a > 0$. Then $Y$ is exponentially distributed with rate $\lambda' = $ \underline{\hspace{3cm}}
+
+\subsection*{Q8 [MCQ]}
+Which of the following distributions has the memoryless property like exponential?
+
+\begin{enumerate}[label=(\alph*)]
+\item Normal
+\item Poisson
+\item Geometric
+\item Uniform
+\end{enumerate}
+
+\subsection*{Q9 [MCQ]}
+Let the lifetime (in hours) of a component be exponentially distributed with a mean of $50$ hours. What is the probability that it lasts more than $150$ hours?
+
+\begin{enumerate}[label=(\alph*)]
+\item $e^{-3}$
+\item $e^{-1.5}$
+\item $1 - e^{-3}$
+\item $1 - e^{-1.5}$
+\end{enumerate}
+
+\subsection*{Q10 [MSQ - Conceptual]}
+Which of the following are correct properties of exponential distribution?
+
+\begin{enumerate}[label=(\alph*)]
+\item Defined for $x > 0$
+\item CDF is $F(x) = 1 - e^{-\lambda x}$
+\item Always symmetric about the mean
+\item Has memoryless property
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% Hazard Rate Function %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Hazard Rate Function}
+
+\subsection*{Q1 [MCQ]}
+Let $X$ be a continuous random variable with PDF:
+\[ f_X(x) = \begin{cases}
+\lambda e^{-\lambda x}, & x \geq 0 \\
+0, & \text{otherwise}
+\end{cases} \]
+The hazard rate function $h(x)$ is:
+
+\begin{enumerate}[label=(\alph*)]
+\item $\lambda x$
+\item $\dfrac{1}{\lambda}$
+\item $\lambda$
+\item $e^{-\lambda x}$
+\end{enumerate}
+
+\subsection*{Q2 [MSQ]}
+Which of the following statements are true regarding the hazard function $h(x)$?
+
+\begin{enumerate}[label=(\alph*)]
+\item For an exponential distribution, the hazard rate is constant.
+\item Increasing hazard rate implies increasing failure rate.
+\item Hazard function is the ratio of the PDF and survival function.
+\item The hazard function is always greater than 1 for exponential distributions.
+\end{enumerate}
+
+\subsection*{Q3 [MCQ]}
+The survival function is $S(t) = e^{-\lambda t^2}$ for $t \geq 0$. The hazard rate function $h(t)$ is:
+
+\begin{enumerate}[label=(\alph*)]
+\item $2\lambda t$
+\item $\lambda t$
+\item $\lambda t^2$
+\item $e^{-\lambda t^2}$
+\end{enumerate}
+
+\subsection*{Q4 [Conceptual MCQ]}
+The hazard rate function is best described as:
+
+\begin{enumerate}[label=(\alph*)]
+\item The probability of failure at time $t$.
+\item The expected number of failures up to time $t$.
+\item The instantaneous failure rate at time $t$, given survival up to $t$.
+\item The cumulative distribution function of the failure time.
+\end{enumerate}
+
+\subsection*{Q5 [NAT]}
+Let the lifetime of a component be exponentially distributed with mean $5$ units. What is the value of the hazard rate?
+
+\subsection*{Q6 [NAT]}
+The survival function of a system is given by $S(t) = e^{-0.01t^2}$. Compute the hazard rate at $t = 10$.
+
+\subsection*{Q7 [NAT]}
+The PDF of a component's lifetime is given as:
+\[
+f(t) = \frac{3t^2}{1000}, \quad 0 \leq t \leq 10
+\]
+Calculate the hazard rate at $t = 5$. Use:
+\[
+h(t) = \frac{f(t)}{S(t)}, \quad S(t) = 1 - \int_0^t f(x) dx
+\]
+
+\subsection*{Q8 [Conceptual MCQ]}
+Which of the following distributions have increasing hazard rate functions?
+
+\begin{enumerate}[label=(\alph*)]
+    \item Exponential distribution
+    \item Weibull distribution with shape parameter $k > 1$
+    \item Uniform distribution
+    \item Normal distribution
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%% Properties of Random Variable %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Properties of Expectation: Conceptual Questions}
+
+\subsection*{Q1.}
+Let $X$ and $Y$ be random variables such that $E[X] = 5$ and $E[Y] = 7$. What is $E[X + Y]$?
+
+\subsection*{Q2.}
+Let $X$ be a random variable and $a$, $b$ be constants. Which of the following is true?
+\begin{enumerate}[label=(\alph*)]
+    \item $E[aX + b] = aE[X] + b$
+    \item $E[aX + b] = E[X] + ab$
+    \item $E[aX + b] = a + bE[X]$
+    \item $E[aX + b] = aE[X - b]$
+\end{enumerate}
+
+\subsection*{Q3.}
+If $E[X] = \mu$ and $Y = X - \mu$, then $E[Y]$ is:
+\begin{enumerate}[label=(\alph*)]
+    \item $\mu$
+    \item $0$
+    \item $- \mu$
+    \item $1$
+\end{enumerate}
+
+\subsection*{Q4.}
+Let $X$ be a discrete random variable taking values $\{1, 2, 3\}$ with equal probability. What is $E[X^2]$?
+
+\subsection*{Q5.}
+Let $X$ and $Y$ be independent. Which of the following is true?
+\begin{enumerate}[label=(\alph*)]
+    \item $E[XY] = E[X] + E[Y]$
+    \item $E[XY] = E[X]E[Y]$
+    \item $E[XY] = \max(E[X], E[Y])$
+    \item $E[XY] = 0$
+\end{enumerate}
+
+\subsection*{Q6.}
+Which of the following is \textbf{not always true}?
+\begin{enumerate}[label=(\alph*)]
+    \item $E[a] = a$
+    \item $E[aX] = aE[X]$
+    \item $E[X + Y] = E[X] + E[Y]$
+    \item $E[XY] = E[X] + E[Y]$ (without independence)
+\end{enumerate}
+
+\subsection*{Q7.}
+If $X$ is a constant random variable with value $c$, then $E[X^2] = $ ?
+
+\subsection*{Q8.}
+If $X$ is a fair die roll, what is $E[3X + 4]$?
+
+\subsection*{Q9.}
+If $X$ and $Y$ are random variables and $E[X] = E[Y]$, is it necessary that $X = Y$?
+
+\subsection*{Q10.}
+If $X$ is a discrete r.v. and $f$ is a function, then $E[f(X)] = f(E[X])$ — is this always true?
+
+\subsection*{Q11.}
+Let $X$ be a non-negative random variable. Which of the following is necessarily true?
+\begin{enumerate}[label=(\alph*)]
+    \item $E[X] \geq 0$
+    \item $E[X] > 0$
+    \item $E[X] < 0$
+    \item $E[X] = 0$
+\end{enumerate}
+
+\subsection*{Q12.}
+If $X$ and $Y$ are uncorrelated, is $E[XY] = E[X]E[Y]$ always true?
+
+\subsection*{Q13.}
+Let $X$ be such that $P(X = 2) = 0.5$, $P(X = 4) = 0.5$. What is $E[(X - 3)^2]$?
+
+\subsection*{Q14.}
+If $X$ is a random variable such that $E[X^2] = 25$ and $E[X] = 3$, what is $\text{Var}(X)$?
+
+\subsection*{Q15.}
+Let $X$ be a continuous r.v. uniformly distributed on $[0, 2]$. Find $E[X^2]$.
+
+\subsection*{Q16.}
+If $X$ is a Bernoulli($p$) variable, then $E[X] = \rule{3cm}{0.15mm}$
+
+\subsection*{Q17.}
+True or False:\\ If $X$ and $Y$ are independent, then $E[f(X)g(Y)] = E[f(X)]E[g(Y)]$
+
+\subsection*{Q18.}
+Let $X$ be a random variable with $E[X] = \mu$. Which of the following is true?
+
+\begin{enumerate}[label=(\alph*)]
+    \item $E[(X - \mu)^2] = 0$
+    \item $E[(X - \mu)^2] = \mu$
+    \item $E[(X - \mu)^2] = \text{Var}(X)$
+    \item None of the above
+\end{enumerate}
+
+\subsection*{Q19.}
+Let $X$ and $Y$ be independent and $Z = X + Y$. Is it always true that $E[Z] = E[X] + E[Y]$?
+
+\subsection*{Q20.}
+A r.v. $X$ is symmetric about $0$. What is $E[X^3]$?
+
