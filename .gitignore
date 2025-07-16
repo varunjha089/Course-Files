@@ -11,3 +11,7 @@
 *.fdb_latexmk
 *.synctex.gz
 *.loa
+*.lot
+*.aux
+*.log
+*.synctex.gz

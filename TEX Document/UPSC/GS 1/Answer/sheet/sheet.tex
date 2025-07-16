@@ -1,0 +1,47 @@
+\documentclass[a4paper,14pt]{extarticle}
+\usepackage[margin=1in]{geometry}
+\usepackage{tikz}
+\usepackage{fancyhdr}
+\usepackage{pgffor} % for loop
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+\fancyhf{}
+\fancyfoot[C]{Page \thepage}
+
+% Macro to draw UPSC-style lines and header text
+\newcommand{\drawupscframe}{
+\begin{tikzpicture}[remember picture, overlay]
+    % Top header line
+    \draw[line width=1pt]
+        ([yshift=-3cm]current page.north west) -- 
+        ([yshift=-3cm]current page.north east);
+
+    % Left vertical margin line
+    \draw[line width=1pt]
+        ([xshift=1in]current page.south west) -- 
+        ([xshift=1in]current page.north west);
+
+    % Right vertical margin line
+    \draw[line width=1pt]
+        ([xshift=-1in]current page.south east) -- 
+        ([xshift=-1in]current page.north east);
+
+    % Top margin text (centered above the line)
+    \node[anchor=north, font=\bfseries\Large, align=center] 
+        at ([yshift=-1.2cm]current page.north) 
+        {From Plassy to Partition\\Ch - 01};
+\end{tikzpicture}
+}
+
+\begin{document}
+
+
+% Generate 40 more blank answer pages
+\foreach \i in {1,...,44} {
+    \drawupscframe
+    \vspace{3cm}
+    \vfill
+    \newpage
+}
+
+\end{document}

@@ -1,0 +1,157 @@
+\section{TOC: Closure Properties of Regular Languages}
+
+\subsection*{Q1.}
+If $L_1$ and $L_2$ are regular languages, then which of the following languages is guaranteed to be regular?  
+\begin{enumerate}[label=(\alph*)]
+    \item $L_1 \cup L_2$
+    \item $L_1 \cap L_2$
+    \item $L_1 - L_2$
+    \item $\overline{L_1}$
+\end{enumerate}
+\textbf{Type:} MSQ
+
+\subsection*{Q2.}
+Which operation does not preserve regularity in general?
+\begin{enumerate}[label=(\alph*)]
+    \item Homomorphism
+    \item Inverse Homomorphism
+    \item Intersection with context-free language
+    \item Intersection with regular language
+\end{enumerate}
+\textbf{Type:} MCQ
+
+\subsection*{Q3.}
+Given a regular language $L$ over $\Sigma$, which of the following is necessarily regular?
+\begin{enumerate}[label=(\alph*)]
+    \item $L^R$ (reverse of $L$)
+    \item $L^c$ (complement of $L$)
+    \item $\text{Prefix}(L)$
+    \item $\text{Suffix}(L)$
+\end{enumerate}
+\textbf{Type:} MSQ
+
+\subsection*{Q4.}
+True or False: The intersection of a regular language and a non-regular language is always non-regular.  
+\textbf{Type:} MCQ
+
+\subsection*{Q5.}
+Let $L_1$ and $L_2$ be regular. Is the set $L = \{ x \mid \exists y \in L_1, xy \in L_2 \}$ regular?
+\textbf{Type:} MCQ
+
+\subsection*{Q6.}
+Let $L = \{ a^n b^n \mid n \geq 0 \}$. Let $R$ be a regular language. Which of the following is necessarily regular?
+\begin{enumerate}[label=(\alph*)]
+    \item $R \cup L$
+    \item $R \cap L$
+    \item $R - L$
+    \item $\overline{L}$
+\end{enumerate}
+\textbf{Type:} MSQ
+
+\subsection*{Q7.}
+If $L$ is regular, which of the following is also regular?
+\begin{enumerate}[label=(\alph*)]
+    \item $\text{Even}(L) = \{ w \in L \mid |w| \text{ is even} \}$
+    \item $\text{Odd}(L) = \{ w \in L \mid |w| \text{ is odd} \}$
+    \item $\text{FirstHalf}(L) = \{ x \mid \exists y, xy \in L, |x| = |y| \}$
+\end{enumerate}
+\textbf{Type:} MSQ
+
+\subsection*{Q8.}
+Which of the following languages are closed under regular operations?
+\begin{enumerate}[label=(\alph*)]
+    \item Regular languages
+    \item Context-Free Languages
+    \item Recursive Languages
+    \item Recursively Enumerable Languages
+\end{enumerate}
+\textbf{Type:} MSQ
+
+\subsection*{Q9.}
+The regular languages are closed under:
+\begin{enumerate}[label=(\alph*)]
+    \item Concatenation
+    \item Kleene Star
+    \item Reverse
+    \item Substring
+\end{enumerate}
+\textbf{Type:} MSQ
+
+\subsection*{Q10.}
+Let $L = \{ a^n b^m \mid n, m \geq 0 \}$ and $R = \{ a^n b^n \mid n \geq 0 \}$. What can be said about $L \cap R$?
+\textbf{Type:} MCQ
+
+\subsection*{Q11.}
+Given a DFA $M$ for language $L$, what modification allows us to construct a DFA for $\overline{L}$?
+\textbf{Type:} MCQ
+
+\subsection*{Q12.}
+Let $L$ be a regular language over $\Sigma$. Which of the following languages must also be regular?
+\begin{enumerate}[label=(\alph*)]
+    \item $\{ w \in \Sigma^* \mid ww \in L \}$
+    \item $\{ w \in \Sigma^* \mid \exists x, wx \in L \}$
+\end{enumerate}
+\textbf{Type:} MCQ
+
+\subsection*{Q13.}
+Regular languages are not closed under:
+\begin{enumerate}[label=(\alph*)]
+    \item Homomorphism
+    \item Inverse Homomorphism
+    \item Shuffle
+    \item Intersection with CFL
+\end{enumerate}
+\textbf{Type:} MSQ
+
+\subsection*{Q14.}
+If $L$ is regular, then which of the following is always regular?
+\begin{enumerate}[label=(\alph*)]
+    \item $\{ x \mid xx \in L \}$
+    \item $\{ x \mid x^R \in L \}$
+    \item $\{ x \mid x \in L \text{ and } x^R \in L \}$
+    \item $\{ x \mid x \in L \text{ or } x^R \in L \}$
+\end{enumerate}
+\textbf{Type:} MSQ
+
+\subsection*{Q15.}
+Which of the following statements is correct about closure properties?
+\begin{enumerate}[label=(\alph*)]
+    \item CFLs are closed under union and intersection.
+    \item Regular languages are closed under all finite-state operations.
+    \item Regular languages are not closed under infinite union.
+    \item Regular languages are not closed under prefix.
+\end{enumerate}
+\textbf{Type:} MSQ
+
+\subsection*{Q16.}
+True or False: The language $\{ w \mid w = xy \text{ and } x, y \in L \}$ is always regular if $L$ is regular.  
+\textbf{Type:} MCQ
+
+\subsection*{Q17.}
+Let $L_1$ and $L_2$ be regular. Define $L = \{ x \mid \exists y, xy \in L_1 \text{ and } yx \in L_2 \}$. Is $L$ regular?
+\textbf{Type:} MCQ
+
+\subsection*{Q18.}
+Let $L = \{ a^n b^n \mid n \geq 0 \}$. Which of the following is true?
+\begin{enumerate}[label=(\alph*)]
+    \item $L$ is regular.
+    \item $\overline{L}$ is regular.
+    \item $L \cup \Sigma^*$ is regular.
+    \item $L \cap \Sigma^*$ is regular.
+\end{enumerate}
+\textbf{Type:} MSQ
+
+\subsection*{Q19.}
+Given a DFA $M$ with $n$ states for language $L$, what is the worst-case state complexity of DFA for $L^c$?
+\textbf{Type:} NAT
+
+\subsection*{Q20.}
+Regular languages are not closed under:
+\begin{enumerate}[label=(\alph*)]
+    \item Infinite Union
+    \item Infinite Intersection
+    \item Finite Complement
+    \item Finite Intersection
+\end{enumerate}
+\textbf{Type:} MSQ
+
